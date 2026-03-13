@@ -141,6 +141,71 @@ const typeLabel: Record<string, string> = {
   achievement: 'Achievement',
 };
 
+function WordReveal({ text, delay = 0, isInView }: { text: string; delay?: number; isInView: boolean }) {
+  return (
+    <>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: delay + i * 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
+function TimelineItem({ event, index, isInView }: { event: TimelineEvent; index: number; isInView: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -24 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.4 + index * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
+      className="relative pl-12"
+    >
+      {/* Dot with pulse ring */}
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={isInView ? { scale: 1 } : {}}
+        transition={{ delay: 0.45 + index * 0.08, type: 'spring', stiffness: 250, damping: 12 }}
+        className="absolute left-2.5 top-1.5 w-3 h-3 rounded-full bg-gold-500/80 border-2 border-background"
+      />
+
+      <div className="flex flex-wrap items-center gap-2 mb-1.5">
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.5 + index * 0.08 }}
+          className="text-xs text-muted-foreground font-mono"
+        >
+          {formatDate(event.startDate)}
+          {event.endDate ? ` — ${formatDate(event.endDate)}` : ''}
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.55 + index * 0.08, type: 'spring', stiffness: 200 }}
+          className={`text-xs px-2 py-0.5 rounded-full border ${typeBadgeClass[event.type]}`}
+        >
+          {typeLabel[event.type]}
+        </motion.span>
+      </div>
+
+      <h3 className="font-display font-semibold text-lg text-foreground mb-0.5">
+        {event.title}
+      </h3>
+      <h4 className="text-sm text-gold-500/80 mb-2">{event.organization}</h4>
+      <p className="text-sm text-muted-foreground leading-relaxed">
+        {event.description}
+      </p>
+    </motion.div>
+  );
+}
+
 const TimelineSection = () => {
   const [active, setActive] = useState('all');
   const ref = useRef(null);
@@ -151,31 +216,36 @@ const TimelineSection = () => {
   return (
     <section id="timeline" className="py-24 lg:py-32 border-t border-border/50">
       <div className="max-w-4xl mx-auto px-6 lg:px-8" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-4">Journey</p>
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.1 }}
+            className="section-label mb-4"
+          >
+            Journey
+          </motion.p>
           <h2 className="font-display text-heading font-bold text-foreground mb-4">
-            The path so far
+            <WordReveal text="The path so far" delay={0.15} isInView={isInView} />
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35 }}
+            className="text-muted-foreground max-w-xl mx-auto"
+          >
             From a university hackathon circuit to $1M in funding, 9 podium finishes, and a research paper at 22.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-14"
-        >
-          {filters.map((f) => (
-            <button
+        {/* Filters — spring entrance */}
+        <div className="flex flex-wrap justify-center gap-2 mb-14">
+          {filters.map((f, i) => (
+            <motion.button
               key={f.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.3 + i * 0.04, type: 'spring', stiffness: 200, damping: 15 }}
               onClick={() => setActive(f.id)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 active === f.id
@@ -184,45 +254,23 @@ const TimelineSection = () => {
               }`}
             >
               {f.label}
-            </button>
+            </motion.button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
+          {/* Vertical line — draws down on reveal */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+            className="absolute left-4 top-0 bottom-0 w-px bg-border origin-top"
+          />
 
           <div className="space-y-10">
             {visible.map((event, i) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-                className="relative pl-12"
-              >
-                {/* Dot */}
-                <div className="absolute left-2.5 top-1.5 w-3 h-3 rounded-full bg-gold-500/80 border-2 border-background" />
-
-                <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="text-xs text-muted-foreground font-mono">
-                    {formatDate(event.startDate)}
-                    {event.endDate ? ` — ${formatDate(event.endDate)}` : ''}
-                  </span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full border ${typeBadgeClass[event.type]}`}>
-                    {typeLabel[event.type]}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-semibold text-lg text-foreground mb-0.5">
-                  {event.title}
-                </h3>
-                <h4 className="text-sm text-gold-500/80 mb-2">{event.organization}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {event.description}
-                </p>
-              </motion.div>
+              <TimelineItem key={event.id} event={event} index={i} isInView={isInView} />
             ))}
           </div>
         </div>

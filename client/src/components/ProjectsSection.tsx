@@ -99,6 +99,98 @@ const categories = [
   { id: 'Product', label: 'Product / SaaS' },
 ];
 
+function WordReveal({ text, delay = 0, isInView }: { text: string; delay?: number; isInView: boolean }) {
+  return (
+    <>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: delay + i * 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
+function ProjectCard({ project, index, isInView }: { project: Project; index: number; isInView: boolean }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, x: index % 3 === 0 ? -20 : index % 3 === 2 ? 20 : 0, y: index % 3 === 1 ? 20 : 0 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.4 + index * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
+      className="card-editorial rounded-xl p-6 flex flex-col"
+    >
+      {/* Award badge — spring pop */}
+      {project.award && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.5 + index * 0.08, type: 'spring', stiffness: 220, damping: 12 }}
+          className="mb-4 px-3 py-1.5 bg-gold-500/10 border border-gold-500/20 rounded-lg inline-block self-start"
+        >
+          <span className="text-xs font-semibold text-gold-500">{project.award}</span>
+        </motion.div>
+      )}
+
+      {/* Tags — spring stagger */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        {project.tags.map((tag, ti) => (
+          <motion.span
+            key={ti}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{
+              delay: 0.5 + index * 0.08 + ti * 0.03,
+              type: 'spring',
+              stiffness: 180,
+              damping: 14,
+            }}
+            className={`text-xs px-2.5 py-1 rounded-full ${
+              ti === 0
+                ? 'bg-gold-500/15 text-gold-400'
+                : 'bg-secondary text-muted-foreground'
+            }`}
+          >
+            {tag}
+          </motion.span>
+        ))}
+      </div>
+
+      {/* Title */}
+      <h3 className="font-display font-semibold text-lg text-foreground mb-2">
+        {project.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+        {project.description}
+      </p>
+
+      {/* Tech stack — line draw + fade */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.6 + index * 0.08 }}
+      >
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ delay: 0.55 + index * 0.08, duration: 0.5 }}
+          className="h-px bg-border/50 mb-3 origin-left"
+        />
+        <p className="text-xs font-mono text-muted-foreground/60">
+          {project.tech}
+        </p>
+      </motion.div>
+    </motion.article>
+  );
+}
+
 const ProjectsSection = () => {
   const [active, setActive] = useState('all');
   const ref = useRef(null);
@@ -109,31 +201,36 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-24 lg:py-32 border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-4">Portfolio</p>
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.1 }}
+            className="section-label mb-4"
+          >
+            Portfolio
+          </motion.p>
           <h2 className="font-display text-heading font-bold text-foreground mb-4">
-            Projects & Hackathon Builds
+            <WordReveal text="Projects & Hackathon Builds" delay={0.15} isInView={isInView} />
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.45 }}
+            className="text-muted-foreground max-w-xl mx-auto"
+          >
             Real products built under pressure — hackathons, startups, and solo projects across AI, blockchain, and enterprise SaaS.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-14"
-        >
-          {categories.map((cat) => (
-            <button
+        {/* Filters — spring entrance */}
+        <div className="flex flex-wrap justify-center gap-2 mb-14">
+          {categories.map((cat, i) => (
+            <motion.button
               key={cat.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.35 + i * 0.04, type: 'spring', stiffness: 200, damping: 15 }}
               onClick={() => setActive(cat.id)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 active === cat.id
@@ -142,58 +239,14 @@ const ProjectsSection = () => {
               }`}
             >
               {cat.label}
-            </button>
+            </motion.button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Project grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visible.map((project, i) => (
-            <motion.article
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-              className="card-editorial rounded-xl p-6 flex flex-col"
-            >
-              {/* Award badge */}
-              {project.award && (
-                <div className="mb-4 px-3 py-1.5 bg-gold-500/10 border border-gold-500/20 rounded-lg inline-block self-start">
-                  <span className="text-xs font-semibold text-gold-500">{project.award}</span>
-                </div>
-              )}
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {project.tags.map((tag, ti) => (
-                  <span
-                    key={ti}
-                    className={`text-xs px-2.5 py-1 rounded-full ${
-                      ti === 0
-                        ? 'bg-gold-500/15 text-gold-400'
-                        : 'bg-secondary text-muted-foreground'
-                    }`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Title */}
-              <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
-                {project.description}
-              </p>
-
-              {/* Tech stack */}
-              <p className="text-xs font-mono text-muted-foreground/60 border-t border-border/50 pt-3">
-                {project.tech}
-              </p>
-            </motion.article>
+            <ProjectCard key={project.id} project={project} index={i} isInView={isInView} />
           ))}
         </div>
       </div>

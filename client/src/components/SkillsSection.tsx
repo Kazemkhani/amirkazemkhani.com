@@ -59,6 +59,24 @@ const categories = [
   { id: 'product', label: 'Product' },
 ];
 
+function WordReveal({ text, delay = 0, isInView }: { text: string; delay?: number; isInView: boolean }) {
+  return (
+    <>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: delay + i * 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
 const SkillsSection = () => {
   const [active, setActive] = useState('all');
   const ref = useRef(null);
@@ -69,31 +87,36 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 lg:py-32 border-t border-border/50">
       <div className="max-w-5xl mx-auto px-6 lg:px-8" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-4">Expertise</p>
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.1 }}
+            className="section-label mb-4"
+          >
+            Expertise
+          </motion.p>
           <h2 className="font-display text-heading font-bold text-foreground mb-4">
-            Technical Skills
+            <WordReveal text="Technical Skills" delay={0.15} isInView={isInView} />
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35 }}
+            className="text-muted-foreground max-w-xl mx-auto"
+          >
             Full-stack across AI, blockchain, web, and mobile — battle-tested in hackathons and production systems.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* Filter pills */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-14"
-        >
-          {categories.map((cat) => (
-            <button
+        {/* Filter pills — spring entrance */}
+        <div className="flex flex-wrap justify-center gap-2 mb-14">
+          {categories.map((cat, i) => (
+            <motion.button
               key={cat.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.4 + i * 0.04, type: 'spring', stiffness: 200, damping: 15 }}
               onClick={() => setActive(cat.id)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 active === cat.id
@@ -102,30 +125,38 @@ const SkillsSection = () => {
               }`}
             >
               {cat.label}
-            </button>
+            </motion.button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Skill groups */}
+        {/* Skill groups — staggered from alternating sides */}
         <div className="space-y-12">
           {filtered.map((group, gi) => (
             <motion.div
               key={group.category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + gi * 0.1 }}
+              initial={{ opacity: 0, x: gi % 2 === 0 ? -20 : 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.5 + gi * 0.1, ease: [0.22, 0.61, 0.36, 1] }}
             >
               <h3 className="font-display text-lg font-semibold text-foreground mb-4">
                 {group.label}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
+                {group.skills.map((skill, si) => (
+                  <motion.span
                     key={skill}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{
+                      delay: 0.55 + gi * 0.1 + si * 0.025,
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 14,
+                    }}
                     className="px-4 py-2 text-sm text-muted-foreground bg-secondary rounded-lg border border-border hover:border-gold-500/30 hover:text-foreground transition-all duration-200 cursor-default"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
