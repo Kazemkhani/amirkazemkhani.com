@@ -45,7 +45,7 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold-500/3 rounded-full blur-3xl animate-[orbDrift2_10s_ease-in-out_infinite]" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20 lg:pt-0">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
