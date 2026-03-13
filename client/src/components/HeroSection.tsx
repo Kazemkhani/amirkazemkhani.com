@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import MagneticButton from './MagneticButton';
 
 function AnimatedCounter({ value, delay }: { value: string; delay: number }) {
   const num = parseInt(value.replace(/[^0-9]/g, ''), 10);
@@ -123,26 +124,30 @@ const HeroSection = () => {
           ))}
         </motion.div>
 
-        {/* CTAs */}
+        {/* CTAs — magnetic hover */}
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <motion.a
-            href="#projects"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="px-8 py-3 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-300"
-          >
-            View My Work
-          </motion.a>
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-            className="px-8 py-3 border border-border text-foreground font-semibold rounded-full hover:border-gold-500/50 hover:text-gold-500 transition-all duration-300"
-          >
-            Get in Touch
-          </motion.a>
+          <MagneticButton strength={0.25}>
+            <motion.a
+              href="#projects"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+              className="inline-block px-8 py-3 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-300"
+            >
+              View My Work
+            </motion.a>
+          </MagneticButton>
+          <MagneticButton strength={0.25}>
+            <motion.a
+              href="#contact"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.6 }}
+              className="inline-block px-8 py-3 border border-border text-foreground font-semibold rounded-full hover:border-gold-500/50 hover:text-gold-500 transition-all duration-300"
+            >
+              Get in Touch
+            </motion.a>
+          </MagneticButton>
         </div>
       </div>
 

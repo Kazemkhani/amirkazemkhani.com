@@ -1,7 +1,12 @@
 import { Route, Router as WouterRouter, useParams, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import SmoothScroll from "@/components/SmoothScroll";
+import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -71,11 +76,27 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+  const onLoadComplete = useCallback(() => setLoaded(true), []);
+
   return (
-    <div className="min-h-screen bg-background text-foreground grain">
-      <AnimatedRoutes />
-      <Toaster />
-    </div>
+    <>
+      <AnimatePresence>
+        {!loaded && <LoadingScreen onComplete={onLoadComplete} />}
+      </AnimatePresence>
+
+      {loaded && (
+        <SmoothScroll>
+          <div className="min-h-screen bg-background text-foreground grain">
+            <CustomCursor />
+            <ScrollProgress />
+            <AnimatedRoutes />
+            <BackToTop />
+            <Toaster />
+          </div>
+        </SmoothScroll>
+      )}
+    </>
   );
 }
 

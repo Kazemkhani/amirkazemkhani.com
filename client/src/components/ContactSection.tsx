@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, MapPin, Github, Linkedin } from 'lucide-react';
+import MagneticButton from './MagneticButton';
 
 function WordReveal({ text, delay = 0, isInView }: { text: string; delay?: number; isInView: boolean }) {
   return (
@@ -49,20 +50,22 @@ const ContactSection = () => {
           Whether it's a hackathon team, startup collaboration, AI project, or speaking opportunity — I'd love to connect.
         </motion.p>
 
-        {/* Email CTA — scale spring */}
+        {/* Email CTA — scale spring + magnetic */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.5, type: 'spring', stiffness: 150, damping: 14 }}
           className="mb-12"
         >
-          <a
-            href="mailto:amir@amirkazemkhani.com"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-300 text-lg"
-          >
-            <Mail className="w-5 h-5" />
-            amir@amirkazemkhani.com
-          </a>
+          <MagneticButton strength={0.2}>
+            <a
+              href="mailto:amir@amirkazemkhani.com"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-300 text-lg"
+            >
+              <Mail className="w-5 h-5" />
+              amir@amirkazemkhani.com
+            </a>
+          </MagneticButton>
         </motion.div>
 
         {/* Location — fade with icon */}
