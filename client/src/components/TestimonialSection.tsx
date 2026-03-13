@@ -90,6 +90,24 @@ const articleMap = new Map(
   articles.map((a) => [a.relatedCompetitionId, a.slug])
 );
 
+function WordReveal({ text, delay = 0, isInView }: { text: string; delay?: number; isInView: boolean }) {
+  return (
+    <>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: delay + i * 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
 const TestimonialSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -97,20 +115,27 @@ const TestimonialSection = () => {
   return (
     <section id="competitions" className="py-24 lg:py-32 border-t border-border/50">
       <div className="max-w-5xl mx-auto px-6 lg:px-8" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-4">Competition Record</p>
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.1 }}
+            className="section-label mb-4"
+          >
+            Competition Record
+          </motion.p>
           <h2 className="font-display text-heading font-bold text-foreground mb-4">
-            Wins & Podium Finishes
+            <WordReveal text="Wins & Podium Finishes" delay={0.15} isInView={isInView} />
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.45 }}
+            className="text-muted-foreground max-w-xl mx-auto"
+          >
             4x First Place &middot; 2x Second Place &middot; 2x Third Place across 35+ hackathons nationally. $25,800+ in prizes.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {competitions.map((comp, i) => {
@@ -118,18 +143,22 @@ const TestimonialSection = () => {
             return (
               <motion.div
                 key={comp.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -16 : 16 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + i * 0.06, ease: [0.22, 0.61, 0.36, 1] }}
                 className="card-editorial rounded-xl p-5 flex items-start gap-4"
               >
-                <div
+                {/* Place badge — spring pop */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: 0.45 + i * 0.06, type: 'spring', stiffness: 250, damping: 12 }}
                   className={`flex-shrink-0 w-11 h-11 rounded-full ${
                     placeBadge[comp.place] || 'bg-secondary text-foreground'
                   } flex items-center justify-center font-display font-bold text-sm`}
                 >
                   {comp.place}
-                </div>
+                </motion.div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-semibold text-foreground">{comp.event}</h3>
                   <p className="text-sm text-gold-500 font-medium mb-0.5">{comp.prize}</p>
@@ -154,7 +183,7 @@ const TestimonialSection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.9 }}
           className="text-center mt-10"
         >
           <p className="text-xs text-muted-foreground/60 max-w-2xl mx-auto leading-relaxed">

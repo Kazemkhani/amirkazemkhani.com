@@ -1,6 +1,7 @@
-import { Route, Router as WouterRouter, useParams } from "wouter";
+import { Route, Router as WouterRouter, useParams, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { lazy, Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -18,25 +19,61 @@ const PageLoading = () => (
   </div>
 );
 
+/** Fade transition wrapper for all pages */
+function PageTransition({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 /** Wrapper that extracts the slug param and passes it to ArticlePage */
 function ArticleRoute() {
   const params = useParams<{ slug: string }>();
   return <Article slug={params.slug ?? ""} />;
 }
 
+function AnimatedRoutes() {
+  const [location] = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Suspense fallback={<PageLoading />} key={location}>
+        <WouterRouter>
+          <Route path="/">
+            <PageTransition><Home /></PageTransition>
+          </Route>
+          <Route path="/articles">
+            <PageTransition><Articles /></PageTransition>
+          </Route>
+          <Route path="/articles/:slug">
+            <PageTransition><ArticleRoute /></PageTransition>
+          </Route>
+          <Route path="/privacy">
+            <PageTransition><Privacy /></PageTransition>
+          </Route>
+          <Route path="/terms">
+            <PageTransition><Terms /></PageTransition>
+          </Route>
+          <Route path="/:rest*">
+            <PageTransition><NotFound /></PageTransition>
+          </Route>
+        </WouterRouter>
+      </Suspense>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground grain">
-      <Suspense fallback={<PageLoading />}>
-        <WouterRouter>
-          <Route path="/" component={Home} />
-          <Route path="/articles" component={Articles} />
-          <Route path="/articles/:slug" component={ArticleRoute} />
-          <Route path="/privacy" component={Privacy} />
-          <Route path="/terms" component={Terms} />
-          <Route path="/:rest*" component={NotFound} />
-        </WouterRouter>
-      </Suspense>
+      <AnimatedRoutes />
       <Toaster />
     </div>
   );

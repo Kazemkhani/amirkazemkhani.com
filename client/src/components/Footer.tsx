@@ -19,13 +19,19 @@ const Footer = () => {
 
           {/* Nav links */}
           <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            {['About', 'Projects', 'Wins', 'Contact'].map((item) => (
+            {[
+              { label: 'About', href: '#about' },
+              { label: 'Projects', href: '#projects' },
+              { label: 'Wins', href: '#competitions' },
+              { label: 'Endorsements', href: '#endorsements' },
+              { label: 'Contact', href: '#contact' },
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 className="hover:text-foreground transition-colors"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>

@@ -54,7 +54,7 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6, type: 'spring', stiffness: 150 }}
-              className="absolute -bottom-6 -right-4 lg:-right-8 bg-card border border-border p-5 rounded-xl max-w-[240px]"
+              className="absolute -bottom-6 right-2 sm:-right-4 lg:-right-8 bg-card border border-border p-5 rounded-xl max-w-[200px] sm:max-w-[240px]"
             >
               <p className="font-serif text-lg italic text-foreground leading-snug">
                 "Build things from nothing."
