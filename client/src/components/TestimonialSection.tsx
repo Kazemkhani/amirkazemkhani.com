@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { articles } from '@/data/articles';
 
 interface CompetitionWin {
   id: number;
@@ -83,6 +85,11 @@ const placeBadge: Record<string, string> = {
   '3rd': 'bg-amber-700 text-white',
 };
 
+// Map competition IDs to article slugs
+const articleMap = new Map(
+  articles.map((a) => [a.relatedCompetitionId, a.slug])
+);
+
 const TestimonialSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -106,29 +113,41 @@ const TestimonialSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {competitions.map((comp, i) => (
-            <motion.div
-              key={comp.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
-              className="card-editorial rounded-xl p-5 flex items-start gap-4"
-            >
-              <div
-                className={`flex-shrink-0 w-11 h-11 rounded-full ${
-                  placeBadge[comp.place] || 'bg-secondary text-foreground'
-                } flex items-center justify-center font-display font-bold text-sm`}
+          {competitions.map((comp, i) => {
+            const articleSlug = articleMap.get(comp.id);
+            return (
+              <motion.div
+                key={comp.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                className="card-editorial rounded-xl p-5 flex items-start gap-4"
               >
-                {comp.place}
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-display font-semibold text-foreground">{comp.event}</h3>
-                <p className="text-sm text-gold-500 font-medium mb-0.5">{comp.prize}</p>
-                <p className="text-sm text-muted-foreground">{comp.project}</p>
-                <p className="text-xs text-muted-foreground/60 mt-1">{comp.detail}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div
+                  className={`flex-shrink-0 w-11 h-11 rounded-full ${
+                    placeBadge[comp.place] || 'bg-secondary text-foreground'
+                  } flex items-center justify-center font-display font-bold text-sm`}
+                >
+                  {comp.place}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display font-semibold text-foreground">{comp.event}</h3>
+                  <p className="text-sm text-gold-500 font-medium mb-0.5">{comp.prize}</p>
+                  <p className="text-sm text-muted-foreground">{comp.project}</p>
+                  <p className="text-xs text-muted-foreground/60 mt-1">{comp.detail}</p>
+                  {articleSlug && (
+                    <a
+                      href={`/articles/${articleSlug}`}
+                      className="inline-flex items-center gap-1 text-xs text-gold-500/70 hover:text-gold-500 mt-2 transition-colors group"
+                    >
+                      Read the story
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Honourable mentions */}

@@ -1,4 +1,4 @@
-import { Route, Router as WouterRouter } from "wouter";
+import { Route, Router as WouterRouter, useParams } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { lazy, Suspense } from "react";
 
@@ -6,6 +6,8 @@ const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
+const Articles = lazy(() => import("./pages/Articles"));
+const Article = lazy(() => import("./pages/Article"));
 
 const PageLoading = () => (
   <div className="flex justify-center items-center h-screen w-full bg-background">
@@ -16,12 +18,20 @@ const PageLoading = () => (
   </div>
 );
 
+/** Wrapper that extracts the slug param and passes it to ArticlePage */
+function ArticleRoute() {
+  const params = useParams<{ slug: string }>();
+  return <Article slug={params.slug ?? ""} />;
+}
+
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground grain">
       <Suspense fallback={<PageLoading />}>
         <WouterRouter>
           <Route path="/" component={Home} />
+          <Route path="/articles" component={Articles} />
+          <Route path="/articles/:slug" component={ArticleRoute} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route path="/:rest*" component={NotFound} />
