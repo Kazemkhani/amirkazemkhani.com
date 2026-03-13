@@ -269,11 +269,11 @@ html {
 @keyframes cinematicFade {
   from {
     opacity: 0;
-    filter: blur(4px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -343,6 +343,27 @@ html {
 @keyframes accordion-up {
   from { height: var(--radix-accordion-content-height); }
   to { height: 0; }
+}
+
+/* Article page — CSS-driven animations (compositor thread, no JS overhead) */
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(30px, -20px, 0); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-25px, 15px, 0); }
+}
+
+@keyframes chapterPulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 /* ── Animation delays ── */
