@@ -1,4 +1,4 @@
-import { Route, Router as WouterRouter, useParams, useLocation } from "wouter";
+import { Route, useParams, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { lazy, Suspense, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,6 +7,8 @@ import LoadingScreen from "@/components/LoadingScreen";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -50,26 +52,24 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Suspense fallback={<PageLoading />} key={location}>
-        <WouterRouter>
-          <Route path="/">
-            <PageTransition><Home /></PageTransition>
-          </Route>
-          <Route path="/articles">
-            <PageTransition><Articles /></PageTransition>
-          </Route>
-          <Route path="/articles/:slug">
-            <PageTransition><ArticleRoute /></PageTransition>
-          </Route>
-          <Route path="/privacy">
-            <PageTransition><Privacy /></PageTransition>
-          </Route>
-          <Route path="/terms">
-            <PageTransition><Terms /></PageTransition>
-          </Route>
-          <Route path="/:rest*">
-            <PageTransition><NotFound /></PageTransition>
-          </Route>
-        </WouterRouter>
+        <Route path="/">
+          <PageTransition><Home /></PageTransition>
+        </Route>
+        <Route path="/articles">
+          <PageTransition><Articles /></PageTransition>
+        </Route>
+        <Route path="/articles/:slug">
+          <PageTransition><ArticleRoute /></PageTransition>
+        </Route>
+        <Route path="/privacy">
+          <PageTransition><Privacy /></PageTransition>
+        </Route>
+        <Route path="/terms">
+          <PageTransition><Terms /></PageTransition>
+        </Route>
+        <Route path="/:rest*">
+          <PageTransition><NotFound /></PageTransition>
+        </Route>
       </Suspense>
     </AnimatePresence>
   );
@@ -90,7 +90,9 @@ function App() {
           <div className="min-h-screen bg-background text-foreground grain">
             <CustomCursor />
             <ScrollProgress />
+            <Header />
             <AnimatedRoutes />
+            <Footer />
             <BackToTop />
             <Toaster />
           </div>

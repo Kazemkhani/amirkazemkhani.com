@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 /**
  * Custom gold cursor — dot follows mouse, scales up on hoverable elements.
@@ -9,8 +9,14 @@ const CustomCursor = () => {
   const ringRef = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
   const [visible, setVisible] = useState(false);
+  const visibleRef = useRef(false);
   const mouse = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
+
+  const setVisibleBoth = useCallback((v: boolean) => {
+    visibleRef.current = v;
+    setVisible(v);
+  }, []);
 
   useEffect(() => {
     // Don't show on touch devices
@@ -18,14 +24,14 @@ const CustomCursor = () => {
 
     const onMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
-      if (!visible) setVisible(true);
+      if (!visibleRef.current) setVisibleBoth(true);
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
     };
 
-    const onEnter = () => setVisible(true);
-    const onLeave = () => setVisible(false);
+    const onEnter = () => setVisibleBoth(true);
+    const onLeave = () => setVisibleBoth(false);
 
     // Detect hoverable elements
     const onOver = (e: MouseEvent) => {
@@ -76,7 +82,7 @@ const CustomCursor = () => {
       document.documentElement.style.cursor = '';
       style.remove();
     };
-  }, [visible]);
+  }, []); // stable deps — no teardown/recreate on visibility change
 
   // Don't render on touch devices
   if (typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {

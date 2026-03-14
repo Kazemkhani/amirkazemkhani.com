@@ -12,10 +12,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#competitions', label: 'Wins' },
-    { href: '#endorsements', label: 'Endorsements' },
+    { href: '/#about', label: 'About' },
+    { href: '/#projects', label: 'Projects' },
+    { href: '/#competitions', label: 'Wins' },
+    { href: '/#endorsements', label: 'Endorsements' },
   ];
 
   return (
@@ -29,7 +29,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="font-display text-xl font-semibold tracking-tight text-foreground">
+          <a href="/" className="font-display text-xl font-semibold tracking-tight text-foreground">
             Amir<span className="text-gold-500">K</span>
           </a>
 
@@ -45,7 +45,7 @@ const Header = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               className="text-sm font-medium px-5 py-2 border border-gold-500/40 text-gold-500 rounded-full hover:bg-gold-500 hover:text-background transition-all duration-300"
             >
               Contact
@@ -88,7 +88,7 @@ const Header = () => {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 className="text-lg text-gold-500 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >

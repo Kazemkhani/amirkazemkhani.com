@@ -20,11 +20,11 @@ const Footer = () => {
           {/* Nav links */}
           <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             {[
-              { label: 'About', href: '#about' },
-              { label: 'Projects', href: '#projects' },
-              { label: 'Wins', href: '#competitions' },
-              { label: 'Endorsements', href: '#endorsements' },
-              { label: 'Contact', href: '#contact' },
+              { label: 'About', href: '/#about' },
+              { label: 'Projects', href: '/#projects' },
+              { label: 'Wins', href: '/#competitions' },
+              { label: 'Endorsements', href: '/#endorsements' },
+              { label: 'Contact', href: '/#contact' },
             ].map((item) => (
               <a
                 key={item.label}
