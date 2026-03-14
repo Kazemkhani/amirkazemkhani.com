@@ -21,12 +21,15 @@ const placeBadgeColor: Record<string, string> = {
    ───────────────────────────────────────────── */
 function AnimatedNumber({ value, isInView }: { value: string; isInView: boolean }) {
   const num = parseInt(value, 10);
-  const isNumeric = !isNaN(num) && value.match(/^\d+%?$/);
-  const [display, setDisplay] = useState(0);
+  // .test() returns a primitive boolean — stable across renders (unlike .match() which returns a new array)
+  const isNumeric = !isNaN(num) && /^\d+%?$/.test(value);
   const suffix = value.includes('%') ? '%' : '';
+  const hasAnimated = useRef(false);
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (!isNumeric || !isInView) return;
+    if (!isNumeric || !isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
     let frame: number;
     const duration = 1200;
     const start = performance.now();

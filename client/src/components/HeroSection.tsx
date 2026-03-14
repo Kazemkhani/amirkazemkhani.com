@@ -128,7 +128,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <MagneticButton strength={0.25}>
             <motion.a
-              href="#projects"
+              href="/#projects"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.5 }}
@@ -139,7 +139,7 @@ const HeroSection = () => {
           </MagneticButton>
           <MagneticButton strength={0.25}>
             <motion.a
-              href="#contact"
+              href="/#contact"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.6 }}
@@ -151,8 +151,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* CSS-only scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/40 animate-[fadeIn_0.6s_2s_both]">
+      {/* CSS-only scroll indicator — hidden on mobile where it overlaps CTAs */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-muted-foreground/40 animate-[fadeIn_0.6s_2s_both]">
         <span className="text-[10px] font-mono tracking-[0.3em] uppercase">Scroll</span>
         <ChevronDown className="w-4 h-4 animate-[scrollBounce_1.5s_ease-in-out_infinite]" />
       </div>
