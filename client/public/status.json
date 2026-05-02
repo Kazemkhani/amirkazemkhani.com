@@ -1,0 +1,9 @@
+{
+  "agents_online": 9,
+  "prs_open": 3,
+  "builds_running": 2,
+  "last_commit_ts": "2026-05-02T08:00:00Z",
+  "last_commit_repo": "NOVA-FYP-PRODUCTION",
+  "last_commit_message": "feat: agent hierarchy update",
+  "generated_at": "2026-05-02T09:00:00Z"
+}
