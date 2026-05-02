@@ -34,10 +34,27 @@ export default function LiveStatus() {
   const [status, setStatus] = useState<StatusData>(FALLBACK);
   const [stale, setStale] = useState(false);
 
+  // Production: pull from NOVA's existing CloudFront-fronted S3 bucket.
+  // Dev: fall back to the committed /status.json in the repo.
+  const PROD_URL = "https://novalabs.ae/akz-status.json";
+  const DEV_URL = "/status.json";
+
   const fetchStatus = async () => {
+    const url = import.meta.env.PROD ? PROD_URL : DEV_URL;
     try {
-      const res = await fetch("/status.json", { cache: "no-store" });
-      if (!res.ok) return;
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) {
+        // Prod fetch failed? Fall back to repo-committed status.json
+        if (import.meta.env.PROD) {
+          const fb = await fetch(DEV_URL, { cache: "no-store" });
+          if (fb.ok) {
+            const data: StatusData = await fb.json();
+            setStatus(data);
+            setStale(isStale(data.generated_at));
+          }
+        }
+        return;
+      }
       const data: StatusData = await res.json();
       setStatus(data);
       setStale(isStale(data.generated_at));
