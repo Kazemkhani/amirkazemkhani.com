@@ -1,3 +1,4 @@
+import FomoBanner from "../components/FomoBanner";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import SkillsSection from "../components/SkillsSection";
@@ -10,17 +11,20 @@ import ContactSection from "../components/ContactSection";
 
 const Home = () => {
   return (
-    <main>
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <TimelineSection />
-      <ProjectsSection />
-      <TestimonialSection />
-      <EndorsementsSection />
-      <BlogSection />
-      <ContactSection />
-    </main>
+    <>
+      <FomoBanner />
+      <main style={{ paddingTop: "40px" }}>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <TimelineSection />
+        <ProjectsSection />
+        <TestimonialSection />
+        <EndorsementsSection />
+        <BlogSection />
+        <ContactSection />
+      </main>
+    </>
   );
 };
 
