@@ -1,4 +1,6 @@
 import HeroSection from "../components/HeroSection";
+import PitchWall from "../components/PitchWall";
+import HaloMoments from "../components/HaloMoments";
 import AboutSection from "../components/AboutSection";
 import SkillsSection from "../components/SkillsSection";
 import TimelineSection from "../components/TimelineSection";
@@ -12,8 +14,10 @@ const Home = () => {
   return (
     <main>
       <HeroSection />
+      <PitchWall />
       <AboutSection />
       <SkillsSection />
+      <HaloMoments />
       <TimelineSection />
       <ProjectsSection />
       <TestimonialSection />
