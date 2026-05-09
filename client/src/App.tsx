@@ -9,6 +9,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TVBadgeRibbon from "@/components/TVBadgeRibbon";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -53,22 +54,34 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Suspense fallback={<PageLoading />} key={location}>
         <Route path="/">
-          <PageTransition><Home /></PageTransition>
+          <PageTransition>
+            <Home />
+          </PageTransition>
         </Route>
         <Route path="/articles">
-          <PageTransition><Articles /></PageTransition>
+          <PageTransition>
+            <Articles />
+          </PageTransition>
         </Route>
         <Route path="/articles/:slug">
-          <PageTransition><ArticleRoute /></PageTransition>
+          <PageTransition>
+            <ArticleRoute />
+          </PageTransition>
         </Route>
         <Route path="/privacy">
-          <PageTransition><Privacy /></PageTransition>
+          <PageTransition>
+            <Privacy />
+          </PageTransition>
         </Route>
         <Route path="/terms">
-          <PageTransition><Terms /></PageTransition>
+          <PageTransition>
+            <Terms />
+          </PageTransition>
         </Route>
         <Route path="/:rest*">
-          <PageTransition><NotFound /></PageTransition>
+          <PageTransition>
+            <NotFound />
+          </PageTransition>
         </Route>
       </Suspense>
     </AnimatePresence>
@@ -85,37 +98,47 @@ function useSPALinks() {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       // Only handle left clicks without modifiers
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+        return;
 
-      const anchor = (e.target as HTMLElement).closest('a[href]') as HTMLAnchorElement | null;
+      const anchor = (e.target as HTMLElement).closest(
+        "a[href]",
+      ) as HTMLAnchorElement | null;
       if (!anchor) return;
 
-      const href = anchor.getAttribute('href');
+      const href = anchor.getAttribute("href");
       if (!href) return;
 
       // Skip external links, mailto, tel, download, target=_blank
-      if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || anchor.hasAttribute('download') || anchor.target === '_blank') return;
+      if (
+        href.startsWith("http") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        anchor.hasAttribute("download") ||
+        anchor.target === "_blank"
+      )
+        return;
 
       // Skip pure hash links on same page (handled by SmoothScroll)
-      if (href.startsWith('#')) return;
+      if (href.startsWith("#")) return;
 
       // Handle /#hash links — navigate to home then scroll to hash
-      if (href.startsWith('/#')) {
+      if (href.startsWith("/#")) {
         const hash = href.slice(2);
         const currentPath = window.location.pathname;
 
-        if (currentPath === '/') {
+        if (currentPath === "/") {
           // Already on home — just scroll to the element
           e.preventDefault();
           const el = document.getElementById(hash);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
           // Navigate to home, then scroll after render
           e.preventDefault();
-          setLocation('/');
+          setLocation("/");
           setTimeout(() => {
             const el = document.getElementById(hash);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
           }, 400); // Wait for page transition
         }
         return;
@@ -127,25 +150,25 @@ function useSPALinks() {
       window.scrollTo(0, 0);
     };
 
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
   }, [setLocation]);
 }
 
 function App() {
   // Only show loading screen on first cold load (not on SPA navigations)
-  const isFirstVisit = !sessionStorage.getItem('amirk-loaded');
+  const isFirstVisit = !sessionStorage.getItem("amirk-loaded");
   const [loaded, setLoaded] = useState(!isFirstVisit);
 
   const onLoadComplete = useCallback(() => {
-    sessionStorage.setItem('amirk-loaded', '1');
+    sessionStorage.setItem("amirk-loaded", "1");
     setLoaded(true);
   }, []);
 
   // If already loaded (returning visit in this tab), mark immediately
   useEffect(() => {
     if (!isFirstVisit) {
-      sessionStorage.setItem('amirk-loaded', '1');
+      sessionStorage.setItem("amirk-loaded", "1");
     }
   }, [isFirstVisit]);
 
@@ -161,6 +184,7 @@ function App() {
       {loaded && (
         <SmoothScroll>
           <div className="min-h-screen bg-background text-foreground grain">
+            <TVBadgeRibbon />
             <CustomCursor />
             <ScrollProgress />
             <Header />
