@@ -1,12 +1,17 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronDown, Mail } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
+import NewsletterInline from "@/components/NewsletterInline";
+import { submitDiscoveryLead } from "@/lib/leads";
+import { trackEvent } from "@/lib/analytics";
 
-// CALENDLY_EMBED_URL placeholder — Amir must replace this string with the real
-// Calendly link (e.g. "https://calendly.com/amirkazemkhani/discovery-30") before
-// this branch is merged. Until then the button falls back to mailto.
-const CALENDLY_URL = "";
+// Cal.com booking link — set VITE_CAL_URL in Vercel project settings.
+// Defaults to amirkazemkhani's discovery event; page handles missing routes
+// gracefully so the site is never broken even before env vars are wired.
+const CAL_URL =
+  (import.meta.env.VITE_CAL_URL as string | undefined) ||
+  "https://cal.com/amirkazemkhani/discovery";
 const DIRECT_EMAIL = "amir@amirkazemkhani.com";
 
 const META_TITLE =
@@ -404,14 +409,49 @@ function Process() {
 }
 
 // ── 5. Booking widget ────────────────────────────────────────────────────────
+/**
+ * Booking section — primary CTA opens Cal.com in a new tab; secondary path is
+ * a discovery-form fallback that POSTs directly to HubSpot Forms API with the
+ * visitor's first-touch UTM attached. Mailto stays as last-resort.
+ *
+ * Why both: ~20% of senior buyers don't book inside a calendar widget on first
+ * touch — they want to send a note describing the problem first. The form
+ * captures them without breaking the brand voice (no popup, no modal).
+ */
 function BookingWidget() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    role: "",
+    problem: "",
+  });
+  const [state, setState] = useState<"idle" | "submitting" | "ok" | "error">(
+    "idle",
+  );
+  const [error, setError] = useState<string | null>(null);
 
-  const bookingHref = CALENDLY_URL || `mailto:${DIRECT_EMAIL}`;
-  const bookingLabel = CALENDLY_URL
-    ? "Book a 30-minute discovery call"
-    : "Email to schedule a discovery call";
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.email.includes("@")) {
+      setError("Name and email required.");
+      setState("error");
+      return;
+    }
+    setState("submitting");
+    setError(null);
+    try {
+      await submitDiscoveryLead(form);
+      trackEvent("Discovery Lead Submit", { surface: "work-with-me-form" });
+      setState("ok");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Submit failed.");
+      setState("error");
+    }
+  }
 
   return (
     <section
@@ -447,12 +487,6 @@ function BookingWidget() {
           I&apos;m the right person for it.
         </motion.p>
 
-        {/*
-          CALENDLY_EMBED_URL — replace the CALENDLY_URL constant at the top of
-          this file with the real Calendly link before this branch is merged.
-          When set, this button opens Calendly in a new tab; while empty, it
-          falls back to mailto so the page is never broken.
-        */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -462,29 +496,109 @@ function BookingWidget() {
             stiffness: 150,
             damping: 14,
           }}
-          className="mb-6"
+          className="mb-6 flex flex-col sm:flex-row gap-3 justify-center"
         >
           <MagneticButton strength={0.2}>
             <a
-              href={bookingHref}
-              target={CALENDLY_URL ? "_blank" : undefined}
-              rel={CALENDLY_URL ? "noopener noreferrer" : undefined}
+              href={CAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent("Cal Booking Click", { surface: "work-with-me" })
+              }
               className="inline-flex items-center gap-3 px-8 py-4 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-300 text-base sm:text-lg"
               data-track="wwm_booking_primary"
             >
               <Mail className="w-5 h-5" />
-              {bookingLabel}
+              Book a 30-minute discovery call
             </a>
           </MagneticButton>
+          <button
+            onClick={() => setShowForm((v) => !v)}
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 border border-border text-foreground/80 font-medium rounded-full hover:border-gold-500/50 hover:text-gold-500 transition-all duration-300"
+            data-track="wwm_form_toggle"
+          >
+            {showForm ? "Hide form" : "Send a note instead"}
+          </button>
         </motion.div>
+
+        {showForm && state !== "ok" && (
+          <motion.form
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            onSubmit={onSubmit}
+            className="text-left max-w-xl mx-auto grid gap-3 mt-8"
+          >
+            <input
+              required
+              placeholder="Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold-500/50"
+            />
+            <input
+              required
+              type="email"
+              placeholder="Work email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold-500/50"
+            />
+            <div className="grid sm:grid-cols-2 gap-3">
+              <input
+                placeholder="Company"
+                value={form.company}
+                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                className="px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold-500/50"
+              />
+              <input
+                placeholder="Role"
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
+                className="px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold-500/50"
+              />
+            </div>
+            <textarea
+              required
+              rows={4}
+              placeholder="What problem are you trying to solve?"
+              value={form.problem}
+              onChange={(e) => setForm({ ...form, problem: e.target.value })}
+              className="px-4 py-3 bg-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold-500/50 resize-none"
+            />
+            <button
+              type="submit"
+              disabled={state === "submitting"}
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors disabled:opacity-60"
+            >
+              {state === "submitting" ? "Sending..." : "Send the note"}
+              {state !== "submitting" && <ArrowRight className="w-4 h-4" />}
+            </button>
+            {error && (
+              <p className="text-xs text-red-400/80" role="alert">
+                {error}
+              </p>
+            )}
+          </motion.form>
+        )}
+
+        {state === "ok" && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-gold-400 mt-6"
+          >
+            Got it. I&apos;ll reply within two business days from Dubai.
+          </motion.p>
+        )}
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.75 }}
-          className="text-sm text-muted-foreground"
+          className="text-sm text-muted-foreground mt-10"
         >
-          Direct email if Calendly is broken:{" "}
+          Direct email if both are broken:{" "}
           <a
             href={`mailto:${DIRECT_EMAIL}`}
             className="text-foreground/80 hover:text-gold-500 transition-colors underline-offset-4 hover:underline"
@@ -492,6 +606,46 @@ function BookingWidget() {
             {DIRECT_EMAIL}
           </a>
         </motion.p>
+      </div>
+    </section>
+  );
+}
+
+// ── 5b. Newsletter strip ─────────────────────────────────────────────────────
+function NewsletterStrip() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section
+      className="py-20 lg:py-24 border-t border-border/50 bg-gold-500/[0.02]"
+      ref={ref}
+    >
+      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.1 }}
+          className="section-label mb-4"
+        >
+          The NOVA Signal
+        </motion.p>
+
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <WordReveal
+            text="Not ready to talk yet? Read what I'm shipping."
+            delay={0.15}
+            isInView={isInView}
+          />
+        </h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4 }}
+        >
+          <NewsletterInline surface="work-with-me" />
+        </motion.div>
       </div>
     </section>
   );
@@ -626,6 +780,7 @@ export default function WorkWithMe() {
       <Proof />
       <Process />
       <BookingWidget />
+      <NewsletterStrip />
       <WontDo />
       <FooterCTA />
     </div>

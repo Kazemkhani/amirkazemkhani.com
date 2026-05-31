@@ -10,6 +10,7 @@ import BackToTop from "@/components/BackToTop";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TVBadgeRibbon from "@/components/TVBadgeRibbon";
+import CookieBanner from "@/components/CookieBanner";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -197,6 +198,7 @@ function App() {
             <AnimatedRoutes />
             <Footer />
             <BackToTop />
+            <CookieBanner />
             <Toaster />
           </div>
         </SmoothScroll>
