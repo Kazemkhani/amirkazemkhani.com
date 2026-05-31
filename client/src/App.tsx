@@ -17,6 +17,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Articles = lazy(() => import("./pages/Articles"));
 const Article = lazy(() => import("./pages/Article"));
+const WorkWithMe = lazy(() => import("./pages/WorkWithMe"));
 
 const PageLoading = () => (
   <div className="flex justify-center items-center h-screen w-full bg-background">
@@ -76,6 +77,11 @@ function AnimatedRoutes() {
         <Route path="/terms">
           <PageTransition>
             <Terms />
+          </PageTransition>
+        </Route>
+        <Route path="/work-with-me">
+          <PageTransition>
+            <WorkWithMe />
           </PageTransition>
         </Route>
         <Route path="/:rest*">
