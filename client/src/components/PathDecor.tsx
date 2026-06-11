@@ -17,12 +17,12 @@ import { motion, useReducedMotion } from "framer-motion";
 const EASE = [0.22, 0.61, 0.36, 1] as const;
 
 /* Signature trajectory: enters low-left, dips beneath the headline column,
-   then rises toward the portrait and exits top-right. */
+   then rises toward the portrait and exits top-right.
+   Simplified to a single stroke (the former echo path was removed when the
+   vertical gutter rail landed — one horizontal signature line composes with
+   the new vertical rhythm instead of competing with it). */
 const MAIN_D =
   "M -80 645 C 180 668, 392 560, 580 470 S 905 522, 1080 400 S 1390 175, 1545 130";
-/* Faint echo, offset below for depth. */
-const ECHO_D =
-  "M -80 679 C 180 702, 392 594, 580 504 S 905 556, 1080 434 S 1390 209, 1545 164";
 
 export function HeroPathDecor() {
   const reduceMotion = useReducedMotion();
@@ -30,7 +30,6 @@ export function HeroPathDecor() {
   const strokeId = `heroPathGold${uid}`;
   const glowId = `heroDotGlow${uid}`;
   const mainId = `heroPathMain${uid}`;
-  const echoId = `heroPathEcho${uid}`;
 
   return (
     <svg
@@ -72,53 +71,23 @@ export function HeroPathDecor() {
         pathLength={1}
         className="hero-path-draw"
       />
-      <path
-        id={echoId}
-        d={ECHO_D}
-        stroke={`url(#${strokeId})`}
-        strokeWidth="0.75"
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
-        pathLength={1}
-        opacity="0.35"
-        className="hero-path-draw hero-path-draw-echo"
-      />
-
       {!reduceMotion && (
-        <>
-          {/* Primary traveling pulse */}
-          <g opacity="0">
-            <circle r="9" fill={`url(#${glowId})`} />
-            <circle r="2" fill="#f0d6a0" />
-            <animateMotion dur="11s" begin="3s" repeatCount="indefinite">
-              <mpath href={`#${mainId}`} />
-            </animateMotion>
-            <animate
-              attributeName="opacity"
-              values="0;1;1;0"
-              keyTimes="0;0.1;0.9;1"
-              dur="11s"
-              begin="3s"
-              repeatCount="indefinite"
-            />
-          </g>
-          {/* Slower, fainter pulse on the echo path */}
-          <g opacity="0">
-            <circle r="6" fill={`url(#${glowId})`} opacity="0.6" />
-            <circle r="1.4" fill="#e7bc66" />
-            <animateMotion dur="17s" begin="7.5s" repeatCount="indefinite">
-              <mpath href={`#${echoId}`} />
-            </animateMotion>
-            <animate
-              attributeName="opacity"
-              values="0;0.7;0.7;0"
-              keyTimes="0;0.12;0.88;1"
-              dur="17s"
-              begin="7.5s"
-              repeatCount="indefinite"
-            />
-          </g>
-        </>
+        /* Traveling pulse along the signature stroke */
+        <g opacity="0">
+          <circle r="9" fill={`url(#${glowId})`} />
+          <circle r="2" fill="#f0d6a0" />
+          <animateMotion dur="11s" begin="3s" repeatCount="indefinite">
+            <mpath href={`#${mainId}`} />
+          </animateMotion>
+          <animate
+            attributeName="opacity"
+            values="0;1;1;0"
+            keyTimes="0;0.1;0.9;1"
+            dur="11s"
+            begin="3s"
+            repeatCount="indefinite"
+          />
+        </g>
       )}
     </svg>
   );

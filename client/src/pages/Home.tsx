@@ -10,10 +10,27 @@ import EndorsementsSection from "../components/EndorsementsSection";
 import BlogSection from "../components/BlogSection";
 import ContactSection from "../components/ContactSection";
 import { SectionFlourish } from "../components/PathDecor";
+import VerticalRail from "../components/VerticalRail";
+
+/** Major sections traced by the vertical gold rail (desktop ≥1280px). */
+const RAIL_SECTIONS = [
+  "hero",
+  "pitch-wall",
+  "about",
+  "skills",
+  "halo-moments",
+  "timeline",
+  "projects",
+  "competitions",
+  "endorsements",
+  "blog",
+  "contact",
+];
 
 const Home = () => {
   return (
-    <main>
+    <main className="relative">
+      <VerticalRail sectionIds={RAIL_SECTIONS} />
       <HeroSection />
       <PitchWall />
       <SectionFlourish />

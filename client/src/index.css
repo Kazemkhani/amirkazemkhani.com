@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lenis smooth scroll overrides */
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
 /* ═══════════════════════════════════════════════
    EDITORIAL & CINEMATIC DESIGN SYSTEM
    Dark-first. Gold accents. Dramatic typography.
@@ -28,28 +17,28 @@ html.lenis, html.lenis body {
   }
 
   :root {
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
     /* ── Dark-first palette (default) ── */
-    --background: 0 0% 4%;            /* #0a0a0a */
-    --foreground: 40 20% 92%;         /* warm off-white */
+    --background: 0 0% 4%; /* #0a0a0a */
+    --foreground: 40 20% 92%; /* warm off-white */
 
-    --primary: 43 50% 54%;            /* gold #c9a84c */
+    --primary: 43 50% 54%; /* gold #c9a84c */
     --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 12%;            /* elevated surface */
+    --secondary: 0 0% 12%; /* elevated surface */
     --secondary-foreground: 40 20% 92%;
 
-    --accent: 43 50% 54%;             /* gold */
+    --accent: 43 50% 54%; /* gold */
     --accent-foreground: 0 0% 4%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 55%;
 
-    --card: 0 0% 7%;                  /* card surface */
+    --card: 0 0% 7%; /* card surface */
     --card-foreground: 40 20% 92%;
 
     --popover: 0 0% 7%;
@@ -118,11 +107,19 @@ html.lenis, html.lenis body {
   }
 }
 
+/* Scrolling is fully native — no `scroll-behavior: smooth` on html
+   (it made programmatic scrolls like the SPA-nav scrollTo(0,0) animate
+   too). Smooth anchor scrolling is opted into per-call via
+   scrollIntoView({ behavior: 'smooth' }) in AnchorScroll/useSPALinks. */
 html {
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fixed-header offset for anchor targets (replaces the old JS -80px). */
+[id] {
+  scroll-margin-top: 5.5rem;
 }
 
 /* ═══════════════════════════════════════════════
@@ -132,7 +129,13 @@ html {
 @layer utilities {
   /* Gold gradient text */
   .text-gradient-gold {
-    background: linear-gradient(135deg, #c9a84c 0%, #e7bc66 40%, #f0d6a0 60%, #c9a84c 100%);
+    background: linear-gradient(
+      135deg,
+      #c9a84c 0%,
+      #e7bc66 40%,
+      #f0d6a0 60%,
+      #c9a84c 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -140,7 +143,11 @@ html {
 
   /* Subtle white gradient text */
   .text-gradient-light {
-    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.7) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -160,7 +167,12 @@ html {
 
   .editorial-divider-center {
     @apply w-24 h-px mx-auto;
-    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold)),
+      transparent
+    );
   }
 }
 
@@ -169,7 +181,7 @@ html {
    ═══════════════════════════════════════════════ */
 
 .grain::before {
-  content: '';
+  content: "";
   position: fixed;
   top: -50%;
   left: -50%;
@@ -227,7 +239,12 @@ html {
   }
 
   .animate-gold-shimmer {
-    background: linear-gradient(90deg, hsl(var(--gold)) 0%, hsl(var(--gold-glow)) 50%, hsl(var(--gold)) 100%);
+    background: linear-gradient(
+      90deg,
+      hsl(var(--gold)) 0%,
+      hsl(var(--gold-glow)) 50%,
+      hsl(var(--gold)) 100%
+    );
     background-size: 200% 100%;
     animation: goldShimmer 3s ease infinite;
   }
@@ -266,7 +283,9 @@ html {
   }
 
   .hover-gold-border {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .hover-gold-border:hover {
@@ -311,88 +330,175 @@ html {
 }
 
 @keyframes goldShimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideRight {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulseSubtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.02); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
 }
 
 /* Accordion (Radix) */
 @keyframes accordion-down {
-  from { height: 0; }
-  to { height: var(--radix-accordion-content-height); }
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
 @keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); }
-  to { height: 0; }
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 /* Article page — CSS-driven animations (compositor thread, no JS overhead) */
 @keyframes orbDrift1 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(30px, -20px, 0); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(30px, -20px, 0);
+  }
 }
 
 @keyframes orbDrift2 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-25px, 15px, 0); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25px, 15px, 0);
+  }
 }
 
 @keyframes chapterPulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 @keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 /* ── Animation delays ── */
-.animation-delay-100 { animation-delay: 100ms; }
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-300 { animation-delay: 300ms; }
-.animation-delay-400 { animation-delay: 400ms; }
-.animation-delay-500 { animation-delay: 500ms; }
-.animation-delay-600 { animation-delay: 600ms; }
-.animation-delay-700 { animation-delay: 700ms; }
-.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
 
 /* ═══════════════════════════════════════════════
    PERFORMANCE & ACCESSIBILITY
    ═══════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -400,7 +506,9 @@ html {
   }
 }
 
-img, picture, video {
+img,
+picture,
+video {
   display: block;
   max-width: 100%;
 }
@@ -453,18 +561,54 @@ img, picture, video {
   animation: heroPathDraw 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s forwards;
 }
 
-.hero-path-draw-echo {
-  animation-duration: 2.8s;
-  animation-delay: 1s;
-}
-
 @keyframes heroPathDraw {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-path-draw {
     animation: none;
     stroke-dashoffset: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   VERTICAL GOLD RAIL (VerticalRail)
+   One segment per section, left viewport gutter,
+   desktop ≥1280px only. Draws in via IO + CSS
+   transition (transform/opacity-free of layout).
+   ═══════════════════════════════════════════════ */
+
+.vrail-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 1.4s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.6s ease;
+}
+
+.vrail-node {
+  opacity: 0;
+  transition: opacity 0.7s ease 0.9s;
+}
+
+.vrail-seg.is-drawn .vrail-path {
+  stroke-dashoffset: 0;
+  opacity: 0.55;
+}
+
+.vrail-seg.is-drawn .vrail-node {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vrail-path,
+  .vrail-node {
+    transition: none;
+    stroke-dashoffset: 0;
+    opacity: 0.5;
   }
 }
