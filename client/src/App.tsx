@@ -2,7 +2,7 @@ import { Route, useParams, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { lazy, Suspense, useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import SmoothScroll from "@/components/SmoothScroll";
+import AnchorScroll from "@/components/AnchorScroll";
 import LoadingScreen from "@/components/LoadingScreen";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -119,7 +119,7 @@ function useSPALinks() {
       )
         return;
 
-      // Skip pure hash links on same page (handled by SmoothScroll)
+      // Skip pure hash links on same page (handled by AnchorScroll)
       if (href.startsWith("#")) return;
 
       // Handle /#hash links — navigate to home then scroll to hash
@@ -182,7 +182,7 @@ function App() {
       </AnimatePresence>
 
       {loaded && (
-        <SmoothScroll>
+        <AnchorScroll>
           <div className="min-h-screen bg-background text-foreground grain">
             <TVBadgeRibbon />
             <CustomCursor />
@@ -193,7 +193,7 @@ function App() {
             <BackToTop />
             <Toaster />
           </div>
-        </SmoothScroll>
+        </AnchorScroll>
       )}
     </>
   );
