@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import FalconsEpisode from "./FalconsEpisode";
 
 /**
  * HaloMoments — three stage-and-network photos from Falcons of Majlis.
@@ -60,6 +61,9 @@ const HaloMoments = () => {
           </p>
           <div className="editorial-divider-center mt-6" />
         </div>
+
+        {/* The episode itself — cinematic lazy YouTube embed, segment at 59:00 */}
+        <FalconsEpisode />
 
         {/* Hero callout — solo pitch */}
         <motion.figure
