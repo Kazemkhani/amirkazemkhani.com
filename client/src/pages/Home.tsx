@@ -9,19 +9,23 @@ import TestimonialSection from "../components/TestimonialSection";
 import EndorsementsSection from "../components/EndorsementsSection";
 import BlogSection from "../components/BlogSection";
 import ContactSection from "../components/ContactSection";
+import { SectionFlourish } from "../components/PathDecor";
 
 const Home = () => {
   return (
     <main>
       <HeroSection />
       <PitchWall />
+      <SectionFlourish />
       <AboutSection />
       <SkillsSection />
       <HaloMoments />
+      <SectionFlourish />
       <TimelineSection />
       <ProjectsSection />
       <TestimonialSection />
       <EndorsementsSection />
+      <SectionFlourish />
       <BlogSection />
       <ContactSection />
     </main>

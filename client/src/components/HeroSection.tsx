@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import { HeroPathDecor } from "./PathDecor";
 import { withUtm } from "../lib/utm";
 
 function AnimatedCounter({ value, delay }: { value: string; delay: number }) {
@@ -57,6 +58,9 @@ const HeroSection = () => {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl animate-[orbDrift1_8s_ease-in-out_infinite]" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold-500/3 rounded-full blur-3xl animate-[orbDrift2_10s_ease-in-out_infinite]" />
       </div>
+
+      {/* Signature gold path — decorative draw-in with traveling pulses */}
+      <HeroPathDecor />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 lg:pt-0 pb-16 lg:pb-0">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
