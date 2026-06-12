@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
  * Performance + UX contract (ported from the novalabs.ae billboard):
  *   - No YouTube bytes on load: a lightweight i.ytimg.com poster facade only.
  *   - At ~45% scroll-into-view, the youtube-nocookie iframe is injected with
- *     MUTED autoplay at start=3540 (59:00 — Amir's segment). Browser autoplay
+ *     MUTED autoplay at start=3562 (59:22 — Amir's segment). Browser autoplay
  *     policy requires mute; a gold "Tap to unmute" chip un-mutes via the
  *     YT postMessage API (enablejsapi=1).
  *   - Explicit play-button click = user gesture, so it injects WITH sound.
@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
  */
 
 const VIDEO_ID = "t8sjQKTm5m4";
-const START_SECONDS = 3540; // 59:00 — Amir's segment
+const START_SECONDS = 3562; // 59:22 — Amir's segment
 
 const buildSrc = (muted: boolean) =>
   `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?start=${START_SECONDS}` +
@@ -121,7 +121,7 @@ const FalconsEpisode = () => {
             <iframe
               ref={iframeRef}
               src={buildSrc(mode === "muted")}
-              title="Falcons of Majlis — Amir's segment (starts at 59:00)"
+              title="Falcons of Majlis — Amir's segment (starts at 59:22)"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               className="absolute inset-0 w-full h-full border-0"
               data-testid="falcons-episode-iframe"
@@ -144,7 +144,7 @@ const FalconsEpisode = () => {
               </span>
               <span>
                 Watch the segment{" "}
-                <span className="font-mono text-gold-500">· 59:00</span>
+                <span className="font-mono text-gold-500">· 59:22</span>
               </span>
             </button>
           )}
@@ -166,7 +166,7 @@ const FalconsEpisode = () => {
             The episode, in full
           </p>
           <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-gold-500 mt-2">
-            Falcons of Majlis — India Today × Aaj Tak · segment from 59:00
+            Falcons of Majlis — India Today × Aaj Tak · segment from 59:22
           </p>
         </figcaption>
       </div>
