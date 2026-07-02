@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Clock, Trophy } from 'lucide-react';
 import { articles } from '@/data/articles';
+import WordReveal from '@/components/WordReveal';
+import { usePageMeta } from '@/lib/meta';
 
 const placeBadgeColor: Record<string, string> = {
   '1st': 'from-yellow-400 to-amber-600',
@@ -113,11 +115,16 @@ export default function ArticlesPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
 
+  usePageMeta(
+    'Articles — Amir Kazemkhani',
+    'Long-form breakdowns of hackathon competitions, what we built, and the doors that opened after. By Amir Kazemkhani, voice AI founder in Dubai.',
+  );
+
   const featured = articles[0];
   const rest = articles.slice(1);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="main" className="min-h-screen bg-background">
       {/* ── Header ── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-8">
         <motion.a
@@ -140,18 +147,8 @@ export default function ArticlesPage() {
           >
             Articles
           </motion.p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            {'The Stories Behind the Wins'.split(' ').map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.06, duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-                className={`inline-block mr-[0.25em] ${i >= 4 ? 'text-gradient-gold' : ''}`}
-              >
-                {word}
-              </motion.span>
-            ))}
+          <h1 className="text-hero font-semibold text-foreground mb-4">
+            <WordReveal text="The stories behind the wins" delay={0.2} isInView={isInView} />
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}

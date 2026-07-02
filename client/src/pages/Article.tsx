@@ -9,6 +9,8 @@ import {
 } from 'framer-motion';
 import { ArrowLeft, Clock, Trophy, ChevronRight, ChevronDown } from 'lucide-react';
 import { getArticleBySlug, articles, type ArticleSection } from '@/data/articles';
+import WordReveal from '@/components/WordReveal';
+import { usePageMeta } from '@/lib/meta';
 
 const placeBadgeColor: Record<string, string> = {
   '1st': 'from-yellow-400 to-amber-600',
@@ -44,27 +46,6 @@ function AnimatedNumber({ value, isInView }: { value: string; isInView: boolean 
 
   if (!isNumeric) return <>{value}</>;
   return <>{display}{suffix}</>;
-}
-
-/* ─────────────────────────────────────────────
-   Word-by-word stagger — NO filter:blur (GPU killer)
-   ───────────────────────────────────────────── */
-function WordReveal({ text, delay = 0 }: { text: string; delay?: number }) {
-  return (
-    <>
-      {text.split(' ').map((word, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: delay + i * 0.055, ease: [0.22, 0.61, 0.36, 1] }}
-          className="inline-block mr-[0.3em]"
-        >
-          {word}
-        </motion.span>
-      ))}
-    </>
-  );
 }
 
 /* ─────────────────────────────────────────────
@@ -192,6 +173,13 @@ export default function ArticlePage({ slug }: { slug: string }) {
   const article = getArticleBySlug(slug);
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  usePageMeta(
+    article
+      ? `${article.title} — Amir Kazemkhani`
+      : "Article not found — Amir Kazemkhani",
+    article?.excerpt,
+  );
 
   // 1. Progress bar — single scroll listener on page
   const { scrollYProgress } = useScroll({ target: containerRef });
@@ -380,7 +368,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
       </header>
 
       {/* ── Article Body ── */}
-      <main className="max-w-3xl mx-auto px-6 lg:px-8 py-16 md:py-24">
+      <main id="main" className="max-w-3xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         {article.sections.map((section, i) => {
           const headingCount = article.sections.slice(0, i + 1).filter((s) => s.type === 'heading').length;
           return <SectionBlock key={i} section={section} index={section.type === 'heading' ? headingCount - 1 : i} />;

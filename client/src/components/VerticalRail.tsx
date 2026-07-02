@@ -1,70 +1,74 @@
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 
 /**
- * Vertical scroll-drawn gold rail — same concept as the novalabs.ae signal
- * rail, ported to React. A thin vertical gradient line lives in the LEFT
- * VIEWPORT GUTTER (desktop ≥1280px only), one segment per major section.
- * Each segment draws in top→down (stroke-dash transition, see `.vrail-*`
- * in index.css) the first time its section scrolls into view, with a small
- * gold diamond node at the segment head.
+ * VerticalRail — THE signature device (one-signature-device law,
+ * docs/DESIGN-DOCTRINE.md).
  *
- * Overlap safety: the rail X is derived from the viewport gutter
- * (`(innerWidth - 1280px content) / 2`) and additionally clamped to end
- * well before the content column's left edge, so it can NEVER overlap
- * content at any width ≥1280px. Below 1280px the component renders nothing.
+ * A thin gold line in the left viewport gutter (desktop ≥1280px only) that
+ * draws with scroll: `useScroll` progress through the page, run through a
+ * `useSpring` (stiffness 90, damping 25) so it feels physical — it
+ * overshoots a breath and settles. Diamond notches sit at each section
+ * anchor and flip to a lit state the moment the spring passes them
+ * (discrete notch states).
  *
- * Perf: zero scroll listeners — geometry is measured once per layout
- * change (resize / ResizeObserver, debounced) and draw-in is driven by
- * IntersectionObserver. prefers-reduced-motion → fully drawn, static.
+ * Overlap safety: rail X derives from the viewport gutter
+ * ((innerWidth − 1280) / 2) and is clamped to stay ≥18px clear of the
+ * content column. Below 1280px the component renders nothing.
+ *
+ * Reduced motion: rail renders fully drawn, all notches lit, zero animation.
  */
 
 const DESKTOP_MQ = "(min-width: 1280px)";
 const CONTENT_MAX = 1280; // Tailwind max-w-7xl
 const CONTENT_PAD = 32; // px-8 horizontal padding at lg+
-const SEG_INSET = 28; // breathing room at segment top/bottom
-const MIN_SECTION_H = 160;
 
-interface Segment {
-  id: string;
-  top: number; // px from rail host top
-  height: number; // segment svg height
+interface Geometry {
+  railX: number; // viewport x of the rail line
+  height: number; // host height in px
+  notches: { id: string; y: number }[];
 }
 
-interface RailGeometry {
-  segments: Segment[];
-  railX: number; // viewport x of the rail's center line
-}
-
-function measure(host: HTMLElement, sectionIds: string[]): RailGeometry {
-  const hostTop = host.getBoundingClientRect().top;
+function measure(host: HTMLElement, sectionIds: string[]): Geometry {
+  const hostRect = host.getBoundingClientRect();
   const gutter = Math.max(14, (window.innerWidth - CONTENT_MAX) / 2 - 24);
   const contentLeft =
     Math.max(0, (window.innerWidth - CONTENT_MAX) / 2) + CONTENT_PAD;
-  // Hard clamp: rail centre always ≥18px clear of the content column.
   const railX = Math.min(gutter, contentLeft - 18);
 
-  const segments: Segment[] = [];
+  const notches: Geometry["notches"] = [];
   for (const id of sectionIds) {
     const el = document.getElementById(id);
     if (!el) continue;
     const rect = el.getBoundingClientRect();
-    if (rect.height < MIN_SECTION_H) continue;
-    segments.push({
-      id,
-      top: rect.top - hostTop + SEG_INSET,
-      height: Math.round(rect.height - SEG_INSET * 2),
-    });
+    notches.push({ id, y: rect.top - hostRect.top + 28 });
   }
-  return { segments, railX };
+  return { railX, height: Math.round(hostRect.height), notches };
 }
 
 const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
   const reduceMotion = useReducedMotion();
   const hostRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
-  const [geo, setGeo] = useState<RailGeometry | null>(null);
-  const [drawn, setDrawn] = useState<Record<string, boolean>>({});
+  const [geo, setGeo] = useState<Geometry | null>(null);
+  const [litCount, setLitCount] = useState(0);
+
+  // Scroll progress through the page content, springed
+  const { scrollYProgress } = useScroll({
+    target: hostRef,
+    offset: ["start start", "end end"],
+  });
+  const spring = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 25,
+    mass: 1,
+  });
 
   // Desktop-only gate
   useEffect(() => {
@@ -75,7 +79,7 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Geometry: measure on mount + window resize + content reflow (images etc.)
+  // Geometry: measure on mount + resize + content reflow (images etc.)
   useEffect(() => {
     if (!enabled) {
       setGeo(null);
@@ -111,34 +115,18 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
     };
   }, [enabled, sectionIds]);
 
-  // Draw-in: observe the sections themselves
-  useEffect(() => {
-    if (!enabled || !geo) return;
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      setDrawn(Object.fromEntries(geo.segments.map((s) => [s.id, true])));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = (entry.target as HTMLElement).id;
-            setDrawn((d) => (d[id] ? d : { ...d, [id]: true }));
-            io.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.12 },
-    );
-    for (const seg of geo.segments) {
-      const el = document.getElementById(seg.id);
-      if (el) io.observe(el);
-    }
-    return () => io.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, geo === null, reduceMotion]);
+  // Discrete notch states — state only changes when a notch is crossed
+  useMotionValueEvent(spring, "change", (v) => {
+    if (!geo) return;
+    const drawnPx = v * geo.height;
+    const count = geo.notches.filter((n) => n.y <= drawnPx).length;
+    setLitCount((c) => (c === count ? c : count));
+  });
 
-  if (!enabled) return null;
+  if (!enabled) {
+    // hostRef must exist for useScroll even below the breakpoint
+    return <div ref={hostRef} aria-hidden="true" className="absolute inset-0 pointer-events-none" />;
+  }
 
   return (
     <div
@@ -146,48 +134,49 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 hidden select-none overflow-hidden xl:block"
     >
-      {geo?.segments.map((seg, i) => {
-        const gid = `vrailGold${i}`;
-        const headY = 5;
-        return (
-          <svg
-            key={seg.id}
-            className={`vrail-seg absolute${drawn[seg.id] ? " is-drawn" : ""}`}
-            style={{ top: seg.top, left: geo.railX - 12 }}
-            width="24"
-            height={seg.height}
-            viewBox={`0 0 24 ${seg.height}`}
-            fill="none"
-            focusable="false"
-          >
-            <defs>
-              <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#c9a84c" stopOpacity="0" />
-                <stop offset="0.12" stopColor="#c9a84c" stopOpacity="0.9" />
-                <stop offset="0.88" stopColor="#f0d6a0" stopOpacity="0.9" />
-                <stop offset="1" stopColor="#f0d6a0" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              className="vrail-path"
-              d={`M12 ${headY} L12 ${seg.height - 5}`}
-              pathLength={1}
-              stroke={`url(#${gid})`}
-              strokeWidth="1.5"
+      {geo && (
+        <div
+          className="absolute top-0"
+          style={{ left: geo.railX, height: geo.height }}
+        >
+          {/* Track — faint, always present */}
+          <div
+            className="absolute top-0 w-px"
+            style={{
+              height: geo.height,
+              background: "hsl(var(--gold) / 0.12)",
+            }}
+          />
+          {/* Drawn line — springed scroll progress */}
+          <motion.div
+            className="absolute top-0 w-px origin-top"
+            style={{
+              height: geo.height,
+              scaleY: reduceMotion ? 1 : spring,
+              background:
+                "linear-gradient(180deg, #c9a84c 0%, #e7bc66 55%, #f0d6a0 100%)",
+              opacity: 0.55,
+            }}
+          />
+          {/* Notches — one diamond per section anchor, discrete lit states */}
+          {geo.notches.map((n, i) => (
+            <div
+              key={n.id}
+              className="rail-node absolute w-[7px] h-[7px]"
+              data-lit={reduceMotion || i < litCount ? "true" : "false"}
+              style={{
+                top: n.y - 3.5,
+                left: -3,
+                background:
+                  reduceMotion || i < litCount
+                    ? "#e7bc66"
+                    : "hsl(var(--background))",
+                border: "1px solid #c9a84c",
+              }}
             />
-            {/* Diamond node at the segment head */}
-            <rect
-              className="vrail-node"
-              x="8.8"
-              y={headY - 3.2}
-              width="6.4"
-              height="6.4"
-              transform={`rotate(45 12 ${headY})`}
-              fill="#e7bc66"
-            />
-          </svg>
-        );
-      })}
+          ))}
+        </div>
+      )}
     </div>
   );
 };

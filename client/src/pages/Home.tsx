@@ -1,50 +1,30 @@
 import HeroSection from "../components/HeroSection";
-import PitchWall from "../components/PitchWall";
-import HaloMoments from "../components/HaloMoments";
-import AboutSection from "../components/AboutSection";
-import SkillsSection from "../components/SkillsSection";
-import TimelineSection from "../components/TimelineSection";
-import ProjectsSection from "../components/ProjectsSection";
-import TestimonialSection from "../components/TestimonialSection";
-import EndorsementsSection from "../components/EndorsementsSection";
-import BlogSection from "../components/BlogSection";
-import ContactSection from "../components/ContactSection";
-import { SectionFlourish } from "../components/PathDecor";
+import WorkSection from "../components/WorkSection";
+import ProofSection from "../components/ProofSection";
+import WritingSection from "../components/WritingSection";
+import InvitationSection from "../components/InvitationSection";
 import VerticalRail from "../components/VerticalRail";
+import { usePageMeta, SITE_TITLE, SITE_DESCRIPTION } from "../lib/meta";
 
-/** Major sections traced by the vertical gold rail (desktop ≥1280px). */
-const RAIL_SECTIONS = [
-  "hero",
-  "pitch-wall",
-  "about",
-  "skills",
-  "halo-moments",
-  "timeline",
-  "projects",
-  "competitions",
-  "endorsements",
-  "blog",
-  "contact",
-];
+/**
+ * Home — the five-section arc (docs/DESIGN-DOCTRINE.md):
+ * identity → work → proof → writing → invitation.
+ * The vertical gold rail is the single signature device.
+ */
+
+const RAIL_SECTIONS = ["hero", "work", "proof", "writing", "contact"];
 
 const Home = () => {
+  usePageMeta(SITE_TITLE, SITE_DESCRIPTION);
+
   return (
-    <main className="relative">
+    <main id="main" className="relative">
       <VerticalRail sectionIds={RAIL_SECTIONS} />
       <HeroSection />
-      <PitchWall />
-      <SectionFlourish />
-      <AboutSection />
-      <SkillsSection />
-      <HaloMoments />
-      <SectionFlourish />
-      <TimelineSection />
-      <ProjectsSection />
-      <TestimonialSection />
-      <EndorsementsSection />
-      <SectionFlourish />
-      <BlogSection />
-      <ContactSection />
+      <WorkSection />
+      <ProofSection />
+      <WritingSection />
+      <InvitationSection />
     </main>
   );
 };

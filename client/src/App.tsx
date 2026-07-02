@@ -1,15 +1,9 @@
-import { Route, useParams, useLocation } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
-import { lazy, Suspense, useState, useCallback, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { Route, Switch, useParams, useLocation } from "wouter";
+import { lazy, Suspense, useEffect } from "react";
 import AnchorScroll from "@/components/AnchorScroll";
-import LoadingScreen from "@/components/LoadingScreen";
-import CustomCursor from "@/components/CustomCursor";
-import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TVBadgeRibbon from "@/components/TVBadgeRibbon";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -17,29 +11,12 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Articles = lazy(() => import("./pages/Articles"));
 const Article = lazy(() => import("./pages/Article"));
+const WorkWithMe = lazy(() => import("./pages/WorkWithMe"));
 
+/** Route-level fallback — blank canvas, no spinner theater. */
 const PageLoading = () => (
-  <div className="flex justify-center items-center h-screen w-full bg-background">
-    <div className="text-center">
-      <p className="section-label mb-4">Loading</p>
-      <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
-    </div>
-  </div>
+  <div className="min-h-screen w-full bg-background" aria-hidden="true" />
 );
-
-/** Fade transition wrapper for all pages */
-function PageTransition({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 /** Wrapper that extracts the slug param and passes it to ArticlePage */
 function ArticleRoute() {
@@ -47,50 +24,29 @@ function ArticleRoute() {
   return <Article slug={params.slug ?? ""} />;
 }
 
-function AnimatedRoutes() {
-  const [location] = useLocation();
-
+/**
+ * Routes — zero animation on navigation (route changes are
+ * keyboard-frequency actions; see docs/DESIGN-DOCTRINE.md motion budget).
+ */
+function Routes() {
   return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<PageLoading />} key={location}>
-        <Route path="/">
-          <PageTransition>
-            <Home />
-          </PageTransition>
-        </Route>
-        <Route path="/articles">
-          <PageTransition>
-            <Articles />
-          </PageTransition>
-        </Route>
-        <Route path="/articles/:slug">
-          <PageTransition>
-            <ArticleRoute />
-          </PageTransition>
-        </Route>
-        <Route path="/privacy">
-          <PageTransition>
-            <Privacy />
-          </PageTransition>
-        </Route>
-        <Route path="/terms">
-          <PageTransition>
-            <Terms />
-          </PageTransition>
-        </Route>
-        <Route path="/:rest*">
-          <PageTransition>
-            <NotFound />
-          </PageTransition>
-        </Route>
-      </Suspense>
-    </AnimatePresence>
+    <Suspense fallback={<PageLoading />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/articles" component={Articles} />
+        <Route path="/articles/:slug" component={ArticleRoute} />
+        <Route path="/work-with-me" component={WorkWithMe} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
 /**
- * Global click interceptor — converts internal <a href> clicks to SPA navigation
- * so we don't get full page reloads (and therefore no loading screen on every click).
+ * Global click interceptor — converts internal <a href> clicks to SPA
+ * navigation so we don't get full page reloads.
  */
 function useSPALinks() {
   const [, setLocation] = useLocation();
@@ -139,12 +95,12 @@ function useSPALinks() {
           setTimeout(() => {
             const el = document.getElementById(hash);
             if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 400); // Wait for page transition
+          }, 120);
         }
         return;
       }
 
-      // Internal path link — SPA navigate
+      // Internal path link — SPA navigate, instant
       e.preventDefault();
       setLocation(href);
       window.scrollTo(0, 0);
@@ -156,46 +112,21 @@ function useSPALinks() {
 }
 
 function App() {
-  // Only show loading screen on first cold load (not on SPA navigations)
-  const isFirstVisit = !sessionStorage.getItem("amirk-loaded");
-  const [loaded, setLoaded] = useState(!isFirstVisit);
-
-  const onLoadComplete = useCallback(() => {
-    sessionStorage.setItem("amirk-loaded", "1");
-    setLoaded(true);
-  }, []);
-
-  // If already loaded (returning visit in this tab), mark immediately
-  useEffect(() => {
-    if (!isFirstVisit) {
-      sessionStorage.setItem("amirk-loaded", "1");
-    }
-  }, [isFirstVisit]);
-
   // Intercept internal links for SPA navigation
   useSPALinks();
 
   return (
-    <>
-      <AnimatePresence>
-        {!loaded && <LoadingScreen onComplete={onLoadComplete} />}
-      </AnimatePresence>
-
-      {loaded && (
-        <AnchorScroll>
-          <div className="min-h-screen bg-background text-foreground grain">
-            <TVBadgeRibbon />
-            <CustomCursor />
-            <ScrollProgress />
-            <Header />
-            <AnimatedRoutes />
-            <Footer />
-            <BackToTop />
-            <Toaster />
-          </div>
-        </AnchorScroll>
-      )}
-    </>
+    <AnchorScroll>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <div className="min-h-screen bg-background text-foreground grain">
+        <Header />
+        <Routes />
+        <Footer />
+        <BackToTop />
+      </div>
+    </AnchorScroll>
   );
 }
 
