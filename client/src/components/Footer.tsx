@@ -14,7 +14,7 @@ const Footer = () => {
               Amir<span className="text-gold-500">K</span>
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              Voice AI Founder &middot; NOVA Labs &middot; Abu Dhabi
+              Voice AI Founder &middot; NOVA Labs &middot; Dubai
             </p>
           </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
           >
             NOVA Labs
           </a>{" "}
-          from Abu Dhabi
+          from Dubai
         </p>
 
         <p className="text-center text-xs text-muted-foreground/50 mt-4">
