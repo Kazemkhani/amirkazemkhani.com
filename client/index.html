@@ -87,24 +87,25 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Fonts — Editorial Stack -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts — self-hosted variable woff2 (Inter + JetBrains Mono), zero third-party requests -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-var-latin.woff2"
+      crossorigin
     />
 
     <!-- Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <!-- Performance — hero portrait is the LCP element -->
     <link
       rel="preload"
       as="image"
-      href="/credibility/amir-falcons-stage-pitch-solo.jpg"
+      href="/credibility/amir-falcons-stage-pitch-solo-640.avif"
+      imagesrcset="/credibility/amir-falcons-stage-pitch-solo-640.avif 640w, /credibility/amir-falcons-stage-pitch-solo-1120.avif 1120w"
+      imagesizes="(min-width: 1024px) 480px, 90vw"
       fetchpriority="high"
     />
 

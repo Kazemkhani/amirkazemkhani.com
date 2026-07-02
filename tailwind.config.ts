@@ -6,16 +6,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['"Space Grotesk"', '"Inter"', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        // Two typefaces, self-hosted. `display` intentionally aliases the text
+        // face — one family carries the whole hierarchy (see docs/DESIGN-DOCTRINE.md).
+        sans: ['"Inter Variable"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Inter Variable"', '"Inter"', 'system-ui', 'sans-serif'],
+        serif: ['Georgia', '"Times New Roman"', 'serif'],
+        mono: ['"JetBrains Mono Variable"', '"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'hero': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
-        'display': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1', letterSpacing: '-0.02em' }],
-        'heading': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'subheading': ['clamp(1.25rem, 2vw, 1.75rem)', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+        // Restrained scale — h1 tops out at 3.5rem (reference-class ceiling)
+        'hero': ['clamp(2.25rem, 5vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'heading': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'subheading': ['clamp(1.125rem, 1.5vw, 1.375rem)', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
       },
       colors: {
         background: "hsl(var(--background))",
