@@ -2,49 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amirkazemkhani.com/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://amirkazemkhani.com/work-with-me</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://amirkazemkhani.com/articles</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/articles/dubai-police-hackathon</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/articles/rta-gdg-tanzeem</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/articles/futurehack-cyberlife</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/articles/cs-expo-humai</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/articles/sui-blockathon-arenaai</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/privacy</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://amirkazemkhani.com/terms</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>
