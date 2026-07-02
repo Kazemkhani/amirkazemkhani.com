@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -7,29 +7,32 @@ const Header = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navLinks = [
-    { href: '/#about', label: 'About' },
-    { href: '/#projects', label: 'Projects' },
-    { href: '/#competitions', label: 'Wins' },
-    { href: '/#endorsements', label: 'Endorsements' },
+    { href: "/#about", label: "About" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#competitions", label: "Wins" },
+    { href: "/#endorsements", label: "Endorsements" },
   ];
 
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-background/90 backdrop-blur-md border-b border-border/50'
-          : 'bg-background/60 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none'
+          ? "bg-background/90 backdrop-blur-md border-b border-border/50"
+          : "bg-background/60 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="font-display text-xl font-semibold tracking-tight text-foreground">
+          <a
+            href="/"
+            className="font-display text-xl font-semibold tracking-tight text-foreground"
+          >
             Amir<span className="text-gold-500">K</span>
           </a>
 
@@ -50,6 +53,12 @@ const Header = () => {
             >
               Contact
             </a>
+            <a
+              href="/work-with-me"
+              className="text-sm font-medium text-foreground border-b border-gold-500/60 pb-0.5 hover:text-gold-500 hover:border-gold-500 transition-all duration-300"
+            >
+              Work with me
+            </a>
           </nav>
 
           {/* Mobile Toggle */}
@@ -59,9 +68,15 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <div className="w-6 flex flex-col gap-1.5">
-              <span className={`block h-px bg-current transition-transform duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`} />
-              <span className={`block h-px bg-current transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-px bg-current transition-transform duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`} />
+              <span
+                className={`block h-px bg-current transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-[3.5px]" : ""}`}
+              />
+              <span
+                className={`block h-px bg-current transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block h-px bg-current transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""}`}
+              />
             </div>
           </button>
         </div>
@@ -72,7 +87,7 @@ const Header = () => {
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/50 overflow-hidden"
           >
@@ -93,6 +108,13 @@ const Header = () => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
+              </a>
+              <a
+                href="/work-with-me"
+                className="text-lg text-foreground border-b border-gold-500/60 pb-0.5 self-start"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Work with me
               </a>
             </nav>
           </motion.div>
