@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════
-   EDITORIAL DESIGN SYSTEM — v3 (restraint contract)
-   Dark-only. Gold on one flat, slightly warm near-black.
-   No grain, no glows, no vignettes — depth comes from
-   spacing, hairlines, the gold rail, and lifted surfaces.
+   EDITORIAL DESIGN SYSTEM — v3 IVORY (comparison variant)
+   Ink on warm paper. Deep gold accents (#8a6d2f family)
+   that hold 4.5:1 on ivory. No grain, no glows, no
+   vignettes — depth comes from spacing, warm-grey
+   hairlines, the deep-gold rail, and lifted surfaces.
    See docs/DESIGN-DOCTRINE.md before changing.
    ═══════════════════════════════════════════════ */
 
@@ -50,7 +51,7 @@
   }
 
   :root {
-    color-scheme: dark;
+    color-scheme: light;
 
     --font-sans: "Inter Variable", "Inter", system-ui, -apple-system,
       sans-serif;
@@ -58,46 +59,46 @@
     --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace,
       monospace;
 
-    /* ── Dark-only palette ──
-       ONE flat, very slightly warm near-black (#0B0A09 family) across the
-       whole page. Elevation is lightness (+2–3%), never shadow or glow.
-       Hairlines sit at ~white 6–8% equivalent. */
-    --background: 30 10% 4%; /* ~#0b0a09 — warm near-black */
-    --foreground: 40 20% 92%; /* warm off-white */
+    /* ── Ivory editorial palette ──
+       ONE flat warm paper (#FAF7F2 family) across the whole page.
+       Ink text, deep gold accents. Elevation is a slightly whiter
+       card + warm-grey hairline, never shadow or glow. */
+    --background: 40 44% 96%; /* ~#faf7f2 — warm paper */
+    --foreground: 30 12% 11%; /* near-black ink */
 
-    --primary: 43 50% 54%; /* gold #c9a84c */
-    --primary-foreground: 30 10% 4%;
+    --primary: 41 49% 36%; /* deep gold #8a6d2f — 4.5:1 on paper */
+    --primary-foreground: 40 44% 96%;
 
-    --secondary: 35 6% 12%; /* elevated surface */
-    --secondary-foreground: 40 20% 92%;
+    --secondary: 40 24% 91%; /* pressed surface */
+    --secondary-foreground: 30 12% 11%;
 
-    --muted: 35 5% 15%;
-    --muted-foreground: 35 6% 56%;
+    --muted: 40 22% 89%;
+    --muted-foreground: 30 8% 38%;
 
-    --accent: 43 50% 54%;
-    --accent-foreground: 30 10% 4%;
+    --accent: 41 49% 36%;
+    --accent-foreground: 40 44% 96%;
 
-    --card: 32 8% 7%; /* +3% over background — lifted, not glowing */
-    --card-foreground: 40 20% 92%;
+    --card: 40 40% 98%; /* slightly whiter than paper — lifted */
+    --card-foreground: 30 12% 11%;
 
-    --popover: 32 8% 7%;
-    --popover-foreground: 40 20% 92%;
+    --popover: 40 40% 98%;
+    --popover-foreground: 30 12% 11%;
 
-    --border: 38 8% 13%; /* ≈ rgba(255,255,255,0.08) hairline on the base */
-    --input: 38 8% 13%;
-    --ring: 43 50% 54%;
+    --border: 38 20% 85%; /* warm grey hairline on paper */
+    --input: 38 20% 85%;
+    --ring: 41 49% 36%;
     --radius: 0.5rem;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 74% 46%;
     --destructive-foreground: 0 0% 100%;
 
     /* ── Editorial custom tokens ── */
-    --gold: 43 50% 54%;
-    --surface-elevated: 32 8% 10%;
-    --surface-overlay: 30 10% 5%;
-    --text-dim: 35 5% 45%;
-    --text-secondary: 35 6% 65%;
-    --divider: 38 8% 14%;
+    --gold: 41 49% 36%;
+    --surface-elevated: 40 30% 93%;
+    --surface-overlay: 40 40% 97%;
+    --text-dim: 30 6% 50%;
+    --text-secondary: 30 8% 30%;
+    --divider: 38 20% 84%;
   }
 
   h1,
@@ -153,14 +154,14 @@ html {
    ═══════════════════════════════════════════════ */
 
 @layer utilities {
-  /* Gold gradient text */
+  /* Gold gradient text — deep ink-gold on paper */
   .text-gradient-gold {
     background: linear-gradient(
       135deg,
-      #c9a84c 0%,
-      #e7bc66 40%,
-      #f0d6a0 60%,
-      #c9a84c 100%
+      #7a5f28 0%,
+      #8a6d2f 40%,
+      #a1802f 60%,
+      #7a5f28 100%
     );
     -webkit-background-clip: text;
     background-clip: text;

@@ -113,7 +113,7 @@ const FalconsEpisode = () => {
           {mode === "idle" && (
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-background/20"
+              className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"
             />
           )}
 

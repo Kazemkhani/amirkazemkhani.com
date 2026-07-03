@@ -23,18 +23,19 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        // Ivory variant: deep, inkier gold — #8a6d2f family holds 4.5:1 on paper.
         gold: {
-          DEFAULT: '#c9a84c',
+          DEFAULT: '#8a6d2f',
           50: '#fdf8ed',
           100: '#f8ecd0',
-          200: '#f0d6a0',
-          300: '#e7bc66',
-          400: '#dfa63b',
-          500: '#c9a84c',
-          600: '#a08030',
-          700: '#7a6024',
-          800: '#5a4620',
-          900: '#3d2f18',
+          200: '#ecd49b',
+          300: '#b09045',
+          400: '#9d7d36',
+          500: '#8a6d2f',
+          600: '#6f5726',
+          700: '#57441e',
+          800: '#413317',
+          900: '#2c2310',
         },
         card: {
           DEFAULT: "hsl(var(--card))",

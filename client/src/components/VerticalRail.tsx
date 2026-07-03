@@ -154,8 +154,8 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
               height: geo.height,
               scaleY: reduceMotion ? 1 : spring,
               background:
-                "linear-gradient(180deg, #c9a84c 0%, #e7bc66 55%, #f0d6a0 100%)",
-              opacity: 0.55,
+                "linear-gradient(180deg, #8a6d2f 0%, #9d7d36 55%, #b09045 100%)",
+              opacity: 0.65,
             }}
           />
           {/* Notches — one diamond per section anchor, discrete lit states */}
@@ -169,9 +169,9 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
                 left: -3,
                 background:
                   reduceMotion || i < litCount
-                    ? "#e7bc66"
+                    ? "#8a6d2f"
                     : "hsl(var(--background))",
-                border: "1px solid #c9a84c",
+                border: "1px solid #8a6d2f",
               }}
             />
           ))}
