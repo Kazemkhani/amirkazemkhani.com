@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { HeroPathDecor } from "./PathDecor";
 import Pic from "./Pic";
 import { withUtm } from "../lib/utm";
 
@@ -22,10 +21,7 @@ const HeroSection = () => {
   });
 
   return (
-    <section id="hero" className="relative overflow-hidden">
-      {/* Signature gold path — hero-only draw-in accent */}
-      <HeroPathDecor />
-
+    <section id="hero" className="relative">
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 lg:pt-40 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* LEFT — the sentence (leads on every viewport) */}

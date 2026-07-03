@@ -80,6 +80,9 @@ function useSPALinks() {
 
       // Handle /#hash links — navigate to home then scroll to hash
       if (href.startsWith("/#")) {
+        // Mouse clicks must not leave a lingering focus ring on the link
+        // (keyboard activation has e.detail === 0 and keeps :focus-visible).
+        if (e.detail > 0) anchor.blur();
         const hash = href.slice(2);
         const currentPath = window.location.pathname;
 
@@ -120,7 +123,7 @@ function App() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <div className="min-h-screen bg-background text-foreground grain">
+      <div className="min-h-screen bg-background text-foreground">
         <Header />
         <Routes />
         <Footer />

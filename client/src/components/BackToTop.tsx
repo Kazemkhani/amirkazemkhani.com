@@ -23,7 +23,7 @@ const BackToTop = () => {
       onClick={scrollUp}
       tabIndex={show ? 0 : -1}
       aria-hidden={!show}
-      className={`fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full border border-border bg-card/80 backdrop-blur-sm text-muted-foreground hover:border-gold-500/40 hover:text-gold-500 transition-opacity duration-150 flex items-center justify-center ${
+      className={`fixed bottom-6 right-6 z-50 w-9 h-9 rounded-full border border-border/70 bg-background/85 text-muted-foreground/80 hover:border-gold-500/50 hover:text-gold-500 transition-[opacity,color,border-color] duration-150 flex items-center justify-center ${
         show ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       aria-label="Back to top"
