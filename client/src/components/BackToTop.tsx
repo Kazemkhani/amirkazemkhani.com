@@ -1,36 +1,35 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
 
+/** Back-to-top utility — CSS-only fade, no spring theater. */
 const BackToTop = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 600);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollUp = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   };
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 10 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          onClick={scrollUp}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full border border-border bg-card/80 backdrop-blur-sm text-muted-foreground hover:border-gold-500/40 hover:text-gold-500 transition-colors duration-300 flex items-center justify-center cursor-hover"
-          aria-label="Back to top"
-        >
-          <ChevronUp className="w-4 h-4" />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      onClick={scrollUp}
+      tabIndex={show ? 0 : -1}
+      aria-hidden={!show}
+      className={`fixed bottom-6 right-6 z-50 w-9 h-9 rounded-full border border-border/70 bg-background/85 text-muted-foreground/80 hover:border-gold-500/50 hover:text-gold-500 transition-[opacity,color,border-color] duration-150 flex items-center justify-center ${
+        show ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+      aria-label="Back to top"
+    >
+      <ChevronUp className="w-4 h-4" />
+    </button>
   );
 };
 

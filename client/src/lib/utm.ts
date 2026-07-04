@@ -1,7 +1,8 @@
 /**
  * UTM helper — appends a consistent campaign tag to outbound links.
  *
- * Default campaign: falcons-of-majlis-2026-05
+ * Default campaign: site-v3 (durable — the old date-stamped
+ * falcons-of-majlis-2026-05 decayed and mislabeled post-May attribution).
  *
  * Usage:
  *   <a href={withUtm('https://novalabs.ae', 'hero')}>NOVA Labs</a>
@@ -10,14 +11,16 @@
  * Internal anchors / hash links / mailto / tel are returned unchanged.
  */
 
-const CAMPAIGN = "falcons-of-majlis-2026-05";
+const CAMPAIGN = "site-v3";
 const SOURCE = "amirkazemkhani.com";
 
 export type UtmMedium =
   | "hero"
-  | "pitch_wall"
-  | "halo_moments"
-  | "tv_ribbon"
+  | "work"
+  | "proof"
+  | "writing"
+  | "invitation"
+  | "work_with_me"
   | "footer"
   | "header"
   | "cta"

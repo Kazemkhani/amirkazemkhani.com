@@ -18,7 +18,7 @@
     />
     <meta
       name="description"
-      content="Voice AI engineer building NOVA Labs in Abu Dhabi. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
+      content="Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
     />
     <meta name="author" content="Amir Hossein Kazemkhani" />
     <meta
@@ -35,7 +35,7 @@
     />
     <meta
       property="og:description"
-      content="Voice AI engineer building NOVA Labs in Abu Dhabi. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
+      content="Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
     />
     <meta
       property="og:image"
@@ -56,7 +56,7 @@
     />
     <meta
       name="twitter:description"
-      content="Voice AI engineer building NOVA Labs in Abu Dhabi. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
+      content="Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA."
     />
     <meta
       name="twitter:image"
@@ -77,8 +77,8 @@
     />
 
     <!-- Theme -->
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta name="msapplication-TileColor" content="#0a0a0a" />
+    <meta name="theme-color" content="#0b0a09" />
+    <meta name="msapplication-TileColor" content="#0b0a09" />
     <meta name="color-scheme" content="dark" />
 
     <!-- Favicon -->
@@ -87,24 +87,25 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Fonts — Editorial Stack -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts — self-hosted variable woff2 (Inter + JetBrains Mono), zero third-party requests -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-var-latin.woff2"
+      crossorigin
     />
 
     <!-- Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <!-- Performance — hero portrait is the LCP element -->
     <link
       rel="preload"
       as="image"
-      href="/credibility/amir-falcons-stage-pitch-solo.jpg"
+      href="/credibility/amir-falcons-stage-pitch-solo-640.avif"
+      imagesrcset="/credibility/amir-falcons-stage-pitch-solo-640.avif 640w, /credibility/amir-falcons-stage-pitch-solo-1120.avif 1120w"
+      imagesizes="(min-width: 1024px) 480px, 90vw"
       fetchpriority="high"
     />
 
@@ -117,7 +118,7 @@
         "alternateName": "Amir Kazemkhani",
         "url": "https://amirkazemkhani.com",
         "jobTitle": "Voice AI Founder · AI Engineer",
-        "description": "Voice AI engineer building NOVA Labs in Abu Dhabi. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA.",
+        "description": "Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA.",
         "image": [
           "https://amirkazemkhani.com/credibility/amir-falcons-stage-pitch-solo.jpg",
           "https://amirkazemkhani.com/credibility/amir-jensen-huang-nvidia.jpg",

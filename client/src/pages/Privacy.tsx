@@ -1,6 +1,12 @@
+import { usePageMeta } from "@/lib/meta";
+
 const Privacy = () => {
+  usePageMeta(
+    "Privacy Policy — Amir Kazemkhani",
+    "How amirkazemkhani.com collects, uses, and protects information.",
+  );
   return (
-    <div className="min-h-screen bg-background py-24 px-6">
+    <div id="main" className="min-h-screen bg-background py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <a href="/" className="text-sm text-gold-500 hover:text-gold-400 mb-8 inline-block">&larr; Back</a>
         <h1 className="font-display text-display font-bold text-foreground mb-8">Privacy Policy</h1>

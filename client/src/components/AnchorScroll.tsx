@@ -28,6 +28,9 @@ const AnchorScroll = ({ children }: { children: React.ReactNode }) => {
         const el = document.getElementById(id);
         if (el) {
           e.preventDefault();
+          // Mouse clicks must not leave a lingering focus ring on the link
+          // (keyboard activation has e.detail === 0 and keeps :focus-visible).
+          if (e.detail > 0) anchor.blur();
           // If path is "/" and we're not on home, navigate first
           if (path === "/" && window.location.pathname !== "/") {
             window.location.href = href;
