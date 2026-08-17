@@ -30,9 +30,14 @@ const HeroSection = () => {
               Amir Kazemkhani &middot; Founder, NOVA Labs &middot; Dubai
             </motion.p>
 
+            {/* font-serif = Instrument Serif, the display face. Applied to the
+                page-leading h1 only, per docs/DESIGN-DOCTRINE.md §3. font-normal
+                overrides the inherited semibold: this face carries conviction
+                through its own contrast, and faux-bolding a high-contrast serif
+                thickens the thins and muddies exactly what makes it read well. */}
             <motion.h1
               {...enter(0.05)}
-              className="text-hero font-semibold text-foreground mb-6 max-w-xl"
+              className="text-hero font-serif font-normal tracking-[-0.015em] text-foreground mb-6 max-w-xl"
             >
               I build voice agents that run{" "}
               <span className="text-gradient-gold">real sales calls</span>.
@@ -52,7 +57,7 @@ const HeroSection = () => {
               >
                 NOVA Labs
               </a>{" "}
-              in Dubai — AI that answers, qualifies, and books meetings over
+              in Dubai. AI that answers, qualifies, and books meetings over
               the phone. I raised{" "}
               <span className="text-foreground/90 nums">$1M at 21</span>.
             </motion.p>
@@ -160,13 +165,13 @@ const HeroSection = () => {
         >
           <p className="section-label mb-4">Now</p>
           <p className="text-muted-foreground leading-relaxed">
-            NOVA runs on a four-agent state machine on LiveKit — greeting,
-            discovery, pitch, close — held honest by 334 automated tests
+            NOVA Core runs a four-phase conversation state machine: greeting,
+            discovery, pitch, close, held honest by 334 automated tests
             across nine suites. Before this I was the sole technical
             co-founder of a $1M-funded AI construction startup in the Y
             Combinator network, and grew a research product to 147 paying
             users. Along the way: eight podium finishes across 35+
-            hackathons — the stories are{" "}
+            hackathons. The stories are{" "}
             <a href="/#writing" className="link-prose">
               below
             </a>

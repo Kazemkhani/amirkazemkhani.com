@@ -22,6 +22,44 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Instrument Serif — the display face, added 2026-08-17.
+ *
+ * The doctrine (docs/DESIGN-DOCTRINE.md §3) previously ran one family for the
+ * whole hierarchy and pre-authorised this change on conditions: "it is ONE face,
+ * h1/pull-quotes only, and something else gets deleted." Both conditions are met.
+ * The face is used for hero h1s and pull-quotes ONLY, and lucide-react was
+ * removed to pay for it (see client/src/components/icons.tsx).
+ *
+ * Why a display face at all: Inter carrying the headline, as the only family, is
+ * the single most recognisable signature of a generated site. Hierarchy built
+ * from weight alone reads flat because every heading sits in the same voice.
+ * A high-contrast serif at h1 and a grotesk at body is real type contrast, which
+ * is what the eye reads as considered rather than defaulted.
+ *
+ * 15K per style, latin subset, self-hosted. No fonts.googleapis.com, ever.
+ */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @font-face {
   font-family: "JetBrains Mono Variable";
   font-style: normal;
@@ -54,7 +92,11 @@
 
     --font-sans: "Inter Variable", "Inter", system-ui, -apple-system,
       sans-serif;
-    --font-serif: Georgia, "Times New Roman", serif;
+    /* Instrument Serif replaces Georgia here, which upgrades every existing
+       pull-quote (they all consume `font-serif`) without touching a component.
+       Georgia stays as the fallback so a failed font load degrades to a serif
+       rather than to the body grotesk. */
+    --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace,
       monospace;
 

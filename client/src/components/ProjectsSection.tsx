@@ -23,11 +23,14 @@ const allProjects: Project[] = [
   },
   {
     id: 2,
-    title: 'NOVA AI — Autonomous Voice Agent System',
-    description: 'Final year industry project: autonomous voice agent for AI-driven lead qualification using a novel 4-agent multi-phase conversation architecture (Greeting / Discovery / Pitch / Close). 334 automated tests across 9 suites.',
-    tags: ['Voice AI', 'LiveKit', 'Stanford DSPy'],
+    title: 'NOVA Labs — Outbound Voice Intelligence',
+    description: 'Commercial product, live at novalabs.ae and in private beta with UAE brokerages. NOVA Core runs a four-phase conversation state machine (greeting, discovery, pitch, close) that qualifies leads and books meetings on the phone. 334 automated tests across 9 suites.',
+    tags: ['Voice AI', 'Multi-Agent Systems', 'Prompt Optimisation'],
     category: 'AI',
-    tech: 'LiveKit Agents, Cartesia, Deepgram, FastAPI',
+    // Named capability, not named vendors. The underlying providers are a
+    // competitive detail and are disclosed only where legally required (the
+    // novalabs.ae privacy policy sub-processor list).
+    tech: 'NOVA Core, FastAPI, Python',
   },
   {
     id: 3,

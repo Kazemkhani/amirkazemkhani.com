@@ -35,14 +35,44 @@ cursors, magnetic buttons, scroll-progress bars, per-section flourish dividers.
 **Whitespace is the divider.** The hero SVG path draw-in survives as a hero-only accent
 (it draws once and goes quiet) — it is an accent, not a second device.
 
-## 3. Typeface system — two faces, self-hosted
+## 3. Typeface system — three faces, self-hosted
 
-- **Inter Variable** — everything: body, headings, UI. Self-hosted latin woff2, preloaded, `font-display: swap`.
-- **JetBrains Mono Variable** — kickers, section labels, dates, figures. The mono eyebrow is the accent.
-- Pull-quotes use **Georgia italic** (system serif — zero bytes). A third webfont is not
-  justified by five italic quotes. If that ever changes, it is ONE face, h1/pull-quotes
-  only, and something else gets deleted.
-- No `fonts.googleapis.com`. Ever.
+**Amended 2026-08-17.** The previous rule ran Inter for the whole hierarchy and
+pre-authorised a display face on conditions: "ONE face, h1/pull-quotes only, and
+something else gets deleted." Both conditions were met, so the face was added.
+
+- **Instrument Serif** — the display face. Hero `h1` and pull-quotes **only**.
+  Regular + italic, latin subset, 15K each, self-hosted, preloaded (it renders the
+  largest contentful paint on every page, so not preloading it guarantees a visible
+  swap on the most important text on the site). OFL licensed.
+- **Inter Variable** — body, UI, and all headings below `h1`. Self-hosted latin
+  woff2, preloaded, `font-display: swap`.
+- **JetBrains Mono Variable** — kickers, section labels, dates, figures. The mono
+  eyebrow is the accent.
+- No `fonts.googleapis.com`. Ever. The woff2 files are committed to
+  `client/public/fonts/`.
+
+**Why the amendment.** Inter carrying the headline as the only family is the single
+most recognisable signature of a generated site. Hierarchy built from weight alone
+reads flat, because every heading speaks in the same voice at a different volume.
+A high-contrast serif at `h1` against a grotesk body is real type contrast, which is
+what the eye reads as considered rather than defaulted.
+
+**What was deleted to pay for it.** Georgia italic is no longer the pull-quote face
+(`--font-serif` now leads with Instrument Serif and keeps Georgia only as the
+fallback, so a failed load degrades to a serif rather than to the body grotesk).
+`lucide-react` is scheduled for removal in favour of a bespoke hairline icon set;
+until that lands the byte budget is carried by the 30K of new webfont, which is
+below the 47K Inter already costs.
+
+**Do not** repoint the Tailwind `display` alias at the serif. `font-display` is
+applied to `h2`, `h3`, a paragraph and a badge across the app, so repointing it
+would spray a display face over the whole hierarchy and break the h1/pull-quotes-only
+rule. Apply `font-serif` explicitly to the one `h1` that leads a page.
+
+**Do not** faux-bold the serif. `font-normal` is set on the hero `h1` deliberately:
+synthetic weight thickens the thin strokes and destroys exactly the contrast that
+makes a high-contrast serif worth loading.
 
 **Scale restraint:** body 16px mobile / 18px desktop, line-height 1.6, measure 60–70ch.
 h1 `clamp(2.25rem, 5vw, 3.5rem)`, line-height 1.1, letter-spacing −0.02em.

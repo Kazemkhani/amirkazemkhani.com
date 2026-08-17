@@ -1,0 +1,19 @@
+# design-slop-lint per-repo exceptions
+#
+# One label per line. A label here suppresses that check for THIS repo only.
+# Every entry needs a justification, because an unexplained entry is
+# indistinguishable from disabling the gate.
+
+# The three linear-gradient uses in client/src/index.css are all SINGLE-HUE GOLD:
+#   .text-gradient-gold      gold -> deeper gold on the hero key phrase
+#   .editorial-divider       w-16 h-px, gold -> transparent
+#   .editorial-divider-center w-24 h-px, transparent -> gold -> transparent
+#
+# The banned tell is a multi-hue gradient (the purple-to-blue surface fill) used
+# as decoration. A 1px rule that fades to transparent is a hairline, not a
+# gradient fill, and single-hue gold is the brand accent defined in
+# docs/DESIGN-DOCTRINE.md. Reviewed 2026-08-17.
+#
+# This does NOT permit gradients on surfaces. If a gradient ever appears as a
+# card or section background here, remove this line and fix the gradient.
+harsh gradient
