@@ -41,12 +41,12 @@ function ArticleCard({
         className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
+            'linear-gradient(rgba(255,255,255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255, 0.15) 1px, transparent 1px)',
           backgroundSize: featured ? '50px 50px' : '40px 40px',
         }}
       />
 
-      {/* CSS-animated glow — no JS scroll tracking */}
+      {/* CSS-animated glow, no JS scroll tracking */}
       <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-gold-500/5 blur-[80px] group-hover:bg-gold-500/12 transition-all duration-700" />
 
       <div
@@ -116,7 +116,7 @@ export default function ArticlesPage() {
   const isInView = useInView(ref, { once: true, margin: '-40px' });
 
   usePageMeta(
-    'Articles — Amir Kazemkhani',
+    'Articles: Amir Kazemkhani',
     'Long-form breakdowns of hackathon competitions, what we built, and the doors that opened after. By Amir Kazemkhani, voice AI founder in Dubai.',
   );
 
@@ -157,7 +157,7 @@ export default function ArticlesPage() {
             className="text-lg text-muted-foreground max-w-2xl"
           >
             Long-form breakdowns of hackathon competitions, what we built, and the doors that opened after.
-            Not pitch decks — real stories.
+            Not pitch decks, real stories.
           </motion.p>
         </div>
       </div>

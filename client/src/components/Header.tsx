@@ -83,7 +83,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu — no entrance animation (keyboard-frequency interaction) */}
+      {/* Mobile Menu, no entrance animation (keyboard-frequency interaction) */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-b border-border/60">
           <nav className="flex flex-col px-6 py-6 gap-4">

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 /**
  * Per-route document.title + meta description.
- * SPA-wide meta was the audit's #5 issue — every route shared the homepage
+ * SPA-wide meta was the audit's #5 issue, every route shared the homepage
  * snippet. Call this once per page component.
  */
 export function usePageMeta(title: string, description?: string) {
@@ -25,7 +25,7 @@ export function usePageMeta(title: string, description?: string) {
 }
 
 export const SITE_TITLE =
-  "Amir Hossein Kazemkhani — Voice AI Founder · NOVA Labs · Featured on Falcons of Majlis";
+  "Amir Hossein Kazemkhani · Voice AI Founder · NOVA Labs · Featured on Falcons of Majlis";
 
 export const SITE_DESCRIPTION =
   "Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA.";

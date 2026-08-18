@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 /**
- * FalconsEpisode — cinematic lazy embed of the Falcons of Majlis episode.
+ * FalconsEpisode, cinematic lazy embed of the Falcons of Majlis episode.
  *
  * Performance + UX contract (ported from the novalabs.ae billboard):
  *   - No YouTube bytes on load: a lightweight i.ytimg.com poster facade only.
  *   - At ~45% scroll-into-view, the youtube-nocookie iframe is injected with
- *     MUTED autoplay at start=3562 (59:22 — Amir's segment). Browser autoplay
+ *     MUTED autoplay at start=3562 (59:22, Amir's segment). Browser autoplay
  *     policy requires mute; a gold "Tap to unmute" chip un-mutes via the
  *     YT postMessage API (enablejsapi=1).
  *   - Explicit play-button click = user gesture, so it injects WITH sound.
@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
  */
 
 const VIDEO_ID = "t8sjQKTm5m4";
-const START_SECONDS = 3562; // 59:22 — Amir's segment
+const START_SECONDS = 3562; // 59:22, Amir's segment
 
 const buildSrc = (muted: boolean) =>
   `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?start=${START_SECONDS}` +
@@ -56,7 +56,7 @@ const FalconsEpisode = () => {
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting && !startedRef.current) {
-            // Muted autoplay only — browser policy.
+            // Muted autoplay only, browser policy.
             startedRef.current = true;
             setMode("muted");
             setShowUnmute(true);
@@ -99,10 +99,10 @@ const FalconsEpisode = () => {
           className="relative aspect-video bg-secondary"
           data-testid="falcons-episode-frame"
         >
-          {/* Poster facade — zero YouTube bytes until needed */}
+          {/* Poster facade, zero YouTube bytes until needed */}
           <img
             src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
-            alt="Falcons of Majlis episode — Amir Hossein Kazemkhani pitching NOVA Labs"
+            alt="Falcons of Majlis episode: Amir Hossein Kazemkhani pitching NOVA Labs"
             loading="lazy"
             decoding="async"
             className={`absolute inset-0 w-full h-full object-cover saturate-[0.92] transition-opacity duration-500 ${
@@ -121,7 +121,7 @@ const FalconsEpisode = () => {
             <iframe
               ref={iframeRef}
               src={buildSrc(mode === "muted")}
-              title="Falcons of Majlis — Amir's segment (starts at 59:22)"
+              title="Falcons of Majlis: Amir's segment (starts at 59:22)"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               className="absolute inset-0 w-full h-full border-0"
               data-testid="falcons-episode-iframe"
@@ -132,7 +132,7 @@ const FalconsEpisode = () => {
             <button
               type="button"
               onClick={handlePlayClick}
-              aria-label="Play the Falcons of Majlis episode — Amir's segment starts at 59 minutes"
+              aria-label="Play the Falcons of Majlis episode, Amir's segment starts at 59 minutes"
               data-testid="falcons-play"
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-gold-500/40 bg-background/75 backdrop-blur-md text-foreground text-sm md:text-base font-medium transition-all duration-300 hover:scale-[1.04] hover:border-gold-500/80 hover:bg-background/90 cursor-pointer"
             >
@@ -166,7 +166,7 @@ const FalconsEpisode = () => {
             The episode, in full
           </p>
           <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-gold-500 mt-2">
-            Falcons of Majlis — India Today × Aaj Tak · segment from 59:22
+            Falcons of Majlis, India Today × Aaj Tak · segment from 59:22
           </p>
         </figcaption>
       </div>

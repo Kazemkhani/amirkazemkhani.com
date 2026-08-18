@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 /**
- * Reveal — THE entrance primitive (motion budget, see docs/DESIGN-DOCTRINE.md).
+ * Reveal, THE entrance primitive (motion budget, see docs/DESIGN-DOCTRINE.md).
  * opacity 0→1 + y 10→0, 220ms ease-out, once, -10% viewport margin.
  * Reduced-motion users get opacity-only. Never re-animates.
  */

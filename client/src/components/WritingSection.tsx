@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 /**
- * Writing — 4 curated pieces with hand-written one-line hooks.
+ * Writing, 4 curated pieces with hand-written one-line hooks.
  * Curated beats exhaustive; /articles holds the rest.
  */
 
@@ -16,7 +16,7 @@ const picks = [
   {
     slug: "futurehack-cyberlife",
     title: "CyberLife and the in5 residency",
-    hook: "Flagging Type 2 diabetes from scattered lab data — and what a healthcare build has to prove.",
+    hook: "Flagging Type 2 diabetes from scattered lab data, and what a healthcare build has to prove.",
     date: "2025",
   },
   {
@@ -28,7 +28,7 @@ const picks = [
   {
     slug: "cs-expo-humai",
     title: "The demo that became a job",
-    hook: "How a 2nd-place project turned into an AI engineering role — competitions as interviews.",
+    hook: "How a 2nd-place project turned into an AI engineering role, competitions as interviews.",
     date: "2025",
   },
 ];

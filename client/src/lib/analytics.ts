@@ -1,10 +1,10 @@
 /**
- * Analytics — inert by default.
+ * Analytics, inert by default.
  *
  * A delegated click listener reads the `data-track` attributes that already
  * exist across the site and dispatches to `window.plausible` IF it is
  * defined. The Plausible script itself is injected ONLY when
- * VITE_PLAUSIBLE_DOMAIN is set — with it unset this whole module is a no-op
+ * VITE_PLAUSIBLE_DOMAIN is set, with it unset this whole module is a no-op
  * listener and zero network requests.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Pic — <picture> with AVIF/WebP sources (2 widths, emitted by
+ * Pic, <picture> with AVIF/WebP sources (2 widths, emitted by
  * scripts/optimize-images.mjs) and the original as fallback.
  * Explicit width/height always (zero CLS).
  */

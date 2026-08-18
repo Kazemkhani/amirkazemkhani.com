@@ -4,7 +4,7 @@ import { usePageMeta } from "@/lib/meta";
 import { withUtm } from "@/lib/utm";
 
 /**
- * /work-with-me — fresh, claim-safe implementation of the conversion-page
+ * /work-with-me, fresh, claim-safe implementation of the conversion-page
  * intent (supersedes PR #4). Three engagement types, proof links, process,
  * contact. Booking button renders only when VITE_CAL_URL is configured.
  */
@@ -12,7 +12,7 @@ import { withUtm } from "@/lib/utm";
 const engagements = [
   {
     title: "Voice agents on your phone lines",
-    body: "Through NOVA Labs: an AI agent that answers, qualifies, and books meetings over the phone — greeting, discovery, pitch, close. We scope your call flows, deploy a pilot, and iterate on real transcripts until it holds a conversation you'd put your name on.",
+    body: "Through NOVA Labs: an AI agent that answers, qualifies, and books meetings over the phone, greeting, discovery, pitch, close. We scope your call flows, deploy a pilot, and iterate on real transcripts until it holds a conversation you'd put your name on.",
     linkLabel: "Talk to the live agent",
     href: withUtm("https://novalabs.ae/live", "work_with_me"),
     external: true,
@@ -20,7 +20,7 @@ const engagements = [
   },
   {
     title: "AI product engineering, end to end",
-    body: "Architecture through shipped software: multi-agent systems, LLM pipelines, real-time voice, and the unglamorous parts — tests, observability, deployment. I've built under founders' constraints (my own included) and ship working systems, not decks.",
+    body: "Architecture through shipped software: multi-agent systems, LLM pipelines, real-time voice, and the unglamorous parts, tests, observability, deployment. I've built under founders' constraints (my own included) and ship working systems, not decks.",
     linkLabel: "See the work",
     href: "/#work",
     external: false,
@@ -37,8 +37,8 @@ const engagements = [
 ];
 
 const proofLinks = [
-  { label: "Falcons of Majlis — the episode, from 59:22", href: "/#proof" },
-  { label: "Competition record — 8 podium finishes, $25,800+", href: "/#proof" },
+  { label: "Falcons of Majlis, the episode, from 59:22", href: "/#proof" },
+  { label: "Competition record: 8 podium finishes, $25,800+", href: "/#proof" },
   { label: "The long-form stories", href: "/articles" },
 ];
 
@@ -56,13 +56,13 @@ const steps = [
   {
     n: "03",
     title: "Proposal",
-    body: "Scope, timeline, price — in writing, no surprises. Small first milestone so you can judge the work before committing.",
+    body: "Scope, timeline, price, in writing, no surprises. Small first milestone so you can judge the work before committing.",
   },
 ];
 
 export default function WorkWithMe() {
   usePageMeta(
-    "Work with me — Amir Kazemkhani",
+    "Work with me: Amir Kazemkhani",
     "Voice agents on your phone lines, AI product engineering end to end, and speaking on voice AI. Founder of NOVA Labs, Dubai.",
   );
 
@@ -78,7 +78,7 @@ export default function WorkWithMe() {
             Three ways this usually goes.
           </h1>
           <p className="text-muted-foreground leading-relaxed mb-16 max-w-xl">
-            I&rsquo;m Amir — founder of{" "}
+            I&rsquo;m Amir, founder of{" "}
             <a
               href={withUtm("https://novalabs.ae", "work_with_me")}
               target="_blank"
@@ -170,7 +170,7 @@ export default function WorkWithMe() {
         <Reveal>
           <div className="border-t border-border/60 pt-10">
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl">
-              The fastest way to start is a plain email — what you&rsquo;re
+              The fastest way to start is a plain email, what you&rsquo;re
               building and where voice or AI fits. I&rsquo;ll tell you honestly
               if I&rsquo;m not the right person.
             </p>

@@ -27,7 +27,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: 'dubai-police-hackathon',
-    title: '1st Place — Dubai Police HQ Hackathon',
+    title: '1st Place, Dubai Police HQ Hackathon',
     subtitle: 'When the judges carry badges, your solution better be bulletproof.',
     date: '2025',
     readTime: '5 min',
@@ -38,9 +38,9 @@ export const articles: Article[] = [
     project: 'Security & Innovation Challenge',
     gradient: 'from-blue-900 via-slate-900 to-zinc-950',
     accentColor: 'blue',
-    excerpt: 'Competing inside the actual Dubai Police Headquarters — not a co-working space, not a university lecture hall. Judges were officers, forensic tech specialists, and cybersecurity professionals.',
+    excerpt: 'Competing inside the actual Dubai Police Headquarters, not a co-working space, not a university lecture hall. Judges were officers, forensic tech specialists, and cybersecurity professionals.',
     achievements: [
-      '1st Place — Dubai Police HQ Hackathon',
+      '1st Place, Dubai Police HQ Hackathon',
       'Presented at Dubai Police Forensics Forum',
       'Only student representing University of Birmingham Dubai',
     ],
@@ -56,7 +56,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'The room was filled with officers, forensic technology specialists, cybersecurity professionals, and institutional decision-makers. These are people who evaluate ideas not by how impressive they sound — but by whether they would actually work in the field.',
+        content: 'The room was filled with officers, forensic technology specialists, cybersecurity professionals, and institutional decision-makers. These are people who evaluate ideas not by how impressive they sound, but by whether they would actually work in the field.',
       },
       {
         type: 'quote',
@@ -68,7 +68,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "The challenge required us to think about real-world security and operational problems that Dubai Police faces — and to propose technology solutions that were practical, implementable, and aligned with how these institutions actually operate.",
+        content: "The challenge required us to think about real-world security and operational problems that Dubai Police faces, and to propose technology solutions that were practical, implementable, and aligned with how these institutions actually operate.",
       },
       {
         type: 'text',
@@ -84,7 +84,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "But there's something different about competing in an institutional environment. The feedback is direct. The questions are operational. The judges aren't evaluating your pitch deck — they're evaluating whether your thinking is rigorous enough to survive contact with reality.",
+        content: "But there's something different about competing in an institutional environment. The feedback is direct. The questions are operational. The judges aren't evaluating your pitch deck, they're evaluating whether your thinking is rigorous enough to survive contact with reality.",
       },
       {
         type: 'quote',
@@ -100,7 +100,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "The forum brought together forensic technology professionals, law enforcement leaders, and researchers working at the intersection of technology and public safety. Being in that room — not as an observer, but as a presenter — was one of the most formative professional experiences of my university career.",
+        content: "The forum brought together forensic technology professionals, law enforcement leaders, and researchers working at the intersection of technology and public safety. Being in that room, not as an observer, but as a presenter, was one of the most formative professional experiences of my university career.",
       },
       {
         type: 'quote',
@@ -112,17 +112,17 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'First — build for real problems, not hypothetical ones. The best ideas are the ones that survive contact with practitioners. If an officer or a forensic specialist can poke holes in your solution in 30 seconds, it\'s not ready.',
+        content: 'First, build for real problems, not hypothetical ones. The best ideas are the ones that survive contact with practitioners. If an officer or a forensic specialist can poke holes in your solution in 30 seconds, it\'s not ready.',
       },
       {
         type: 'text',
-        content: 'Second — seek out the rooms that don\'t hand out participation trophies. The competitions that are hardest to win are usually the ones worth winning. And the rooms that are hardest to enter are usually the ones where you learn the most.',
+        content: 'Second, seek out the rooms that don\'t hand out participation trophies. The competitions that are hardest to win are usually the ones worth winning. And the rooms that are hardest to enter are usually the ones where you learn the most.',
       },
     ],
   },
   {
     slug: 'rta-gdg-tanzeem',
-    title: '3rd Place — RTA × GDG Dubai Hackathon',
+    title: '3rd Place, RTA × GDG Dubai Hackathon',
     subtitle: 'Fixing school pickup chaos for millions of UAE families.',
     date: '2025',
     readTime: '7 min',
@@ -130,13 +130,13 @@ export const articles: Article[] = [
     place: '3rd',
     event: 'RTA × GDG Dubai',
     prize: '$1,400',
-    project: 'TANZEEM — Smart School Pickup',
+    project: 'TANZEEM: Smart School Pickup',
     gradient: 'from-emerald-900 via-teal-950 to-zinc-950',
     accentColor: 'emerald',
-    excerpt: 'A UAE-wide competition by the Roads and Transport Authority. We built TANZEEM — a three-tier smart pickup system with QR verification, smart zones, and progressive compliance.',
+    excerpt: 'A UAE-wide competition by the Roads and Transport Authority. We built TANZEEM, a three-tier smart pickup system with QR verification, smart zones, and progressive compliance.',
     achievements: [
-      '3rd Place — RTA × GDG Dubai Hackathon (UAE-Wide)',
-      'TANZEEM — Smart School Pickup Management',
+      '3rd Place, RTA × GDG Dubai Hackathon (UAE-Wide)',
+      'TANZEEM: Smart School Pickup Management',
       'Three-tier pickup model with real-time tracking',
     ],
     relatedCompetitionId: 7,
@@ -147,7 +147,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'School dismissal in the UAE creates daily chaos. Parents idle in pickup zones — sometimes for 20, 30, 40 minutes. Children wait unsupervised. Schools have no tools to manage the flow. Traffic backs up into residential streets, creating safety risks and frustration for thousands of families every single day.',
+        content: 'School dismissal in the UAE creates daily chaos. Parents idle in pickup zones, sometimes for 20, 30, 40 minutes. Children wait unsupervised. Schools have no tools to manage the flow. Traffic backs up into residential streets, creating safety risks and frustration for thousands of families every single day.',
       },
       {
         type: 'text',
@@ -163,15 +163,15 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'We built TANZEEM — تنظيم — "organisation" in Arabic. TANZEEM introduces a three-tier pickup model with built-in compliance, real-time tracking, and community-driven alternatives.',
+        content: 'We built TANZEEM, تنظيم, "organisation" in Arabic. TANZEEM introduces a three-tier pickup model with built-in compliance, real-time tracking, and community-driven alternatives.',
       },
       {
         type: 'stats',
         content: 'TANZEEM Architecture',
         items: [
-          { label: 'Tier 1', value: 'On-Site Pickup — Enforced 5-minute time limits with progressive fees' },
-          { label: 'Tier 2', value: 'Smart Zones — Neighbourhood pickup points, reducing gate congestion by 60%' },
-          { label: 'Tier 3', value: 'Neighbourhood Van — Community-driven shuttle service' },
+          { label: 'Tier 1', value: 'On-Site Pickup, Enforced 5-minute time limits with progressive fees' },
+          { label: 'Tier 2', value: 'Smart Zones: Neighbourhood pickup points, reducing gate congestion by 60%' },
+          { label: 'Tier 3', value: 'Neighbourhood Van: Community-driven shuttle service' },
         ],
       },
       {
@@ -196,7 +196,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "The solution didn't need to be the most technically complex — it needed to be the most thoughtfully designed. The best technology disappears into the problem it solves. TANZEEM works not because it's sophisticated, but because it's simple enough that a parent running late can understand it in 10 seconds.",
+        content: "The solution didn't need to be the most technically complex, it needed to be the most thoughtfully designed. The best technology disappears into the problem it solves. TANZEEM works not because it's sophisticated, but because it's simple enough that a parent running late can understand it in 10 seconds.",
       },
       {
         type: 'quote',
@@ -206,7 +206,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'futurehack-cyberlife',
-    title: '1st Place — FutureHack by in5',
+    title: '1st Place, FutureHack by in5',
     subtitle: 'Turning patient data into actionable clinical intelligence. 6 months of in5 residency.',
     date: '2025',
     readTime: '6 min',
@@ -217,11 +217,11 @@ export const articles: Article[] = [
     project: 'CyberLife Technologies',
     gradient: 'from-rose-950 via-red-950 to-zinc-950',
     accentColor: 'rose',
-    excerpt: 'An inter-university hackathon hosted by Dubai Knowledge Park, with a challenge from Mediclinic. We built CyberLife — an AI clinical intelligence platform for early Type 2 diabetes detection.',
+    excerpt: 'An inter-university hackathon hosted by Dubai Knowledge Park, with a challenge from Mediclinic. We built CyberLife, an AI clinical intelligence platform for early Type 2 diabetes detection.',
     achievements: [
-      '1st Place — FutureHack Inter-University Hackathon',
+      '1st Place, FutureHack Inter-University Hackathon',
       '6 months of in5 residency awarded by VP of in5',
-      'CyberLife Technologies — AI Clinical Intelligence Platform',
+      'CyberLife Technologies: AI Clinical Intelligence Platform',
     ],
     relatedCompetitionId: 2,
     sections: [
@@ -268,11 +268,11 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'We built CyberLife Technologies — an AI-powered clinical intelligence platform that filters and normalises patient data from lab reports, imaging, and wearables into a unified patient view.',
+        content: 'We built CyberLife Technologies, an AI-powered clinical intelligence platform that filters and normalises patient data from lab reports, imaging, and wearables into a unified patient view.',
       },
       {
         type: 'text',
-        content: 'It applies algorithmic inference to flag potential Type 2 diabetes cases and identify anomalies that manual review might miss. An LLM-powered interface lets clinicians interact with patient data naturally — asking questions, getting AI-assisted insights, and tracking trends over time.',
+        content: 'It applies algorithmic inference to flag potential Type 2 diabetes cases and identify anomalies that manual review might miss. An LLM-powered interface lets clinicians interact with patient data naturally, asking questions, getting AI-assisted insights, and tracking trends over time.',
       },
       {
         type: 'text',
@@ -306,13 +306,13 @@ export const articles: Article[] = [
       },
       {
         type: 'quote',
-        content: "If we can prove this works in one of the most regulated, highest-standard healthcare environments on Earth — then the model scales globally.",
+        content: "If we can prove this works in one of the most regulated, highest-standard healthcare environments on Earth, then the model scales globally.",
       },
     ],
   },
   {
     slug: 'cs-expo-humai',
-    title: '2nd Place — CS Expo',
+    title: '2nd Place, CS Expo',
     subtitle: 'How a competition judge became my industry supervisor.',
     date: '2025',
     readTime: '5 min',
@@ -325,10 +325,10 @@ export const articles: Article[] = [
     accentColor: 'violet',
     excerpt: "Competing alongside Master's CS students, I placed 2nd. But the real win was what happened after: a judge offered me a role at his AI startup, which led to my Final Year Project.",
     achievements: [
-      '2nd Place — UOBD CS Expo',
+      '2nd Place, UOBD CS Expo',
       'Secured role at HUMAI (AI startup, JLT, Dubai)',
       'Built n8n AI automation workflows for GTM',
-      'Led to NOVA AI — Final Year Industry Project',
+      'Led to NOVA AI: Final Year Industry Project',
     ],
     relatedCompetitionId: 6,
     sections: [
@@ -338,7 +338,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "Competing alongside Master's CS students, I placed 2nd at CS Expo — the University of Birmingham Dubai's flagship computer science exhibition where students present their technical projects to an audience of faculty and industry professionals.",
+        content: "Competing alongside Master's CS students, I placed 2nd at CS Expo, the University of Birmingham Dubai's flagship computer science exhibition where students present their technical projects to an audience of faculty and industry professionals.",
       },
       {
         type: 'text',
@@ -346,7 +346,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "I presented my work. The judges asked hard questions — about trade-offs, about scalability, about what I'd do differently. I answered them honestly. I talked about what worked, what didn't, and what I'd learned.",
+        content: "I presented my work. The judges asked hard questions, about trade-offs, about scalability, about what I'd do differently. I answered them honestly. I talked about what worked, what didn't, and what I'd learned.",
       },
       {
         type: 'quote',
@@ -358,7 +358,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'One of the judges — Mo — approached me after the presentations. He ran HUMAI, an AI startup based in JLT, Dubai.',
+        content: 'One of the judges: Mo, approached me after the presentations. He ran HUMAI, an AI startup based in JLT, Dubai.',
       },
       {
         type: 'text',
@@ -366,7 +366,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "That conversation turned into a part-time role at HUMAI. Over the next months, I worked on AI automation workflows — building the go-to-market automation infrastructure for multiple applications the startup was simultaneously launching.",
+        content: "That conversation turned into a part-time role at HUMAI. Over the next months, I worked on AI automation workflows, building the go-to-market automation infrastructure for multiple applications the startup was simultaneously launching.",
       },
       {
         type: 'quote',
@@ -378,7 +378,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'That experience at HUMAI opened a much bigger door. The startup needed an autonomous voice AI system for outbound sales — something that could qualify leads through actual phone conversations without human intervention.',
+        content: 'That experience at HUMAI opened a much bigger door. The startup needed an autonomous voice AI system for outbound sales, something that could qualify leads through actual phone conversations without human intervention.',
       },
       {
         type: 'text',
@@ -404,13 +404,13 @@ export const articles: Article[] = [
       },
       {
         type: 'quote',
-        content: 'One thing connects to the next — but only if you show up and deliver work that\'s worth noticing.',
+        content: 'One thing connects to the next, but only if you show up and deliver work that\'s worth noticing.',
       },
     ],
   },
   {
     slug: 'sui-blockathon-arenaai',
-    title: '3rd Place — AUS × SuiHub Blockathon',
+    title: '3rd Place, AUS × SuiHub Blockathon',
     subtitle: 'Solo. Against full teams of 5–6 people. At SUI Basecamp.',
     date: '2025',
     readTime: '6 min',
@@ -418,14 +418,14 @@ export const articles: Article[] = [
     place: '3rd',
     event: 'AUS × SuiHub Blockathon',
     prize: 'SDK Invitation from SUI Co-Founder',
-    project: 'ArenaAI — On-Chain Verifiable AI Agents',
+    project: 'ArenaAI: On-Chain Verifiable AI Agents',
     gradient: 'from-cyan-950 via-sky-950 to-zinc-950',
     accentColor: 'cyan',
-    excerpt: "I competed solo at SUI Basecamp — one of the largest blockchain conferences in the region. Against full teams. I built ArenaAI: on-chain verifiable AI agents. The SUI co-founder reached out personally after.",
+    excerpt: "I competed solo at SUI Basecamp, one of the largest blockchain conferences in the region. Against full teams. I built ArenaAI: on-chain verifiable AI agents. The SUI co-founder reached out personally after.",
     achievements: [
-      '3rd Place — AUS × ByBit × SuiHub Blockathon',
+      '3rd Place, AUS × ByBit × SuiHub Blockathon',
       'Competed solo against teams of 5–6',
-      'ArenaAI — On-Chain Verifiable AI Agents',
+      'ArenaAI: On-Chain Verifiable AI Agents',
       'Invited by Dr. Kostas Kryptos (SUI co-founder) to build the full SDK',
     ],
     relatedCompetitionId: 8,
@@ -452,7 +452,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'When AI agents start participating in adversarial environments — financial markets, supply chains, competitive games, governance decisions — how do you prove they haven\'t been tampered with?',
+        content: 'When AI agents start participating in adversarial environments, financial markets, supply chains, competitive games, governance decisions, how do you prove they haven\'t been tampered with?',
       },
       {
         type: 'text',
@@ -472,7 +472,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'So I built ArenaAI — on-chain verifiable AI agents for competitive environments.',
+        content: 'So I built ArenaAI, on-chain verifiable AI agents for competitive environments.',
       },
       {
         type: 'text',
@@ -502,7 +502,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "Hard questions about scalability, gas costs, latency. Honest answers — including what I hadn't solved yet.",
+        content: "Hard questions about scalability, gas costs, latency. Honest answers, including what I hadn't solved yet.",
       },
       {
         type: 'text',
@@ -514,7 +514,7 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: 'After the presentations, Dr. Kostas Kryptos — co-founder of SUI — personally reached out. SUI. One of the largest L1 blockchains. Silicon Valley. Hundreds of millions in funding.',
+        content: 'After the presentations, Dr. Kostas Kryptos, co-founder of SUI, personally reached out. SUI. One of the largest L1 blockchains. Silicon Valley. Hundreds of millions in funding.',
       },
       {
         type: 'quote',

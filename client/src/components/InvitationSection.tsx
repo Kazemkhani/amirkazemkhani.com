@@ -2,7 +2,7 @@ import { Mail } from "lucide-react";
 import Reveal from "./Reveal";
 
 /**
- * Invitation — first-person close. Engagement types in prose, one mailto CTA,
+ * Invitation, first-person close. Engagement types in prose, one mailto CTA,
  * booking button only when VITE_CAL_URL is configured. Low-key by design.
  */
 
@@ -23,7 +23,7 @@ const InvitationSection = () => {
               <span className="text-foreground/90">voice agents on their
               phone lines</span> through NOVA Labs; founders and operators ask
               me to <span className="text-foreground/90">build AI products
-              end to end</span> — architecture through shipped software; and
+              end to end</span>, architecture through shipped software; and
               events have me{" "}
               <span className="text-foreground/90">speak about voice AI and
               building in the Gulf</span>.

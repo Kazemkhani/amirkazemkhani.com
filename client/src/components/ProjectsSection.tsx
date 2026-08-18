@@ -14,16 +14,16 @@ interface Project {
 const allProjects: Project[] = [
   {
     id: 1,
-    title: 'NOVA — Self-Improving AI Agent Academy',
+    title: 'NOVA: Self-Improving AI Agent Academy',
     description: 'AI agent evaluation and self-improvement platform. Agents benchmarked against expert baselines, improved via Monte Carlo Strategy Search with UCB1 confidence-bounded optimisation, validated on held-out data, and certified before deployment.',
     tags: ['AI Agents', 'AWS Bedrock', 'DSPy'],
     category: 'AI',
-    award: '1st Place — $12,800 — Ruya AI Hackathon',
+    award: '1st Place, $12,800, Ruya AI Hackathon',
     tech: 'Strands SDK, Redis, PostgreSQL, ClickHouse, Langfuse',
   },
   {
     id: 2,
-    title: 'NOVA Labs — Outbound Voice Intelligence',
+    title: 'NOVA Labs: Outbound Voice Intelligence',
     description: 'Commercial product, live at novalabs.ae and in private beta with UAE brokerages. NOVA Core runs a four-phase conversation state machine (greeting, discovery, pitch, close) that qualifies leads and books meetings on the phone. 334 automated tests across 9 suites.',
     tags: ['Voice AI', 'Multi-Agent Systems', 'Prompt Optimisation'],
     category: 'AI',
@@ -34,25 +34,25 @@ const allProjects: Project[] = [
   },
   {
     id: 3,
-    title: 'CyberLife — AI Diabetes Detection for Mediclinic',
+    title: 'CyberLife: AI Diabetes Detection for Mediclinic',
     description: 'Flags potential Type 2 diabetes cases from scattered lab data, highlights anomalies, and tracks patient trends. 5-7 min saved per diagnosis, +1.3M annual appointment capacity unlocked.',
     tags: ['Healthcare AI', 'ML', 'Data Pipeline'],
     category: 'AI',
-    award: '1st Place — 6-Month in5 Residency',
+    award: '1st Place, 6-Month in5 Residency',
     tech: 'Python, LLM Interface, Wearable Integration',
   },
   {
     id: 4,
-    title: 'Sell The Pen AI — Voice Sales Training',
+    title: 'Sell The Pen AI: Voice Sales Training',
     description: 'Voice AI sales training platform for real estate agents. Integrates Mike Ferry cold-calling methodology and Tom Sant proposal-crafting framework. 8-step personalised onboarding with real-time coaching.',
     tags: ['Voice AI', 'Real Estate', 'React'],
     category: 'AI',
-    award: '2nd Place — $10,000 — LabLab AI Genesis',
+    award: '2nd Place, $10,000, LabLab AI Genesis',
     tech: 'Vapi, FastAPI, GPT-4, React/TypeScript',
   },
   {
     id: 5,
-    title: 'Rally — Onchain Squad Finance for Solana',
+    title: 'Rally: Onchain Squad Finance for Solana',
     description: 'Mobile-first Solana app unifying 6 financial primitives: instant pay, smart split, pool funds, governance voting, real-time payment streaming, and DeFi yield.',
     tags: ['Solana', 'DeFi', 'Mobile'],
     category: 'Blockchain',
@@ -60,16 +60,16 @@ const allProjects: Project[] = [
   },
   {
     id: 6,
-    title: 'ArenaAI — On-Chain Verifiable AI Agents',
+    title: 'ArenaAI: On-Chain Verifiable AI Agents',
     description: 'On-chain verifiable AI agents for competitive environments using zkLogin + Walrus on the SUI blockchain. Solo vs. 6-person teams. Invited by SUI co-founder to build full SDK.',
     tags: ['SUI', 'AI', 'zkLogin'],
     category: 'Blockchain',
-    award: '3rd Place — AUS x SuiHub at SUI Basecamp',
+    award: '3rd Place, AUS x SuiHub at SUI Basecamp',
     tech: 'SUI Move, zkLogin, Walrus',
   },
   {
     id: 7,
-    title: 'Meridian — AI-Native OS for Private Markets',
+    title: 'Meridian: AI-Native OS for Private Markets',
     description: 'Multi-tenant fund management platform for PE, VC, and real estate. 7-role RBAC with 22 granular permissions, covering CRM, deal pipeline, virtual data room, fundraising, and AI intelligence modules.',
     tags: ['Fintech', 'AI', 'Full-Stack'],
     category: 'Product',
@@ -77,20 +77,20 @@ const allProjects: Project[] = [
   },
   {
     id: 8,
-    title: 'TANZEEM — Smart School Pickup Management',
+    title: 'TANZEEM: Smart School Pickup Management',
     description: '3-tier pickup system with progressive fee enforcement, QR-verified custody handoff, and immutable audit trail. Parent mobile app + operations dashboard with real-time KPI monitoring.',
     tags: ['GovTech', 'RTA', 'Next.js'],
     category: 'Product',
-    award: '3rd Place — $1,400 — RTA x GDG Dubai',
+    award: '3rd Place, $1,400, RTA x GDG Dubai',
     tech: 'Next.js 14, TypeScript, Zustand',
   },
   {
     id: 9,
-    title: 'Fusion — IFZA Enterprise SaaS Platform',
+    title: 'Fusion: IFZA Enterprise SaaS Platform',
     description: 'Centralised platform enabling 20,000+ licensed SMEs to network, track admin, access analytics, and communicate via multilingual chat.',
     tags: ['Enterprise', 'SaaS', 'Figma'],
     category: 'Product',
-    award: '1st Place — IFZA Scale360 Hackathon',
+    award: '1st Place, IFZA Scale360 Hackathon',
     tech: 'Figma, Full-Stack Prototype',
   },
 ];
@@ -128,7 +128,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
       transition={{ duration: 0.5, delay: 0.4 + index * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
       className="card-editorial rounded-xl p-6 flex flex-col"
     >
-      {/* Award badge — spring pop */}
+      {/* Award badge, spring pop */}
       {project.award && (
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
@@ -140,7 +140,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
         </motion.div>
       )}
 
-      {/* Tags — spring stagger */}
+      {/* Tags, spring stagger */}
       <div className="flex flex-wrap gap-2 mb-3">
         {project.tags.map((tag, ti) => (
           <motion.span
@@ -174,7 +174,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
         {project.description}
       </p>
 
-      {/* Tech stack — line draw + fade */}
+      {/* Tech stack, line draw + fade */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
@@ -222,11 +222,11 @@ const ProjectsSection = () => {
             transition={{ delay: 0.45 }}
             className="text-muted-foreground max-w-xl mx-auto"
           >
-            Real products built under pressure — hackathons, startups, and solo projects across AI, blockchain, and enterprise SaaS.
+            Real products built under pressure, hackathons, startups, and solo projects across AI, blockchain, and enterprise SaaS.
           </motion.p>
         </div>
 
-        {/* Filters — spring entrance */}
+        {/* Filters, spring entrance */}
         <div className="flex flex-wrap justify-center gap-2 mb-14">
           {categories.map((cat, i) => (
             <motion.button

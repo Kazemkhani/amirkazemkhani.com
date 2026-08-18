@@ -3,28 +3,28 @@ import Reveal from "./Reveal";
 import { withUtm } from "../lib/utm";
 
 /**
- * Work — one NOVA Labs card + the strongest real projects.
+ * Work, one NOVA Labs card + the strongest real projects.
  * Every card links somewhere real (doctrine: no dead-end cards).
  */
 
 const projects = [
   {
     title: "CyberLife",
-    line: "AI diabetes detection for Mediclinic — flags Type 2 cases from scattered lab data.",
+    line: "AI diabetes detection for Mediclinic, flags Type 2 cases from scattered lab data.",
     proof: "1st · FutureHack by in5",
     href: "/articles/futurehack-cyberlife",
     track: "work_cyberlife",
   },
   {
     title: "ArenaAI",
-    line: "On-chain verifiable AI agents on SUI — built solo against six-person teams.",
+    line: "On-chain verifiable AI agents on SUI, built solo against six-person teams.",
     proof: "3rd · SUI Basecamp",
     href: "/articles/sui-blockathon-arenaai",
     track: "work_arenaai",
   },
   {
     title: "TANZEEM",
-    line: "Smart school-pickup management for the RTA — QR-verified custody handoff.",
+    line: "Smart school-pickup management for the RTA, QR-verified custody handoff.",
     proof: "3rd · RTA × GDG Dubai",
     href: "/articles/rta-gdg-tanzeem",
     track: "work_tanzeem",
@@ -42,7 +42,7 @@ const WorkSection = () => {
           </h2>
         </Reveal>
 
-        {/* NOVA Labs — the one company card */}
+        {/* NOVA Labs, the one company card */}
         <Reveal delay={0.05}>
           <a
             href={withUtm("https://novalabs.ae/live", "work")}
@@ -57,7 +57,7 @@ const WorkSection = () => {
                   NOVA Labs
                 </p>
                 <p className="text-xl md:text-2xl font-medium text-foreground leading-snug text-balance">
-                  Voice agents that run sales calls end to end — greeting,
+                  Voice agents that run sales calls end to end, greeting,
                   discovery, pitch, close.
                 </p>
               </div>
@@ -69,7 +69,7 @@ const WorkSection = () => {
           </a>
         </Reveal>
 
-        {/* Selected projects — one-liners, artifact-linked */}
+        {/* Selected projects, one-liners, artifact-linked */}
         <ul>
           {projects.map((p, i) => (
             <Reveal key={p.title} delay={0.05 * i}>

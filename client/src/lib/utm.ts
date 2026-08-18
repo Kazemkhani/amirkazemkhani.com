@@ -1,7 +1,7 @@
 /**
- * UTM helper — appends a consistent campaign tag to outbound links.
+ * UTM helper, appends a consistent campaign tag to outbound links.
  *
- * Default campaign: site-v3 (durable — the old date-stamped
+ * Default campaign: site-v3 (durable, the old date-stamped
  * falcons-of-majlis-2026-05 decayed and mislabeled post-May attribution).
  *
  * Usage:

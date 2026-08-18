@@ -3,7 +3,7 @@ import Pic from "./Pic";
 import { withUtm } from "../lib/utm";
 
 /**
- * Hero — identity in one declarative sentence, plus the first-person "Now"
+ * Hero, identity in one declarative sentence, plus the first-person "Now"
  * block (which replaced the skills wall). NOVA appears as a plain inline
  * prose link. The press hairline is the permanent, quiet successor to the
  * decayed TVBadgeRibbon.
@@ -24,7 +24,7 @@ const HeroSection = () => {
     <section id="hero" className="relative">
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 lg:pt-40 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* LEFT — the sentence (leads on every viewport) */}
+          {/* LEFT, the sentence (leads on every viewport) */}
           <div className="lg:col-span-7">
             <motion.p {...enter(0)} className="section-label mb-6">
               Amir Kazemkhani &middot; Founder, NOVA Labs &middot; Dubai
@@ -70,7 +70,7 @@ const HeroSection = () => {
               for the pause that makes a machine sound human.
             </motion.p>
 
-            {/* Press hairline — permanent, quiet, verified */}
+            {/* Press hairline, permanent, quiet, verified */}
             <motion.p
               {...enter(0.2)}
               className="font-mono text-[11px] sm:text-xs tracking-[0.14em] uppercase text-gold-500/90 border-y border-border/60 py-3 max-w-xl nums flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
@@ -122,7 +122,7 @@ const HeroSection = () => {
             </motion.p>
           </div>
 
-          {/* RIGHT — founder portrait (the person is the proof) */}
+          {/* RIGHT, founder portrait (the person is the proof) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <motion.figure
               initial={{ opacity: 0 }}
@@ -157,7 +157,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* NOW — first-person prose, the skills wall's replacement */}
+        {/* NOW, first-person prose, the skills wall's replacement */}
         <motion.div
           {...enter(0.3)}
           className="mt-20 lg:mt-28 max-w-2xl"

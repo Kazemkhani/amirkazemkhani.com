@@ -1,7 +1,7 @@
 import { usePageMeta } from "@/lib/meta";
 
 export default function NotFound() {
-  usePageMeta("Page not found — Amir Kazemkhani");
+  usePageMeta("Page not found: Amir Kazemkhani");
   return (
     <div id="main" className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center px-6">

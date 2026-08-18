@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 import Pic from "./Pic";
 
 /**
- * Proof — artifacts, not adjectives. The Falcons episode is the centerpiece;
+ * Proof, artifacts, not adjectives. The Falcons episode is the centerpiece;
  * one photo, the competition record (every claim enumerable), two real quotes.
  */
 
@@ -43,12 +43,12 @@ const ProofSection = () => {
           </h2>
           <p className="text-muted-foreground max-w-xl leading-relaxed mb-12">
             Pitching NOVA Labs on Falcons of Majlis (India Today &times; Aaj
-            Tak). My segment starts at 59:22 — watch it rather than take my
+            Tak). My segment starts at 59:22, watch it rather than take my
             word for it.
           </p>
         </Reveal>
 
-        {/* Centerpiece — the episode itself */}
+        {/* Centerpiece, the episode itself */}
         <FalconsEpisode />
 
         {/* One photo, one neutral line */}
@@ -58,7 +58,7 @@ const ProofSection = () => {
               <div className="aspect-[4/3] sm:aspect-video overflow-hidden bg-secondary">
                 <Pic
                   base="/credibility/amir-jensen-huang-nvidia"
-                  widths={[640, 729]}
+                  widths={[640,729]}
                   sizes="(min-width: 1024px) 928px, 90vw"
                   alt="Amir Hossein Kazemkhani in conversation with Jensen Huang"
                   width={729}
@@ -79,7 +79,7 @@ const ProofSection = () => {
           </figure>
         </Reveal>
 
-        {/* Competition record — one tight, artifact-linked block */}
+        {/* Competition record, one tight, artifact-linked block */}
         <Reveal>
           <div className="mb-16">
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
@@ -102,7 +102,7 @@ const ProofSection = () => {
                   <span className="text-sm text-foreground/90">
                     {r.event}
                     <span className="text-muted-foreground">
-                      {" — "}
+                      {", "}
                       {r.prize}
                     </span>
                   </span>
@@ -124,7 +124,7 @@ const ProofSection = () => {
           </div>
         </Reveal>
 
-        {/* Two real quotes — LinkedIn recommendations */}
+        {/* Two real quotes, LinkedIn recommendations */}
         <div className="grid md:grid-cols-2 gap-6">
           {quotes.map((q, i) => (
             <Reveal key={q.name} delay={0.05 * i}>
