@@ -9,8 +9,13 @@ export default {
         // Two typefaces, self-hosted. `display` intentionally aliases the text
         // face — one family carries the whole hierarchy (see docs/DESIGN-DOCTRINE.md).
         sans: ['"Inter Variable"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        // `display` still aliases the text face ON PURPOSE. It is applied to h2,
+        // h3, a paragraph and a badge across the app, so repointing it at the
+        // serif would spray a display face over the whole hierarchy and break the
+        // doctrine's "h1/pull-quotes only" condition. Do not change this alias;
+        // apply `font-serif` explicitly to the one h1 that leads a page.
         display: ['"Inter Variable"', '"Inter"', 'system-ui', 'sans-serif'],
-        serif: ['Georgia', '"Times New Roman"', 'serif'],
+        serif: ['"Instrument Serif"', 'Georgia', '"Times New Roman"', 'serif'],
         mono: ['"JetBrains Mono Variable"', '"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {

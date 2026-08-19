@@ -1,7 +1,7 @@
 import { usePageMeta } from "@/lib/meta";
 const Terms = () => {
   usePageMeta(
-    "Terms of Use — Amir Kazemkhani",
+    "Terms of Use: Amir Kazemkhani",
     "Terms of use for amirkazemkhani.com.",
   );
   return (

@@ -8,12 +8,12 @@ import {
 } from "framer-motion";
 
 /**
- * VerticalRail — THE signature device (one-signature-device law,
+ * VerticalRail, THE signature device (one-signature-device law,
  * docs/DESIGN-DOCTRINE.md).
  *
  * A thin gold line in the left viewport gutter (desktop ≥1280px only) that
  * draws with scroll: `useScroll` progress through the page, run through a
- * `useSpring` (stiffness 90, damping 25) so it feels physical — it
+ * `useSpring` (stiffness 90, damping 25) so it feels physical, it
  * overshoots a breath and settles. Diamond notches sit at each section
  * anchor and flip to a lit state the moment the spring passes them
  * (discrete notch states).
@@ -115,7 +115,7 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
     };
   }, [enabled, sectionIds]);
 
-  // Discrete notch states — state only changes when a notch is crossed
+  // Discrete notch states, state only changes when a notch is crossed
   useMotionValueEvent(spring, "change", (v) => {
     if (!geo) return;
     const drawnPx = v * geo.height;
@@ -139,7 +139,7 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
           className="absolute top-0"
           style={{ left: geo.railX, height: geo.height }}
         >
-          {/* Track — faint, always present */}
+          {/* Track, faint, always present */}
           <div
             className="absolute top-0 w-px"
             style={{
@@ -147,7 +147,7 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
               background: "hsl(var(--gold) / 0.12)",
             }}
           />
-          {/* Drawn line — springed scroll progress */}
+          {/* Drawn line, springed scroll progress */}
           <motion.div
             className="absolute top-0 w-px origin-top"
             style={{
@@ -158,7 +158,7 @@ const VerticalRail = ({ sectionIds }: { sectionIds: string[] }) => {
               opacity: 0.55,
             }}
           />
-          {/* Notches — one diamond per section anchor, discrete lit states */}
+          {/* Notches, one diamond per section anchor, discrete lit states */}
           {geo.notches.map((n, i) => (
             <div
               key={n.id}

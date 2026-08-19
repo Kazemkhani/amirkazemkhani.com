@@ -2,7 +2,7 @@ import { usePageMeta } from "@/lib/meta";
 
 const Privacy = () => {
   usePageMeta(
-    "Privacy Policy — Amir Kazemkhani",
+    "Privacy Policy: Amir Kazemkhani",
     "How amirkazemkhani.com collects, uses, and protects information.",
   );
   return (

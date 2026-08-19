@@ -3,7 +3,7 @@ import Pic from "./Pic";
 import { withUtm } from "../lib/utm";
 
 /**
- * Hero — identity in one declarative sentence, plus the first-person "Now"
+ * Hero, identity in one declarative sentence, plus the first-person "Now"
  * block (which replaced the skills wall). NOVA appears as a plain inline
  * prose link. The press hairline is the permanent, quiet successor to the
  * decayed TVBadgeRibbon.
@@ -24,15 +24,20 @@ const HeroSection = () => {
     <section id="hero" className="relative">
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 lg:pt-40 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* LEFT — the sentence (leads on every viewport) */}
+          {/* LEFT, the sentence (leads on every viewport) */}
           <div className="lg:col-span-7">
             <motion.p {...enter(0)} className="section-label mb-6">
               Amir Kazemkhani &middot; Founder, NOVA Labs &middot; Dubai
             </motion.p>
 
+            {/* font-serif = Instrument Serif, the display face. Applied to the
+                page-leading h1 only, per docs/DESIGN-DOCTRINE.md §3. font-normal
+                overrides the inherited semibold: this face carries conviction
+                through its own contrast, and faux-bolding a high-contrast serif
+                thickens the thins and muddies exactly what makes it read well. */}
             <motion.h1
               {...enter(0.05)}
-              className="text-hero font-semibold text-foreground mb-6 max-w-xl"
+              className="text-hero font-serif font-normal tracking-[-0.015em] text-foreground mb-6 max-w-xl"
             >
               I build voice agents that run{" "}
               <span className="text-gradient-gold">real sales calls</span>.
@@ -52,7 +57,7 @@ const HeroSection = () => {
               >
                 NOVA Labs
               </a>{" "}
-              in Dubai — AI that answers, qualifies, and books meetings over
+              in Dubai. AI that answers, qualifies, and books meetings over
               the phone. I raised{" "}
               <span className="text-foreground/90 nums">$1M at 21</span>.
             </motion.p>
@@ -65,7 +70,7 @@ const HeroSection = () => {
               for the pause that makes a machine sound human.
             </motion.p>
 
-            {/* Press hairline — permanent, quiet, verified */}
+            {/* Press hairline, permanent, quiet, verified */}
             <motion.p
               {...enter(0.2)}
               className="font-mono text-[11px] sm:text-xs tracking-[0.14em] uppercase text-gold-500/90 border-y border-border/60 py-3 max-w-xl nums flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
@@ -117,7 +122,7 @@ const HeroSection = () => {
             </motion.p>
           </div>
 
-          {/* RIGHT — founder portrait (the person is the proof) */}
+          {/* RIGHT, founder portrait (the person is the proof) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <motion.figure
               initial={{ opacity: 0 }}
@@ -152,7 +157,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* NOW — first-person prose, the skills wall's replacement */}
+        {/* NOW, first-person prose, the skills wall's replacement */}
         <motion.div
           {...enter(0.3)}
           className="mt-20 lg:mt-28 max-w-2xl"
@@ -160,13 +165,13 @@ const HeroSection = () => {
         >
           <p className="section-label mb-4">Now</p>
           <p className="text-muted-foreground leading-relaxed">
-            NOVA runs on a four-agent state machine on LiveKit — greeting,
-            discovery, pitch, close — held honest by 334 automated tests
+            NOVA Core runs a four-phase conversation state machine: greeting,
+            discovery, pitch, close, held honest by 334 automated tests
             across nine suites. Before this I was the sole technical
             co-founder of a $1M-funded AI construction startup in the Y
             Combinator network, and grew a research product to 147 paying
             users. Along the way: eight podium finishes across 35+
-            hackathons — the stories are{" "}
+            hackathons. The stories are{" "}
             <a href="/#writing" className="link-prose">
               below
             </a>

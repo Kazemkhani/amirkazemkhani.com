@@ -1,0 +1,9 @@
+Instrument Serif is licensed under the SIL Open Font License, Version 1.1.
+
+Copyright (c) Instrument (https://instrument.com)
+
+Full licence text: https://openfontlicense.org
+Upstream: https://github.com/google/fonts/tree/main/ofl/instrumentserif
+
+This copy of the font was subset to latin by Google Fonts and is redistributed
+here under the terms of the OFL, which permits embedding and redistribution.

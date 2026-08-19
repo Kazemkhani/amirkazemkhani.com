@@ -13,7 +13,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const Article = lazy(() => import("./pages/Article"));
 const WorkWithMe = lazy(() => import("./pages/WorkWithMe"));
 
-/** Route-level fallback — blank canvas, no spinner theater. */
+/** Route-level fallback, blank canvas, no spinner theater. */
 const PageLoading = () => (
   <div className="min-h-screen w-full bg-background" aria-hidden="true" />
 );
@@ -25,7 +25,7 @@ function ArticleRoute() {
 }
 
 /**
- * Routes — zero animation on navigation (route changes are
+ * Routes, zero animation on navigation (route changes are
  * keyboard-frequency actions; see docs/DESIGN-DOCTRINE.md motion budget).
  */
 function Routes() {
@@ -45,7 +45,7 @@ function Routes() {
 }
 
 /**
- * Global click interceptor — converts internal <a href> clicks to SPA
+ * Global click interceptor, converts internal <a href> clicks to SPA
  * navigation so we don't get full page reloads.
  */
 function useSPALinks() {
@@ -78,7 +78,7 @@ function useSPALinks() {
       // Skip pure hash links on same page (handled by AnchorScroll)
       if (href.startsWith("#")) return;
 
-      // Handle /#hash links — navigate to home then scroll to hash
+      // Handle /#hash links, navigate to home then scroll to hash
       if (href.startsWith("/#")) {
         // Mouse clicks must not leave a lingering focus ring on the link
         // (keyboard activation has e.detail === 0 and keeps :focus-visible).
@@ -87,7 +87,7 @@ function useSPALinks() {
         const currentPath = window.location.pathname;
 
         if (currentPath === "/") {
-          // Already on home — just scroll to the element
+          // Already on home, just scroll to the element
           e.preventDefault();
           const el = document.getElementById(hash);
           if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -103,7 +103,7 @@ function useSPALinks() {
         return;
       }
 
-      // Internal path link — SPA navigate, instant
+      // Internal path link, SPA navigate, instant
       e.preventDefault();
       setLocation(href);
       window.scrollTo(0, 0);

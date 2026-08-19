@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * Scrolling itself is left 100% native (no wheel interception, no
  * scroll-jacking, no inertia layer) so the page feels as light as the OS
  * scroll physics. Only same-page hash-link clicks are intercepted, and
- * those use scrollIntoView({ behavior: 'smooth' }) — the fixed-header
+ * those use scrollIntoView({ behavior: 'smooth' }), the fixed-header
  * offset is handled by `scroll-margin-top` in index.css.
  * Honors prefers-reduced-motion (instant jump).
  */

@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 const EASE = [0.22, 0.61, 0.36, 1] as const;
 
 /**
- * WordReveal — word-by-word stagger, reserved for the article template
+ * WordReveal, word-by-word stagger, reserved for the article template
  * (the one place the long-form pacing earns it). Was copy-pasted in six
  * components; now lives here once. Reduced motion renders plain text.
  */

@@ -19,11 +19,11 @@ const placeBadgeColor: Record<string, string> = {
 };
 
 /* ─────────────────────────────────────────────
-   Animated counter — runs on rAF, no scroll binding
+   Animated counter, runs on rAF, no scroll binding
    ───────────────────────────────────────────── */
 function AnimatedNumber({ value, isInView }: { value: string; isInView: boolean }) {
   const num = parseInt(value, 10);
-  // .test() returns a primitive boolean — stable across renders (unlike .match() which returns a new array)
+  // .test() returns a primitive boolean, stable across renders (unlike .match() which returns a new array)
   const isNumeric = !isNaN(num) && /^\d+%?$/.test(value);
   const suffix = value.includes('%') ? '%' : '';
   const hasAnimated = useRef(false);
@@ -49,7 +49,7 @@ function AnimatedNumber({ value, isInView }: { value: string; isInView: boolean 
 }
 
 /* ─────────────────────────────────────────────
-   Section components — simple useInView, no per-element scroll tracking
+   Section components, simple useInView, no per-element scroll tracking
    ───────────────────────────────────────────── */
 function HeadingBlock({ section, index }: { section: ArticleSection; index: number }) {
   const ref = useRef(null);
@@ -91,7 +91,7 @@ function QuoteBlock({ section }: { section: ArticleSection }) {
         animate={isInView ? { scaleY: 1, opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
         className="absolute -left-4 md:-left-8 top-0 bottom-0 w-[3px] origin-top rounded-full"
-        style={{ background: 'linear-gradient(180deg, #c9a84c, rgba(201,168,76,0.3), transparent)' }}
+        style={{ background: 'linear-gradient(180deg, #c9a84c, rgba(201,168, 76, 0.3), transparent)' }}
       />
       <div className="pl-6 md:pl-10 py-2">
         <motion.p
@@ -176,16 +176,16 @@ export default function ArticlePage({ slug }: { slug: string }) {
 
   usePageMeta(
     article
-      ? `${article.title} — Amir Kazemkhani`
-      : "Article not found — Amir Kazemkhani",
+      ? `${article.title}, Amir Kazemkhani`
+      : "Article not found: Amir Kazemkhani",
     article?.excerpt,
   );
 
-  // 1. Progress bar — single scroll listener on page
+  // 1. Progress bar, single scroll listener on page
   const { scrollYProgress } = useScroll({ target: containerRef });
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // 2. Hero parallax — single scroll listener on hero
+  // 2. Hero parallax, single scroll listener on hero
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -193,7 +193,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
   const heroY = useTransform(heroProgress, [0, 1], ['0%', '25%']);
   const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
-  // Chapter tracking — derived from existing scrollYProgress, no extra listener
+  // Chapter tracking, derived from existing scrollYProgress, no extra listener
   const [headingIndex, setHeadingIndex] = useState(0);
   const headings = article?.sections.filter((s) => s.type === 'heading').map((s) => s.content) ?? [];
 
@@ -263,7 +263,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
                     headingIndex === i ? 'bg-gold-500 scale-125' : 'bg-border scale-100'
                   }`}
                 />
-                {/* CSS-only pulse — no JS overhead */}
+                {/* CSS-only pulse, no JS overhead */}
                 {headingIndex === i && (
                   <span className="absolute inset-0 rounded-full border border-gold-500/50 animate-[chapterPulse_1.5s_ease-out_infinite]" />
                 )}
@@ -278,9 +278,9 @@ export default function ArticlePage({ slug }: { slug: string }) {
         ref={heroRef}
         className={`relative min-h-[85vh] flex items-end bg-gradient-to-br ${article.gradient} overflow-hidden`}
       >
-        {/* Parallax bg — single transform */}
+        {/* Parallax bg, single transform */}
         <motion.div className="absolute inset-0 will-change-transform" style={{ y: heroY }}>
-          {/* CSS-animated orbs — no JS on scroll */}
+          {/* CSS-animated orbs, no JS on scroll */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-500/5 blur-[120px] animate-[orbDrift1_8s_ease-in-out_infinite]" />
           <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-white/[0.03] blur-[100px] animate-[orbDrift2_10s_ease-in-out_infinite]" />
         </motion.div>
@@ -289,14 +289,14 @@ export default function ArticlePage({ slug }: { slug: string }) {
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(255,255,255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255, 0.1) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
 
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent" />
 
-        {/* Content — fades on scroll */}
+        {/* Content, fades on scroll */}
         <motion.div
           className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 pb-20 pt-32 w-full"
           style={{ opacity: heroOpacity }}

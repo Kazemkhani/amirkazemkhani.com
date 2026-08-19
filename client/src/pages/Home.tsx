@@ -7,7 +7,7 @@ import VerticalRail from "../components/VerticalRail";
 import { usePageMeta, SITE_TITLE, SITE_DESCRIPTION } from "../lib/meta";
 
 /**
- * Home — the five-section arc (docs/DESIGN-DOCTRINE.md):
+ * Home, the five-section arc (docs/DESIGN-DOCTRINE.md):
  * identity → work → proof → writing → invitation.
  * The vertical gold rail is the single signature device.
  */

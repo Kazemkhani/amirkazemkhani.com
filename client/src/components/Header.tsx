@@ -18,11 +18,17 @@ const Header = () => {
   }, []);
 
   return (
+    // Opaque surface + a hairline, not frosted glass. Translucency with
+    // backdrop-blur is one of the strongest generated-site tells, and on a
+    // near-black page it buys nothing: there is no colourful content beneath to
+    // refract, so the blur costs a compositor layer and returns a slightly
+    // muddier background. An opaque surface with a single gold-tinted hairline
+    // separates header from page more cleanly and scrolls without repainting.
     <header
       className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border/50"
-          : "bg-background/60 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
+          ? "bg-background border-b border-border/60"
+          : "bg-background md:bg-transparent md:border-transparent border-b border-border/30"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -77,9 +83,9 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu — no entrance animation (keyboard-frequency interaction) */}
+      {/* Mobile Menu, no entrance animation (keyboard-frequency interaction) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/50">
+        <div className="md:hidden bg-background border-b border-border/60">
           <nav className="flex flex-col px-6 py-6 gap-4">
             {navLinks.map((link) => (
               <a

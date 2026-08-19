@@ -8,7 +8,7 @@
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="112" fill="#0a0a0a"/>
-  <!-- "A" — left letter, modern geometric with sharp apex -->
+  <!-- "A", left letter, modern geometric with sharp apex -->
   <path
     d="M 108 390 L 196 130 L 284 390"
     fill="none"
@@ -23,7 +23,7 @@
     stroke-width="16"
     stroke-linecap="round"
   />
-  <!-- "K" — right letter, angular with detached arms -->
+  <!-- "K", right letter, angular with detached arms -->
   <line x1="310" y1="130" x2="310" y2="390"
     stroke="url(#gold)"
     stroke-width="22"
