@@ -25,7 +25,7 @@ The source for my personal engineering home: selected AI systems, field notes, a
 | --- | --- |
 | [nova-mcp](https://github.com/Kazemkhani/nova-mcp) | A tested Model Context Protocol server for operating NOVA voice-agent infrastructure. |
 | [outbound-intelligence-engine](https://github.com/Kazemkhani/outbound-intelligence-engine) | An AI-native research and outbound workflow built around explainable account intelligence. |
-| [phantom-transition](https://github.com/Kazemkhani/phantom-transition) | A focused developer tool for creating polished shared-element page transitions. |
+| [phantom-transition](https://github.com/Kazemkhani/phantom-transition) | Original voice-agent safety research: a minimal reproduction and fix for tool calls that survive a caller barge-in. Zero dependencies, tested in CI. |
 | [real-estate-odoo](https://github.com/Kazemkhani/real-estate-odoo) | A production-minded Odoo module for real-estate operations. |
 
 ## Architecture
