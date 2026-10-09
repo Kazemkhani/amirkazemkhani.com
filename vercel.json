@@ -3,6 +3,14 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/work",
+      "destination": "/work/index.html"
+    },
+    {
+      "source": "/work/",
+      "destination": "/work/index.html"
+    },
+    {
       "source": "/keel",
       "destination": "/keel/index.html"
     },
