@@ -12,8 +12,7 @@
 <meta property="og:image" content="https://amirkazemkhani.com/credibility/amir-falcons-stage-pitch-solo-1120.webp">
 <meta property="og:url" content="https://amirkazemkhani.com/work">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/instrument-serif-latin.woff2") format("woff2")}
 @font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url("/fonts/instrument-serif-italic-latin.woff2") format("woff2")}
@@ -22,15 +21,17 @@
 
 /* Layout: a single editorial scroll. Sticky chapter index on the left (desktop), chapters on the right. Brand tokens match amirkazemkhani.com: warm near-black, one gold. */
 :root{
-  --bg:#0b0a09; --surface:#131110; --surface-2:#1a1816; --line:#24211e; --line-soft:#1b1917;
-  --fg:#efebe3; --fg-2:#aaa49a; --fg-3:#736d64;
-  --gold:#c9a84c; --gold-soft:rgba(201,168,76,.14);
-  --f-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --f-sans:"Inter Variable","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --f-mono:"JetBrains Mono Variable","JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --bg:#000000; --surface:#070C1F; --surface-2:#0D1633; --line:rgba(149,157,178,.18); --line-soft:rgba(149,157,178,.1);
+  --fg:#EEF1FA; --fg-2:#A9B0C3; --fg-3:#7C859B;
+  --gold:#FF5A1F; --gold-soft:rgba(255,90,31,.14);
+  --cobalt:#3A66FF;
+  --f-serif:"Archivo",system-ui,sans-serif;
+  --f-sans:"Archivo",system-ui,sans-serif;
+  --f-mono:"Archivo",system-ui,sans-serif;
   --ease:cubic-bezier(.2,.75,.2,1);
   color-scheme:dark;
 }
+@font-face{font-family:"Archivo";src:url("/fonts/archivo-var-latin.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 html,body{margin:0}
@@ -206,6 +207,13 @@ p{margin:0}
   .js .rv,.js .wipe,.js .hero .ln>span{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important;transition:none!important}
   .shot,.feature img{transition:none}
 }
+/* brand system: black, cobalt and ember, one family (Archivo) with the width axis doing the talking */
+h1,h2,h3,.proof b{font-stretch:125%!important;font-weight:800!important;letter-spacing:-.025em!important;font-style:normal}
+h1 em,h2 em,h3 em,.hero h1 em{font-style:normal!important;font-family:inherit!important}
+.proof b{font-stretch:100%!important}
+.hero h1{font-stretch:108%!important;font-size:clamp(40px,5.4vw,80px)!important;line-height:1!important}
+.mono,.idx small,.facts li span,.tick small{font-stretch:78%!important;letter-spacing:.02em!important;text-transform:none!important;font-weight:500}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -435,7 +443,7 @@ p{margin:0}
     <div class="row">
       <a class="btn" href="https://novalabs.ae" target="_blank" rel="noopener">NOVA Labs ↗</a>
       <a class="btn ghost" href="https://linkedin.com/in/amirkazemkhani" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn ghost" href="https://github.com/Kazemkhani" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="https://amirkazemkhani.com">amirkazemkhani.com</a>
     </div>
   </section>
 

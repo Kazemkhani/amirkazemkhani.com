@@ -4,6 +4,17 @@
 > document. If a change violates a law here, the change is wrong — not the law.
 > Reference class: rauno.me, paco.me, emilkowal.ski, leerob.com, rauchg.com.
 
+> **Amendment, 3 November 2026: new front door.** The landing page at `/` is now the
+> hand-built `client/public/home/index.html`, promoted over the React shell by
+> `scripts/promote-home.mjs` after the Vite build. The React app moves to `app.html` and
+> still serves `/articles`, `/privacy`, `/terms` and `/work-with-me`.
+> Brand system for `/` and `/work`: void black `#000000` (about 60%), midnight and cobalt
+> blue `#070C1F` / `#3A66FF` for depth and structure (about 30%), ember orange `#FF5A1F`
+> reserved for action and calls to action (about 10%). One family, Archivo, with the width
+> axis as the typographic device. Signature motion on `/`: the hero "agent lanes" field
+> (parallel agents carrying work to one ship point) plus a scroll-linked cobalt-to-ember
+> thread. Reduced motion renders both static. Every claim on `/` links to proof.
+
 ## North star
 
 **Restraint signals seniority. The person is the proof. One signature device, executed
