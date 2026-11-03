@@ -1,6 +1,13 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/work",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/work",

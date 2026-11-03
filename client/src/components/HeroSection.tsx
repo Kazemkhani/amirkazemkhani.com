@@ -58,8 +58,7 @@ const HeroSection = () => {
                 NOVA Labs
               </a>{" "}
               in Dubai. AI that answers, qualifies, and books meetings over
-              the phone. I raised{" "}
-              <span className="text-foreground/90 nums">$1M at 21</span>.
+              the phone.
             </motion.p>
 
             <motion.p
@@ -168,15 +167,14 @@ const HeroSection = () => {
             NOVA Core runs a four-phase conversation state machine: greeting,
             discovery, pitch, close, held honest by 334 automated tests
             across nine suites. Before this I was the sole technical
-            co-founder of a $1M-funded AI construction startup in the Y
-            Combinator network, and grew a research product to 147 paying
+            co-founder of Kenchi, an AI construction startup, and grew a research product to 147 paying
             users. Along the way: eight podium finishes across 35+
             hackathons. The stories are{" "}
             <a href="/#writing" className="link-prose">
               below
             </a>
-            . I&rsquo;m finishing Computer Science with AI at the University
-            of Birmingham Dubai.
+            . I graduated with First Class Honours in Artificial Intelligence
+            and Computer Science from the University of Birmingham Dubai.
           </p>
         </motion.div>
       </div>
