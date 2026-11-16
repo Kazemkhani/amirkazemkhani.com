@@ -90,14 +90,28 @@ function useSPALinks() {
           // Already on home, just scroll to the element
           e.preventDefault();
           const el = document.getElementById(hash);
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (el)
+            el.scrollIntoView({
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                .matches
+                ? "auto"
+                : "smooth",
+              block: "start",
+            });
         } else {
           // Navigate to home, then scroll after render
           e.preventDefault();
           setLocation("/");
           setTimeout(() => {
             const el = document.getElementById(hash);
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (el)
+              el.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "auto"
+                  : "smooth",
+                block: "start",
+              });
           }, 120);
         }
         return;

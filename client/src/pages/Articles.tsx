@@ -34,7 +34,7 @@ function ArticleCard({
         delay: featured ? 0.2 : 0.1 + index * 0.08,
         ease: [0.22, 0.61, 0.36, 1],
       }}
-      className={`block relative rounded-2xl overflow-hidden bg-gradient-to-br ${article.gradient} group cursor-pointer`}
+      className={`block relative rounded-2xl overflow-hidden bg-secondary group cursor-pointer`}
     >
       {/* Grid pattern */}
       <div
@@ -64,7 +64,7 @@ function ArticleCard({
               featured ? 'px-3 py-1' : 'px-2.5 py-0.5'
             } rounded-full bg-gradient-to-r ${
               placeBadgeColor[article.place]
-            } text-background font-display font-bold ${featured ? 'text-xs' : 'text-[11px]'}`}
+            } text-foreground font-display font-bold ${featured ? 'text-xs' : 'text-[11px]'}`}
           >
             <Trophy className={featured ? 'w-3 h-3' : 'w-2.5 h-2.5'} />
             {article.place}{featured ? ' Place' : ''}
@@ -75,24 +75,24 @@ function ArticleCard({
             transition={{ delay: (featured ? 0.5 : 0.3 + index * 0.08) }}
             className={`${
               featured ? 'text-xs px-2.5 py-1' : 'text-[11px] px-2 py-0.5'
-            } rounded-full bg-white/10 text-white/60 border border-white/10`}
+            } rounded-full bg-background/70 text-muted-foreground border border-border/50`}
           >
             {article.tag}
           </motion.span>
           {featured && (
-            <span className="font-mono text-[11px] text-white/40">{article.event}</span>
+            <span className="font-mono text-[11px] text-muted-foreground">{article.event}</span>
           )}
         </div>
 
         <h2
-          className={`font-display font-bold text-white leading-tight mb-2 group-hover:text-gold-400 transition-colors duration-300 ${
+          className={`font-display font-bold text-foreground leading-tight mb-2 group-hover:text-gold-400 transition-colors duration-300 ${
             featured ? 'text-3xl md:text-4xl lg:text-5xl mb-4' : 'text-xl md:text-2xl'
           }`}
         >
           {article.title}
         </h2>
 
-        <p className={`text-white/40 mb-4 ${featured ? 'font-serif text-lg italic max-w-2xl mb-6' : 'text-sm line-clamp-2'}`}>
+        <p className={`text-muted-foreground mb-4 ${featured ? 'font-serif text-lg italic max-w-2xl mb-6' : 'text-sm line-clamp-2'}`}>
           {article.subtitle}
         </p>
 
@@ -101,7 +101,7 @@ function ArticleCard({
             {featured ? 'Read the full story' : 'Read story'}
             <ArrowRight className={featured ? 'w-4 h-4' : 'w-3.5 h-3.5'} />
           </span>
-          <span className={`inline-flex items-center gap-1.5 font-mono ${featured ? 'text-xs text-white/30' : 'text-[10px] text-white/25'}`}>
+          <span className={`inline-flex items-center gap-1.5 font-mono ${featured ? 'text-xs text-muted-foreground' : 'text-[10px] text-muted-foreground'}`}>
             <Clock className="w-3 h-3" />
             {article.readTime}
           </span>

@@ -38,7 +38,7 @@ const WritingSection = () => {
     <section id="writing" className="py-24 lg:py-32">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <Reveal>
-          <p className="section-label mb-4">Writing</p>
+          <p className="section-label mb-4">03 / Field notes</p>
           <h2 className="text-heading font-semibold text-foreground mb-12">
             The stories behind the wins
           </h2>

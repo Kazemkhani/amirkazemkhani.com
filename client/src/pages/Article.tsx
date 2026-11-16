@@ -276,7 +276,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
       {/* ── Hero ── */}
       <header
         ref={heroRef}
-        className={`relative min-h-[85vh] flex items-end bg-gradient-to-br ${article.gradient} overflow-hidden`}
+        className={`relative min-h-[85vh] flex items-end bg-secondary overflow-hidden`}
       >
         {/* Parallax bg, single transform */}
         <motion.div className="absolute inset-0 will-change-transform" style={{ y: heroY }}>
@@ -306,7 +306,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-gold-500 transition-colors mb-12 group"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold-500 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             All Articles
@@ -319,7 +319,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
               className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r ${
                 placeBadgeColor[article.place] || 'from-zinc-600 to-zinc-700'
-              } text-background font-display font-bold text-xs`}
+              } text-foreground font-display font-bold text-xs`}
             >
               <Trophy className="w-3 h-3" />
               {article.place} Place
@@ -328,7 +328,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
-              className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-white/70 border border-white/10"
+              className="text-xs px-2.5 py-1 rounded-full bg-background/70 text-muted-foreground border border-border/50"
             >
               {article.tag}
             </motion.span>
@@ -336,14 +336,14 @@ export default function ArticlePage({ slug }: { slug: string }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="inline-flex items-center gap-1 text-xs text-white/40 font-mono"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground font-mono"
             >
               <Clock className="w-3 h-3" />
               {article.readTime}
             </motion.span>
           </div>
 
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6">
             <WordReveal text={article.title} delay={0.5} />
           </h1>
 
@@ -351,7 +351,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="font-serif text-lg md:text-xl text-white/60 italic max-w-2xl"
+            className="font-serif text-lg md:text-xl text-muted-foreground italic max-w-2xl"
           >
             {article.subtitle}
           </motion.p>
@@ -360,7 +360,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
         {/* CSS-animated scroll indicator */}
         <button
           onClick={scrollToContent}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/30 hover:text-gold-500 transition-colors cursor-pointer animate-[fadeIn_0.6s_1.8s_both]"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground hover:text-gold-500 transition-colors cursor-pointer animate-[fadeIn_0.6s_1.8s_both]"
         >
           <span className="text-[10px] font-mono tracking-[0.3em] uppercase">Scroll to read</span>
           <ChevronDown className="w-5 h-5 animate-[scrollBounce_1.5s_ease-in-out_infinite]" />
@@ -408,15 +408,15 @@ export default function ArticlePage({ slug }: { slug: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`block mt-16 rounded-xl overflow-hidden bg-gradient-to-br ${nextArticle.gradient} group cursor-pointer`}
+            className={`block mt-16 rounded-xl overflow-hidden bg-secondary group cursor-pointer`}
           >
             <div className="p-6 md:p-8 relative">
               <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-gold-500/5 blur-[60px] group-hover:bg-gold-500/10 transition-all duration-500" />
-              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/30 mb-3">Next Story</p>
-              <h3 className="font-display text-xl md:text-2xl font-bold text-white group-hover:text-gold-400 transition-colors mb-2">
+              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-3">Next Story</p>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground group-hover:text-gold-400 transition-colors mb-2">
                 {nextArticle.title}
               </h3>
-              <p className="text-sm text-white/40">{nextArticle.subtitle}</p>
+              <p className="text-sm text-muted-foreground">{nextArticle.subtitle}</p>
               <div className="mt-4 inline-flex items-center gap-2 text-sm text-gold-500 font-medium group-hover:gap-3 transition-all">
                 Continue reading <ChevronRight className="w-4 h-4" />
               </div>

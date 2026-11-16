@@ -8,7 +8,7 @@
 
 [![CI](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml/badge.svg)](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml)
 
-The source for my personal engineering home: selected AI systems, field notes, and the work behind NOVA Labs.
+The source for my personal engineering home: Bayyina, Marsad and HADHRA, with interactive product previews, original films and a light 3D portfolio.
 
 [Visit the live site](https://amirkazemkhani.com) · [Explore the writing](https://amirkazemkhani.com/articles) · [Work with me](https://amirkazemkhani.com/work-with-me)
 
@@ -36,6 +36,8 @@ This is a static, client-rendered React application built for a small operationa
 - Vite 8 for development and production builds
 - Wouter for lightweight routing
 - Tailwind CSS and Radix primitives for the interface system
+- Blender-authored GLB sculpture rendered with Three.js, plus a static fallback
+- Remotion motion graphics and short portal transitions
 - Framer Motion with reduced-motion support
 - Self-hosted fonts and optimized AVIF/WebP image variants
 - Optional Plausible analytics; no analytics request is made unless configured
@@ -71,7 +73,9 @@ npm run build
 npm audit
 ```
 
-Pull requests run the production build on the active Node.js LTS lines. The current dependency audit is clean.
+Pull requests run the production build on the active Node.js LTS lines. The release record in `docs/PORTFOLIO-RELEASE.md` records the checked audit state.
+
+The scoped `postcss-selector-parser` override patches the parser pinned by the typography plugin. Remove the override when that plugin accepts a patched parser version.
 
 ## Content and asset rights
 

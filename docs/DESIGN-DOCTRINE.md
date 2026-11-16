@@ -1,148 +1,27 @@
-# DESIGN DOCTRINE — amirkazemkhani.com
+# Portfolio design direction
 
-> The restraint contract for this site. Every future change is measured against this
-> document. If a change violates a law here, the change is wrong — not the law.
-> Reference class: rauno.me, paco.me, emilkowal.ski, leerob.com, rauchg.com.
+Updated 16 November 2026 for Amir's explicit immersive, light-mode redesign request. This replaces the previous dark-only restraint contract.
 
-## North star
+## Experience
 
-**Restraint signals seniority. The person is the proof. One signature device, executed
-perfectly.** This site's job is to make Amir credible; credibility flows downhill to
-NOVA Labs. It is an identity anchor, never a landing page.
+A warm porcelain canvas with mineral teal, cornflower blue and clay coral. Instrument Serif provides the editorial display voice; Inter and JetBrains Mono carry UI and supporting copy. Fonts remain self-hosted.
 
----
+The home page progresses through identity, three interactive product worlds, public presentations, writing and contact. Existing articles, contact, privacy, terms and the separate `/work` collection remain available.
 
-## 1. Story arc — exactly five sections
+## Real work
 
-| # | Section | Job | One rule |
-|---|---------|-----|----------|
-| 1 | **Hero** (`#hero`) | Identity: one declarative first-person sentence + one human line + the Now prose block | No buzzword kickers ("at the intersection of…" is banned). NOVA appears as a plain inline prose link. |
-| 2 | **Work** (`#work`) | Present work: one NOVA Labs card + 2–3 real projects | Every card must link somewhere real (live product, article, or repo). A card with no link gets cut. |
-| 3 | **Proof** (`#proof`) | Artifacts: the Falcons episode embed (centerpiece), one photo, the competition record, two quotes | Proof through artifacts, not adjectives. Claims without a clickable/playable artifact don't ship. |
-| 4 | **Writing** (`#writing`) | Depth: 4 curated pieces with hand-written hooks | Curated beats exhaustive. Link to `/articles` for the rest. |
-| 5 | **Invitation** (`#contact`) | Low-key close: engagement types in prose, mailto CTA | First person, matter-of-fact. No urgency theater. |
+Bayyina, Marsad and HADHRA use real captured product interfaces. Preview buttons open the actual demo in a focus-trapped dialog. Films are original project films and load only on request. No synthetic product statistics are authored by this portfolio.
 
-Adding a sixth section requires deleting one first.
+The Blender sculpture is decorative, not a technical model. Its editable source is in `scripts/artwork/portals.blend`; `scripts/build-portal.py` regenerates it. The GLB uses Three.js for pointer parallax and lighting. A rendered WebP remains visible when WebGL is unavailable. Remotion provides the project-specific motion rings.
 
-## 2. One-signature-device law
+## Interaction
 
-The **gold VerticalRail** is the site's single memorable device. It is scroll-linked
-(`useScroll` + `useSpring`, stiffness 90 / damping 25), with discrete notch states per
-section anchor. It carries ~80% of the site's motion identity.
+Native page scrolling. Portal transitions are short and lead to the real project destination. The native cursor stays visible, with local pointer feedback only. Keyboard activation, modifier clicks and reduced-motion users retain direct link behaviour. Browser Back clears the transition.
 
-Everything else competing for that slot is dead and stays dead: loading screens, custom
-cursors, magnetic buttons, scroll-progress bars, per-section flourish dividers.
-**Whitespace is the divider.** The hero SVG path draw-in survives as a hero-only accent
-(it draws once and goes quiet) — it is an accent, not a second device.
+All continuous animation respects the global motion button and OS reduced-motion preference. Three.js stops rendering offscreen or in background tabs. Remotion players pause offscreen. Each iframe/video is removed on close; close restores focus to its trigger. No automatic audio.
 
-## 3. Typeface system — three faces, self-hosted
+## Evidence and language
 
-**Amended 2026-08-17.** The previous rule ran Inter for the whole hierarchy and
-pre-authorised a display face on conditions: "ONE face, h1/pull-quotes only, and
-something else gets deleted." Both conditions were met, so the face was added.
+Use British English. Treat exhibitions, presentations, shortlisting and production adoption as distinct facts. Names in the NSTI context describe event attendance, not individual endorsement. Bayyina remains a synthetic-data research prototype, HADHRA an untested-at-sea concept, and Marsad a synthetic-data hackathon prototype. The Bayyina seal proves an output is unchanged, not that it was right.
 
-- **Instrument Serif** — the display face. Hero `h1` and pull-quotes **only**.
-  Regular + italic, latin subset, 15K each, self-hosted, preloaded (it renders the
-  largest contentful paint on every page, so not preloading it guarantees a visible
-  swap on the most important text on the site). OFL licensed.
-- **Inter Variable** — body, UI, and all headings below `h1`. Self-hosted latin
-  woff2, preloaded, `font-display: swap`.
-- **JetBrains Mono Variable** — kickers, section labels, dates, figures. The mono
-  eyebrow is the accent.
-- No `fonts.googleapis.com`. Ever. The woff2 files are committed to
-  `client/public/fonts/`.
-
-**Why the amendment.** Inter carrying the headline as the only family is the single
-most recognisable signature of a generated site. Hierarchy built from weight alone
-reads flat, because every heading speaks in the same voice at a different volume.
-A high-contrast serif at `h1` against a grotesk body is real type contrast, which is
-what the eye reads as considered rather than defaulted.
-
-**What was deleted to pay for it.** Georgia italic is no longer the pull-quote face
-(`--font-serif` now leads with Instrument Serif and keeps Georgia only as the
-fallback, so a failed load degrades to a serif rather than to the body grotesk).
-`lucide-react` is scheduled for removal in favour of a bespoke hairline icon set;
-until that lands the byte budget is carried by the 30K of new webfont, which is
-below the 47K Inter already costs.
-
-**Do not** repoint the Tailwind `display` alias at the serif. `font-display` is
-applied to `h2`, `h3`, a paragraph and a badge across the app, so repointing it
-would spray a display face over the whole hierarchy and break the h1/pull-quotes-only
-rule. Apply `font-serif` explicitly to the one `h1` that leads a page.
-
-**Do not** faux-bold the serif. `font-normal` is set on the hero `h1` deliberately:
-synthetic weight thickens the thin strokes and destroys exactly the contrast that
-makes a high-contrast serif worth loading.
-
-**Scale restraint:** body 16px mobile / 18px desktop, line-height 1.6, measure 60–70ch.
-h1 `clamp(2.25rem, 5vw, 3.5rem)`, line-height 1.1, letter-spacing −0.02em.
-Mono labels 12–13px uppercase, tracking **0.14em** (never the 0.3em template tell).
-`tabular-nums` on all dates and figures. `text-wrap: balance` on headings.
-Prose is left-aligned; centered long-form text is banned.
-
-## 4. Motion budget
-
-Total budget: **one scroll-linked element** (the rail) **+ entrance fades. Nothing else.**
-
-- **Entrances:** `whileInView`, `viewport={{ once: true, margin: "-10%" }}`,
-  opacity 0→1 + y 10→0, **200–250ms**, ease-out, stagger 40–60ms. Never re-animate on
-  scroll-up. Never word-by-word outside the article template.
-- **Hovers:** CSS-only, 150ms ease-out, `transform` / `opacity` /
-  `text-decoration-color` exclusively. Interruptible by definition. No framer-motion for hovers.
-- **Keyboard & route nav: zero animation.** Page transitions are instant. High-frequency
-  interactions must not animate.
-- **`useReducedMotion()` gates every framer-motion element.** Reduced-motion users get
-  opacity-only or static-drawn states (rail renders fully drawn).
-- Animate `transform` and `opacity` only — never height/margin/padding/filter.
-
-## 5. Invisible-craft checklist (the senior-visitor handshake)
-
-- [x] `::selection` — gold at ~25% alpha, foreground unchanged
-- [x] `:focus-visible` — 2px gold outline, offset 2px, global; bare `outline: none` is banned
-- [x] Skip-to-content link before the header
-- [x] Prose links: real underlines, `text-underline-offset: 3px`, 150ms `text-decoration-color` transition
-- [x] `color-scheme: dark` in CSS + `<meta name="theme-color">` — native form controls and scrollbars match
-- [x] Explicit `width`/`height` on every image (zero CLS); `fetchpriority="high"` on the hero portrait; lazy below the fold
-- [x] AVIF/WebP + 2 widths via `scripts/optimize-images.mjs` (sharp)
-- [x] Per-route `document.title` + meta description, including per-article
-- [x] No pure `#000` behind photos — blacks are lifted (`#0a0a0a` base, `#121212` surfaces)
-- [x] Content must be visible without JS-triggered reveals when loaded below the fold
-
-## 6. Kill list (deleted, with rationale — do not resurrect)
-
-| Killed | Why |
-|---|---|
-| `LoadingScreen` | A 2s artificial gate on a static Vite site is the opposite of the instantness that IS the craft claim. Content mounts immediately. |
-| `CustomCursor` | The browser cursor is sacred. Hiding it is an accessibility regression and an awwwards trope. |
-| `MagneticButton` | Cursor-follow physics = template smell. Budget went to the rail's spring instead. |
-| `ScrollProgress` | Second scroll-linked element; competed with the rail. |
-| `SkillsSection` | Nobody in the reference class lists skills. A 40-tag wall is what juniors do without artifacts. Replaced by the first-person Now prose block. |
-| `PitchWall` (as a section) | Duplicating the company pitch on the personal site sells the product, not the person. One photo survives inside Proof. |
-| `EndorsementsSection` | Two proof sections signal insecurity. The two strongest real quotes fold into Proof. |
-| `SectionFlourish` dividers | Ornament in place of rhythm. Whitespace is the divider. |
-| `TVBadgeRibbon` (decay logic) | Auto-decayed banner = dead code shipping invisibly. Replaced by a permanent, quiet press hairline in the hero. |
-| `Toaster` / `use-toast` | Mounted, never fired. Dead weight. |
-| 6× copy-pasted `WordReveal` | Deduped to `components/WordReveal.tsx`; dropped everywhere it was gratuitous. |
-| Page-transition fades | Route nav is a keyboard-frequency action. Zero animation. |
-
-## 7. Fact rules
-
-1. **Artifacts only.** Every stat, quote, and project on the page must already exist in
-   repo content (`client/src/data/`, prior sections) and must link to something real.
-   Copy may be cut and rewritten for craft — never invented.
-2. **No metrics without links.** A number that can't be traced to an artifact
-   (episode, article, product) doesn't ship. The record is 8 podium finishes,
-   $25,800+ in prizes, 35+ hackathons — enumerated in Proof, story-linked.
-3. **Amir is in DUBAI.** NOVA Labs is Dubai. "Abu Dhabi" may appear only inside the
-   keywords meta (Falcons discoverability). Everything else — meta description, OG,
-   Twitter, JSON-LD, footer, copy — says Dubai.
-4. **Claim-safe forever:** no "Backed by…", no SOC 2 / SLA / E2EE claims, no invented
-   testimonials, no "Featured on" beyond the verified Falcons of Majlis appearance.
-5. **NOVA appears exactly three times on the home page:** hero prose link, one Work
-   card, footer line. Never landing-page-ify.
-
-## 8. Theme
-
-Dark-only, done fully. Gold `#c9a84c` on near-black `#0a0a0a`. The unused light theme
-was removed — one impeccable theme beats two mediocre ones. Gold text on background
-must hold WCAG AA at label sizes.
+Source and QA records are in `docs/PORTFOLIO-RELEASE.md`. Before deployment run the production build, inspect the dependency audit, and run `python3 scripts/portfolio-qa.py` against the preview. Open screenshots at 1280x720 and 390x844; also check narrow phones, tablet orientations, reduced motion, real film playback, actual embedded product loading, navigation and retained routes.

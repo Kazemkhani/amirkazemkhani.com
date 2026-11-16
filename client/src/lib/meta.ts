@@ -25,7 +25,7 @@ export function usePageMeta(title: string, description?: string) {
 }
 
 export const SITE_TITLE =
-  "Amir Hossein Kazemkhani · Voice AI Founder · NOVA Labs · Featured on Falcons of Majlis";
+  "Amir Kazemkhani | AI systems & interactive worlds";
 
 export const SITE_DESCRIPTION =
-  "Voice AI engineer building NOVA Labs in Dubai. Featured on Falcons of Majlis (India Today × Aaj Tak). In conversation with Jensen Huang at NVIDIA.";
+  "Explore Bayyina, Marsad and HADHRA. AI systems, immersive demos and engineering projects by Amir Hossein Kazemkhani, based in Dubai.";

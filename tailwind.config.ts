@@ -8,38 +8,61 @@ export default {
       fontFamily: {
         // Two typefaces, self-hosted. `display` intentionally aliases the text
         // face — one family carries the whole hierarchy (see docs/DESIGN-DOCTRINE.md).
-        sans: ['"Inter Variable"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: [
+          '"Inter Variable"',
+          '"Inter"',
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
         // `display` still aliases the text face ON PURPOSE. It is applied to h2,
         // h3, a paragraph and a badge across the app, so repointing it at the
         // serif would spray a display face over the whole hierarchy and break the
         // doctrine's "h1/pull-quotes only" condition. Do not change this alias;
         // apply `font-serif` explicitly to the one h1 that leads a page.
-        display: ['"Inter Variable"', '"Inter"', 'system-ui', 'sans-serif'],
-        serif: ['"Instrument Serif"', 'Georgia', '"Times New Roman"', 'serif'],
-        mono: ['"JetBrains Mono Variable"', '"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        display: ['"Inter Variable"', '"Inter"', "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', "Georgia", '"Times New Roman"', "serif"],
+        mono: [
+          '"JetBrains Mono Variable"',
+          '"JetBrains Mono"',
+          "ui-monospace",
+          "monospace",
+        ],
       },
       fontSize: {
         // Restrained scale — h1 tops out at 3.5rem (reference-class ceiling)
-        'hero': ['clamp(2.25rem, 5vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'heading': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-        'subheading': ['clamp(1.125rem, 1.5vw, 1.375rem)', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+        hero: [
+          "clamp(2.25rem, 5vw, 3.5rem)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em" },
+        ],
+        display: [
+          "clamp(2rem, 4vw, 3rem)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em" },
+        ],
+        heading: [
+          "clamp(1.5rem, 2.5vw, 2rem)",
+          { lineHeight: "1.15", letterSpacing: "-0.01em" },
+        ],
+        subheading: [
+          "clamp(1.125rem, 1.5vw, 1.375rem)",
+          { lineHeight: "1.3", letterSpacing: "-0.01em" },
+        ],
       },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         gold: {
-          DEFAULT: '#c9a84c',
-          50: '#fdf8ed',
-          100: '#f8ecd0',
-          200: '#f0d6a0',
-          300: '#e7bc66',
-          400: '#dfa63b',
-          500: '#c9a84c',
-          600: '#a08030',
-          700: '#7a6024',
-          800: '#5a4620',
-          900: '#3d2f18',
+          DEFAULT: "#3c6b57",
+          50: "#f2f6ee",
+          100: "#e7efdf",
+          200: "#c9d9bd",
+          300: "#98b48b",
+          400: "#5f865d",
+          500: "#3c6b57",
+          600: "#315943",
+          700: "#294b39",
+          800: "#243f31",
+          900: "#1e3429",
         },
         card: {
           DEFAULT: "hsl(var(--card))",

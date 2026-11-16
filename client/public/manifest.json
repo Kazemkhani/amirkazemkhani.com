@@ -1,13 +1,21 @@
 {
-  "name": "Amir Kazemkhani · AI Engineer & Serial Founder",
+  "name": "Amir Kazemkhani \u00b7 AI Engineer & Serial Founder",
   "short_name": "AmirK",
-  "description": "Dubai-based AI engineer and serial entrepreneur. 9 podium finishes across 35+ hackathons.",
+  "description": "AI systems and interactive worlds by Amir Hossein Kazemkhani, Dubai.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a",
+  "theme_color": "#f8f7f2",
+  "background_color": "#f8f7f2",
   "icons": [
-    { "src": "/logo192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/logo512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

@@ -13,6 +13,15 @@ import { useEffect } from "react";
 const AnchorScroll = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.altKey ||
+        e.shiftKey
+      )
+        return;
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href*="#"]') as HTMLAnchorElement | null;
       if (!anchor) return;

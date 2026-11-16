@@ -1,0 +1,15 @@
+PASS 1280x720: bayyina film plays (66.3s), real embedded demo loads, closes cleanly
+PASS 1280x720: marsad film plays (119.9s), real embedded demo loads, closes cleanly
+PASS 1280x720: enec film plays (105.0s), real embedded demo loads, closes cleanly
+PASS 1280x720: 3D, loaded imagery, no overflow, no page errors
+PASS 390x844: bayyina film plays (66.3s), real embedded demo loads, closes cleanly
+PASS 390x844: marsad film plays (119.9s), real embedded demo loads, closes cleanly
+PASS 390x844: enec film plays (105.0s), real embedded demo loads, closes cleanly
+PASS 390x844: 3D, loaded imagery, no overflow, no page errors
+PASS 768x1024: 3D, loaded imagery, no overflow, no page errors
+PASS 1024x768: 3D, loaded imagery, no overflow, no page errors
+PASS 320x568: 3D, loaded imagery, no overflow, no page errors
+PASS 390x844-reduced: 3D, loaded imagery, no overflow, no page errors
+PASS portal: animation, destination navigation and browser-back reset
+PASS retained routes: writing, article, contact, privacy, terms
+ALL PORTFOLIO CHECKS PASS
