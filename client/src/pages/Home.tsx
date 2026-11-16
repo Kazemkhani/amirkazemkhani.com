@@ -6,6 +6,7 @@ import {
   useState,
   type MouseEvent,
   type CSSProperties,
+  Fragment,
 } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useReducedMotion } from "framer-motion";
@@ -20,6 +21,9 @@ import {
 } from "lucide-react";
 import { worlds, earlierWork, type World } from "../data/worlds";
 import ProjectCredential from "../components/ProjectCredential";
+import ProductLogo from "../components/ProductLogo";
+import WordReveal from "../components/WordReveal";
+import { additionalCredentials, usdEquivalent } from "../data/recognition";
 import WorldChapter from "../components/WorldChapter";
 import WritingSection from "../components/WritingSection";
 import FalconsEpisode from "../components/FalconsEpisode";
@@ -101,16 +105,19 @@ export default function Home() {
         }
       >
         <div className="hero-orbit" aria-hidden="true" />
-        <div className="hero-identity mono">
-          <span className="status-dot" /> AMIR HOSSEIN KAZEMKHANI{" "}
-          <span>Dubai, UAE</span>
-        </div>
         <div className="hero-title">
-          <p className="mono">AI founder & technology leader</p>
+          <p className="mono">Dubai, UAE</p>
           <h1>
-            AI founder.
+            <WordReveal text="AI founder." variant="sculpted" paused={paused} />
             <br />
-            <em>Hands-on CTO.</em>
+            <em>
+              <WordReveal
+                text="Hands-on CTO."
+                variant="sculpted"
+                paused={paused}
+                delay={0.12}
+              />
+            </em>
           </h1>
           <p>
             I lead the technology behind ventures in voice AI, aviation,
@@ -119,12 +126,12 @@ export default function Home() {
           </p>
           <div className="hero-evidence">
             <a href="/work/#earlier">
-              <strong>AED 2M</strong>
+              <strong>≈ US$545K</strong>
               <span>Raised at Kenchi</span>
               <small>Co-founder</small>
             </a>
             <a href="#samt">
-              <strong>AED 25K</strong>
+              <strong>≈ US$6.8K</strong>
               <span>Programme grant</span>
               <small>Samt Health</small>
             </a>
@@ -151,9 +158,6 @@ export default function Home() {
         <div className="active-world">
           <div>
             <ProjectCredential world={selected} />
-            <span className="mono selected-index">
-              {String(active + 1).padStart(2, "0")} / SELECTED WORLD
-            </span>
             <a className="selected-project" href={`#${selected.id}`}>
               {selected.name}
               <ArrowDown size={18} />
@@ -177,26 +181,24 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="universe-instruction mono">
-          Drag the gallery. Choose a world. Go inside.
-        </div>
+        <div className="universe-instruction mono">Drag to explore</div>
         <div className="world-dock" aria-label="Choose a project">
           {worlds.map((w, i) => (
             <button
               key={w.id}
               onClick={() => setActive(i)}
               aria-pressed={i === active}
+              aria-label={w.name}
+              title={w.name}
             >
-              <span className="dock-dot" style={{ background: w.colour }} />
-              {w.name}
-              <span className="dock-number">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <ProductLogo id={w.id} />
             </button>
           ))}
         </div>
         <div className="hero-meta mono">
-          <span>Eight product worlds. More in the archive.</span>
+          <a href="#archive">
+            View all projects <ArrowDown size={12} />
+          </a>
           <button
             onClick={() => setPause(!pause)}
             disabled={!!reduced}
@@ -218,6 +220,121 @@ export default function Home() {
         {[worlds[0], worlds[1], worlds[2], worlds[5], worlds[3]].map((w) => (
           <ProjectCredential key={w.id} world={w} />
         ))}
+        {additionalCredentials.map((item) => (
+          <ProjectCredential key={item.id} world={item} />
+        ))}
+      </section>
+      <section
+        id="recognition"
+        className="recognition-section"
+        aria-label="Awards and programmes"
+      >
+        <div className="recognition-heading">
+          <h2>
+            <WordReveal
+              text="Awards & recognition"
+              variant="sculpted"
+              paused={paused}
+            />
+          </h2>
+        </div>
+        <div className="award-grid">
+          <article className="award-card award-ifza">
+            <img
+              className="award-logo"
+              src="/credentials/ifza.png"
+              alt="IFZA"
+              loading="lazy"
+            />
+            <h3>
+              <WordReveal text="1st place" variant="sculpted" paused={paused} />
+            </h3>
+            <p className="award-title">IFZA Scale360 Hackathon</p>
+            <p>
+              Awarded an internship at IFZA, Dubai’s free-zone business
+              community.
+            </p>
+            <a href="https://ifza.com/en/" target="_blank" rel="noreferrer">
+              About IFZA <ArrowUpRight size={16} />
+            </a>
+          </article>
+          <article className="award-card award-ruya">
+            <img
+              className="award-logo mission-logo"
+              src="/credentials/us-mission.png"
+              alt="U.S. Mission to the UAE event partner"
+              loading="lazy"
+            />
+            <h3>
+              <WordReveal text="US$12,800" variant="sculpted" paused={paused} />
+            </h3>
+            <p className="award-title">RUYA AI Hackathon</p>
+            <p>
+              Prize package: US$10,000 cash, US$1,000 AWS credits and US$1,800
+              ElevenLabs subscriptions.
+            </p>
+            <p className="award-detail">
+              Built in five hours. Organised in partnership with the U.S.
+              Mission to the UAE and American University in Dubai.
+            </p>
+            <a
+              href="https://luma.com/li841jkv"
+              target="_blank"
+              rel="noreferrer"
+            >
+              The event & prizes <ArrowUpRight size={16} />
+            </a>
+          </article>
+          <article className="award-card award-airports">
+            <img
+              className="award-logo"
+              src="/credentials/dubai-airports.svg"
+              alt="Dubai Airports"
+              loading="lazy"
+            />
+            <h3>
+              <WordReveal
+                text={usdEquivalent(30000)}
+                variant="sculpted"
+                paused={paused}
+              />
+            </h3>
+            <p className="award-title">Dubai Airports hackathon</p>
+            <p>
+              Marsad won a prize and was presented to the CEO of Dubai Airports.
+            </p>
+            <a href="#marsad">
+              Explore Marsad <ArrowDown size={16} />
+            </a>
+          </article>
+          <article id="cyberlife" className="award-card award-cyberlife">
+            <img
+              className="award-logo"
+              src="/credentials/mediclinic.svg"
+              alt="Mediclinic"
+              loading="lazy"
+            />
+            <h3>
+              <WordReveal text="CyberLife" variant="sculpted" paused={paused} />
+            </h3>
+            <p className="award-title">1st place · FutureHack by in5</p>
+            <p>
+              Mediclinic’s Digital Innovation Director offered a
+              proof-of-concept contract.
+            </p>
+            <p className="award-detail">
+              UEP award, University of Birmingham Dubai. Part of the Mohammed
+              Bin Rashid Innovation Fund incubator programme.
+            </p>
+            <a href="/articles/futurehack-cyberlife">
+              Read about CyberLife <ArrowUpRight size={16} />
+            </a>
+          </article>
+        </div>
+        <p className="currency-note">
+          All amounts in US dollars. Dirham awards and funding converted at AED
+          3.6725 per US$1; rounded equivalents are marked ≈.
+        </p>
       </section>
       <section
         id="work"
@@ -225,45 +342,87 @@ export default function Home() {
         aria-label="Explore the product worlds"
       >
         <div className="journey-opening">
-          <span className="mono">ENTER THE WORK / 01–08</span>
           <h2>
-            The ventures. The evidence.
-            <br />
-            <em>Step inside the work.</em>
+            <WordReveal
+              text="Explore the projects."
+              variant="sculpted"
+              paused={paused}
+            />
           </h2>
-          <p>
-            Each project has its own world. Watch it move, take control of a
-            real demo, or follow it through to the full product.
-          </p>
-          <div className="journey-line" aria-hidden="true" />
+          <div className="project-formats">
+            <span>
+              <WordReveal
+                text="Watch the films."
+                variant="sculpted"
+                paused={paused}
+              />
+            </span>
+            <span>
+              <WordReveal
+                text="Try the products."
+                variant="sculpted"
+                paused={paused}
+              />
+            </span>
+          </div>
         </div>
         {worlds.map((world) => (
-          <WorldChapter
-            key={world.id}
-            world={world}
-            paused={paused}
-            onEnter={enter}
-            onFilm={showFilm}
-          />
+          <Fragment key={world.id}>
+            <WorldChapter
+              world={world}
+              paused={paused}
+              onEnter={enter}
+              onFilm={showFilm}
+            />
+            {world.id === "nova" && (
+              <section
+                className="nova-broadcast"
+                aria-label="NOVA Labs on Falcons of Majlis"
+              >
+                <div className="broadcast-heading">
+                  <ProductLogo id="nova" />
+                  <h2>
+                    <WordReveal
+                      text="The NOVA pitch."
+                      variant="sculpted"
+                      paused={paused}
+                    />
+                  </h2>
+                  <p>Falcons of Majlis</p>
+                  <span className="broadcast-network">
+                    India Today × Aaj Tak
+                  </span>
+                  <a
+                    href="https://www.youtube.com/watch?v=t8sjQKTm5m4&t=3562s"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    My pitch starts at <strong>59:22</strong>
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
+                <FalconsEpisode paused={paused} />
+              </section>
+            )}
+          </Fragment>
         ))}
       </section>
       <section id="archive" className="archive-section">
         <div className="archive-heading">
-          <p className="mono">THE REST OF THE STORY</p>
           <h2>
-            More questions.
-            <br />
-            <em>More things built.</em>
+            <WordReveal
+              text="More projects"
+              variant="sculpted"
+              paused={paused}
+            />
           </h2>
           <p>
             Construction, healthcare, government, mobility and developer tools.
-            The rest of the work belongs here too.
           </p>
         </div>
         <div className="archive-list">
-          {earlierWork.map((p, i) => (
+          {earlierWork.map((p) => (
             <a href={p.href} key={p.name}>
-              <span className="mono">{String(i + 9).padStart(2, "0")}</span>
               <div>
                 <span className="archive-category">{p.category}</span>
                 <h3>{p.name}</h3>
@@ -276,11 +435,12 @@ export default function Home() {
       </section>
       <section id="proof" className="proof-section">
         <div className="proof-heading">
-          <p className="mono">BEYOND THE SCREEN</p>
           <h2>
-            Built. Shown.
-            <br />
-            <em>Put to the test.</em>
+            <WordReveal
+              text="Talks & appearances"
+              variant="sculpted"
+              paused={paused}
+            />
           </h2>
         </div>
         <div className="proof-images">
@@ -351,17 +511,11 @@ export default function Home() {
             </a>
           </article>
         </div>
-        <details className="episode-details">
-          <summary>
-            Watch my NOVA Labs pitch on Falcons of Majlis <Play size={16} />
-          </summary>
-          <FalconsEpisode />
-        </details>
       </section>
       <WritingSection />
       <section id="contact" className="contact-section">
         <div className="contact-mesh" aria-hidden="true" />
-        <p className="mono">THE NEXT WORLD STARTS WITH A CONVERSATION.</p>
+        <p className="mono">Get in touch</p>
         <h2>
           What should
           <br />

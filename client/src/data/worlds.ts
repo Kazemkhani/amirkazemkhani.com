@@ -1,4 +1,5 @@
 export type WorldId = string;
+import { usdEquivalent } from "./recognition";
 export interface World {
   id: WorldId;
   name: string;
@@ -80,7 +81,9 @@ export const worlds: World[] = [
       logo: "/credentials/dubai-airports.svg",
       href: "https://www.dubaiairports.ae/corporate",
     },
-    proof: [{ value: "CEO presentation", label: "Dubai Airports hackathon" }],
+    proof: [
+      { value: usdEquivalent(30000), label: "Dubai Airports hackathon prize" },
+    ],
     background: "#dbe9ff",
     scene: "/worlds/marsad-scene.mp4",
     embeddable: true,
@@ -92,7 +95,7 @@ export const worlds: World[] = [
     url: "https://marsad.amirkazemkhani.com",
     preview: "https://marsad.amirkazemkhani.com/replay/",
     film: "/worlds/marsad-film.mp4",
-    headline: "An airport moves.\nOne decision ripples.",
+    headline: "Airport operations,\nvisualised.",
     description:
       "Explore the airfield, follow a fog disruption and see how one decision reaches the teams around it. A shared picture of an airport under pressure.",
     context:
@@ -215,7 +218,10 @@ export const worlds: World[] = [
       logo: "/credentials/expo-city-dubai.png",
       href: "https://www.expocitydubai.com/en/media-centre/problem-solving-for-the-future-expo-city-dubai-foundation-launches/",
     },
-    proof: [{ value: "AED 25,000", label: "Changemakers Academy grant" }],
+    proof: [
+      { value: usdEquivalent(25000), label: "Changemakers Academy grant" },
+      { value: usdEquivalent(18000), label: "Expo-sponsored business licence" },
+    ],
     name: "Samt Health",
     arabic: "سمت",
     category: "Women's health",
@@ -229,8 +235,7 @@ export const worlds: World[] = [
     headline: "Women’s health.\nAn Arabic-first approach.",
     description:
       "An Arabic-first companion for women navigating menopause. A product built around language, dignity and clearer conversations about health.",
-    context:
-      "Backed through Expo City Dubai’s Changemakers Academy, with an AED 25,000 grant. Explore the public site and original launch film.",
+    context: `Officially registered at Expo City Dubai. Supported through Changemakers Academy with a ${usdEquivalent(25000)} grant and a ${usdEquivalent(18000)} sponsored business licence.`,
     limit:
       "The public site describes current availability. This portfolio does not provide medical advice or display patient information.",
     chapters: [
@@ -320,15 +325,14 @@ export const earlierWork = [
   {
     name: "Kenchi",
     category: "Construction AI",
-    description:
-      "Co-founder. AED 2M raised for computer vision and language models for construction sites.",
+    description: `Co-founder. ${usdEquivalent(2000000)} raised for computer vision and language models for construction sites.`,
     href: "/work/#earlier",
   },
   {
     name: "CyberLife",
     category: "Healthcare AI",
     description:
-      "1st place at FutureHack by in5, on a Mediclinic challenge. Six-month in5 residency.",
+      "FutureHack winner. Mediclinic proof-of-concept contract offered, UEP award and MBRIF incubator programme.",
     href: "/articles/futurehack-cyberlife",
   },
   {

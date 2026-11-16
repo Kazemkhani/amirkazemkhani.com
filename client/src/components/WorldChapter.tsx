@@ -9,6 +9,8 @@ import {
 } from "react";
 import { ArrowUpRight, Play, X, Expand } from "lucide-react";
 import ProjectCredential from "./ProjectCredential";
+import ProductLogo from "./ProductLogo";
+import WordReveal from "./WordReveal";
 import type { World } from "../data/worlds";
 const WorldMotion = lazy(() => import("./WorldMotion"));
 export default function WorldChapter({
@@ -104,9 +106,24 @@ export default function WorldChapter({
             ))}
           </div>
         </div>
-        <div className="chapter-giant" aria-hidden="true">
-          {world.name}
-        </div>
+        {["marsad", "nova", "samt"].includes(world.id) && (
+          <div
+            className={`chapter-brand-sculpture sculpture-${world.id}`}
+            aria-hidden="true"
+          >
+            <div className="brand-relief">
+              {[0, 1, 2, 3, 4].map((layer) => (
+                <div
+                  key={layer}
+                  className="brand-layer"
+                  style={{ "--layer": layer } as CSSProperties}
+                >
+                  <ProductLogo id={world.id} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="chapter-copy">
           <p className="chapter-name">
             {world.name} <span lang="ar">{world.arabic}</span>
@@ -115,7 +132,17 @@ export default function WorldChapter({
           <h2>
             {world.headline.split("\n").map((line, i) => (
               <span key={line}>
-                {i === 1 ? <em>{line}</em> : line}
+                {i === 1 ? (
+                  <em>
+                    <WordReveal
+                      text={line}
+                      variant="sculpted"
+                      paused={paused}
+                    />
+                  </em>
+                ) : (
+                  <WordReveal text={line} variant="sculpted" paused={paused} />
+                )}
                 <br />
               </span>
             ))}
@@ -287,7 +314,6 @@ export default function WorldChapter({
             </summary>
             <p>{world.limit}</p>
           </details>
-          <span className="scroll-hint">Scroll to travel ↓</span>
         </div>
       </div>
     </article>

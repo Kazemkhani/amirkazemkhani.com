@@ -10,18 +10,27 @@ with sync_playwright() as p:
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(BASE,wait_until='domcontentloaded');page.locator('h1').wait_for();page.wait_for_function('document.fonts.status==="loaded"')
   assert 'AI founder.' in page.locator('h1').inner_text()
+  assert page.locator('.hero-identity').count()==0
+  assert page.locator('.world-dock .product-logo').count()==8
+  assert page.locator('.dock-number').count()==0
+  assert page.locator('.nova-broadcast').count()==1
+  assert page.locator('.credential-strip .project-credential').count()==11
+  assert 'The ventures. The evidence.' not in page.locator('body').inner_text()
   assert 'ENEC' not in page.locator('body').inner_text()
   assert page.locator('.hero-evidence').bounding_box()['y']+page.locator('.hero-evidence').bounding_box()['height']<=h, 'Key figures below initial viewport'
-  assert all(t in page.locator('.hero-evidence').inner_text() for t in ['AED 2M','AED 25K','1st place'])
+  assert all(t in page.locator('.hero-evidence').inner_text() for t in ['US$545K','US$6.8K','1st place'])
   assert page.locator('.world-dock button').count()==8 and page.locator('.archive-list>a').count()==7
   for i,id in enumerate(['bayyina','marsad','enec','nova','ruya','samt','morning','gold']):
    page.locator('.world-dock button').nth(i).click()
    cred=page.locator('.active-world .project-credential');assert cred.is_visible()
    for img in cred.locator('img').all():img.evaluate('(e)=>e.decode()')
    if w in [1280,390] and i in [0,1,2,3,5]:page.screenshot(path=str(OUT/f'hero-{id}-{w}.png'))
+  for img in page.locator('.world-dock img').all():img.evaluate('(e)=>e.decode()')
   page.locator('.credential-strip').scroll_into_view_if_needed()
   for img in page.locator('.credential-strip img').all():img.evaluate('(e)=>e.decode()')
   if w in [1280,390]:page.screenshot(path=str(OUT/f'credentials-{w}.png'))
+  page.locator('#recognition').scroll_into_view_if_needed()
+  if w in [1280,390]:page.screenshot(path=str(OUT/f'awards-{w}.png'))
   for id in ['bayyina','marsad','enec','nova','ruya','samt','morning','gold']:
    sec=page.locator('#'+id);sec.evaluate('(e)=>scrollTo(0,e.offsetTop)');page.wait_for_timeout(100)
    assert sec.locator('.project-credential').is_visible();assert sec.locator('.project-role').is_visible()
@@ -30,7 +39,7 @@ with sync_playwright() as p:
    if w>700:
     a=sec.locator('.chapter-copy').bounding_box();z=sec.locator('.chapter-bottom').bounding_box();assert a['y']+a['height']<=z['y']+2,f'overlap {id} {w}'
    if w in [1280,390]:page.screenshot(path=str(OUT/f'chapter-{id}-{w}.png'))
-  assert 'AED 25,000' in page.locator('#samt .chapter-record').inner_text()
+  assert all(t in page.locator('#samt .chapter-record').inner_text() for t in ['US$6,807','US$4,901'])
   assert 'NSTI' in page.locator('#enec .project-credential').inner_text()
   assert 'hackathon' in page.locator('#marsad .project-credential').inner_text().lower()
   assert not errors,errors

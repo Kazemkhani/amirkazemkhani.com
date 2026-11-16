@@ -2,18 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 /**
- * FalconsEpisode, cinematic lazy embed of the Falcons of Majlis episode.
- *
- * Performance + UX contract (ported from the novalabs.ae billboard):
- *   - No YouTube bytes on load: a lightweight i.ytimg.com poster facade only.
- *   - At ~45% scroll-into-view, the youtube-nocookie iframe is injected with
- *     MUTED autoplay at start=3562 (59:22, Amir's segment). Browser autoplay
- *     policy requires mute; a gold "Tap to unmute" chip un-mutes via the
- *     YT postMessage API (enablejsapi=1).
- *   - Explicit play-button click = user gesture, so it injects WITH sound.
- *   - Video pauses when scrolled out of view and resumes when back in view.
- *   - prefers-reduced-motion / Save-Data users keep the facade (click-to-play
- *     with sound still works); nothing autoplays for them.
+ * Official press-launch excerpt. Loads only near the viewport, muted by default.
+ * Reduced motion, Save-Data and the portfolio pause control prevent autoplay.
+ * Leaving the viewport releases the player; explicit playback remains available.
  */
 
 const VIDEO_ID = "t8sjQKTm5m4";
@@ -21,10 +12,10 @@ const START_SECONDS = 3562; // 59:22, Amir's segment
 
 const buildSrc = (muted: boolean) =>
   `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?start=${START_SECONDS}` +
-  `&autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1` +
+  `&end=3652&autoplay=1&playsinline=1&rel=0&enablejsapi=1` +
   (muted ? "&mute=1" : "");
 
-const FalconsEpisode = () => {
+const FalconsEpisode = ({ paused = false }: { paused?: boolean }) => {
   const frameRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const startedRef = useRef(false);
@@ -36,7 +27,7 @@ const FalconsEpisode = () => {
   const ytCommand = (func: "playVideo" | "pauseVideo" | "unMute") => {
     iframeRef.current?.contentWindow?.postMessage(
       JSON.stringify({ event: "command", func, args: "" }),
-      "*",
+      "https://www.youtube-nocookie.com",
     );
   };
 
@@ -50,18 +41,25 @@ const FalconsEpisode = () => {
     const saveData = (
       navigator as Navigator & { connection?: { saveData?: boolean } }
     ).connection?.saveData;
-    if (reduced || saveData) return; // facade stays; explicit play still works
+    const autoplay = !paused && !reduced && !saveData;
+    if (!autoplay) ytCommand("pauseVideo");
 
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting && !startedRef.current) {
+          const visible = e.isIntersecting && e.intersectionRatio >= 0.45;
+          if (visible && autoplay && !startedRef.current) {
             // Muted autoplay only, browser policy.
             startedRef.current = true;
             setMode("muted");
             setShowUnmute(true);
-          } else if (iframeRef.current) {
-            ytCommand(e.isIntersecting ? "playVideo" : "pauseVideo");
+          } else if (!visible && iframeRef.current) {
+            ytCommand("pauseVideo");
+            setMode("idle");
+            setShowUnmute(false);
+            startedRef.current = false;
+          } else if (visible && autoplay && iframeRef.current) {
+            ytCommand("playVideo");
           }
         });
       },
@@ -69,7 +67,7 @@ const FalconsEpisode = () => {
     );
     io.observe(frame);
     return () => io.disconnect();
-  }, []);
+  }, [paused]);
 
   const handlePlayClick = () => {
     // Explicit user gesture: start WITH sound.
@@ -101,7 +99,7 @@ const FalconsEpisode = () => {
         >
           {/* Poster facade, zero YouTube bytes until needed */}
           <img
-            src={`https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+            src="/credibility/amir-falcons-stage-pitch-solo-1120.webp"
             alt="Falcons of Majlis episode: Amir Hossein Kazemkhani pitching NOVA Labs"
             loading="lazy"
             decoding="async"
@@ -121,7 +119,7 @@ const FalconsEpisode = () => {
             <iframe
               ref={iframeRef}
               src={buildSrc(mode === "muted")}
-              title="Falcons of Majlis: Amir's segment (starts at 59:22)"
+              title="NOVA pitch excerpt, Falcons of Majlis official press launch (59:22)"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               className="absolute inset-0 w-full h-full border-0"
               data-testid="falcons-episode-iframe"
@@ -156,18 +154,26 @@ const FalconsEpisode = () => {
               data-testid="falcons-unmute"
               className="absolute right-3 bottom-3 md:right-4 md:bottom-4 px-4 py-2 rounded-full border border-gold-500/50 bg-background/80 backdrop-blur-md text-foreground text-xs md:text-sm cursor-pointer transition-colors duration-300 hover:border-gold-500 hover:bg-background/95"
             >
-              <span aria-hidden="true">🔊</span> Tap to unmute
+              Tap to unmute
             </button>
           )}
         </div>
 
         <figcaption className="px-5 md:px-8 py-5 md:py-6">
           <p className="font-display text-lg md:text-xl font-semibold text-foreground">
-            The episode, in full
+            NOVA on stage
           </p>
           <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-gold-500 mt-2">
-            Falcons of Majlis, India Today × Aaj Tak · segment from 59:22
+            Official press-launch footage · excerpt from 59:22
           </p>
+          <a
+            className="broadcast-source"
+            href={`https://www.youtube.com/watch?v=${VIDEO_ID}&t=${START_SECONDS}s`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Watch the full event on YouTube ↗
+          </a>
         </figcaption>
       </div>
     </motion.figure>

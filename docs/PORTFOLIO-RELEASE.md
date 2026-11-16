@@ -58,3 +58,18 @@ Promote the founder/CTO role, AED 2M Kenchi fundraising, AED 25K Samt programme 
 - Local regression: all six viewports, gallery, original local films at desktop and phone, reduced motion, cancellation and pause/resume pass. The archive route initially timed out; a focused retry passed all retained routes and archive navigation at both sizes, plus WebGL fallback and larger text. External product journeys were not repeated for this content-only change; their preceding release evidence remains above.
 - Fresh dependency audit requests failed at the npm advisory endpoint twice. The dependency graph is unchanged from the preceding zero-vulnerability audit; no fresh audit success is claimed.
 - Read-only council `20261116-154317`: `qwen SHIP`, with no blocking claim-scoping defect.
+
+## Product identities, awards and motion update
+
+Replaced the numbered text project dock with eight product identities. Removed the duplicate hero name, section numbering and generic introductory copy. Added large perspective text reveals, animated product-mark reliefs in the Marsad, NOVA and Samt chapters, and a full-interface RUYA preview. Expanded the relationship-labelled institution strip to eleven entries and added IFZA, RUYA event, Dubai Airports and CyberLife award cards. Monetary figures on the homepage are now USD equivalents. Samt's sponsored business licence is separate from its grant and its Expo City registration is stated.
+
+The NOVA section contains a dedicated official video excerpt, with muted viewport playback, explicit unmute, reduced-motion opt-out and player release on leaving the section. Source details and unresolved artwork, award-placement and audience questions are recorded in `CREDIBILITY-SOURCES.md`.
+
+Release gates for this revision:
+
+- `npm run build`: TypeScript and Vite production build pass; existing Three.js size advisory remains.
+- `python3 scripts/credibility-qa.py`: all six screen sizes pass, all brand/institution images decode, all fifteen projects retained, no horizontal overflow or chapter overlap.
+- `PORTFOLIO_LOCAL_ONLY=1 python3 scripts/portfolio-qa.py`: `ALL LOCAL PORTFOLIO CHECKS PASS (external journeys excluded)`. Original local films, gallery controls, pause/resume, retained routes, fallback and larger text pass. A tablet control overlap discovered during the gate was fixed and the gate rerun successfully.
+- `python3 scripts/portfolio-motion-qa.py`: accessible headings, no duplicate hero name, animated brand mark and actual global pause pass. Actual YouTube playback advanced beyond 3562 seconds with `paused: false, muted: true`; explicit unmute and reduced-motion/player cleanup pass.
+- Screenshots opened at 1280x720 and 390x844, with tablet layout also inspected at 1024x768.
+- No dependency changes. GitHub Actions billing limitation from the preceding release remains; a successful local gate is not reported as GitHub CI success.

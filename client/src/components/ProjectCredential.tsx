@@ -1,5 +1,9 @@
 import type { World } from "../data/worlds";
-export default function ProjectCredential({ world }: { world: World }) {
+export default function ProjectCredential({
+  world,
+}: {
+  world: Pick<World, "credential"> & { id: string };
+}) {
   const c = world.credential;
   return (
     <a

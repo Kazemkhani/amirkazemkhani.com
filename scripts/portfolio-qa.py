@@ -15,7 +15,7 @@ with sync_playwright() as p:
   page.goto(BASE,wait_until='domcontentloaded',timeout=60000);page.locator('h1').wait_for()
   page.wait_for_function('document.fonts.status === "loaded"');page.locator('.universe-canvas.loaded canvas').wait_for(timeout=30000);page.wait_for_timeout(900)
   label=f'{width}x{height}'+('-reduced' if reduced else '')
-  assert 'AI founder.' in page.locator('h1').inner_text()
+  assert 'AI founder.' in page.locator('h1').inner_text().replace('\u00a0',' ')
   assert page.locator('.world-dock button').count()==8
   assert page.locator('.archive-list>a').count()==7
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'overflow {label}'

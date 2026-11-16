@@ -33,3 +33,37 @@ The summit SVG already contains the Dubai Police identity. ATRC's white source m
 `python3 scripts/credibility-qa.py` checks six screen sizes, all 15 projects, above-fold founder metrics, all eight project credentials, official image decoding, role and evidence visibility, removal of ENEC from rendered copy, horizontal overflow and chapter footer overlap. Desktop and phone screenshots are opened separately for visual inspection.
 
 Read-only council run `20261116-154317`: `qwen SHIP`. It checked the scoped claims against existing portfolio records and found no conflation of Bayyina with the separate hackathon win. This is a content review, not independent verification of the personal claims.
+
+## Awards, brand navigation and motion revision
+
+Added 16 November 2026 at Amir's request:
+
+- IFZA Scale360: first place and an awarded internship are Amir's first-person claims, also published in his [LinkedIn account](https://www.linkedin.com/posts/amir-hossein-kazemkhani_you-basically-have-a-phd-in-hackathons-at-activity-7438795947536560128-Rw_6). [IFZA](https://ifza.com/en/) supplies the institutional description. The internship is not represented as an employment history.
+- RUYA AI Hackathon: Amir supplied the US$12,800 award and five-hour build. The [official event listing](https://luma.com/li841jkv) itemises the first-place package as US$10,000 cash, US$1,000 AWS credits and US$1,800 ElevenLabs subscriptions. His message says “2st”; his published account says first. Placement is omitted pending clarification. The package is not described as all cash. Five hours describes the team's build, not the entire event schedule. The [American University in Dubai report](https://www.aud.edu/all-news/aud-hosts-leading-ai-engineers-for-ruya-ai-hackathon-focused-on-self-improving-systems/) establishes partnership with the U.S. Mission to the UAE. This is an event relationship, not government backing for the portfolio's separate RUYA enterprise product.
+- Marsad: AED 30,000 hackathon prize and presentation to the Dubai Airports CEO are supplied by Amir. Converted to approximately US$8,169.
+- Samt: Amir supplied official registration at Expo City Dubai and an Expo-sponsored AED 18,000 business licence. The licence is shown separately from the previously published AED 25,000 grant, as approximately US$4,901 and US$6,807 respectively. The licence sponsorship is not counted as cash funding. AED is inferred from the grant and licence context and was stated to Amir.
+- CyberLife: Amir supplied the proof-of-concept contract offer from Mediclinic's Digital Innovation Director, the University of Birmingham UEP award and participation in the Mohammed Bin Rashid Innovation Fund incubator. The wording is “offered”, not signed, deployed or used by Mediclinic. FutureHack first place is retained from the existing portfolio.
+- USD equivalents use AED 3.6725 per US dollar, from the [CBUAE exchange-rate reference](https://centralbank.ae/en/forex-eibor/exchange-rates/). The deterministic conversion lives in `client/src/data/recognition.ts`. Approximate equivalents are marked and the conversion is explained on the page.
+
+### Additional identity sources
+
+| Local credential asset | Source |
+| --- | --- |
+| `ifza.png` | https://ifza.com/en/wp-content/uploads/2023/03/logo.png |
+| `mediclinic.svg` | https://edge.sitecorecloud.io/mediclinicma888-mediclinicb5e1-prod1ddf-fa20/media/Project/Mediclinic/MCME/navigation/logo---blue.svg |
+| `mbrif.svg` | https://mbrif.ae/wp-content/uploads/2020/01/mbrif_logo-1.svg |
+| `birmingham.svg` | https://www.birmingham.ac.uk/Images/logos/uob/uob-dubai-logo-light.svg |
+| `us-mission.png` | Official event partner artwork from https://hackathon.ruya.ai, https://framerusercontent.com/images/UgmHixrzRHyKg8EVNR3xhw5lF8.png |
+| `dubai-founders-hq.png` | https://www.visitdubai.com/-/media/det-sme-cr-release-1-new-media-files/dubai-sme/dfhq-icons/dubai-founders-logo.png |
+
+Product identities use existing application assets: Bayyina's actual mark from its web application; Marsad's film lockup with dark lettering for light backgrounds; HADHRA's `/landing/icon.svg`; NOVA's inline site navigation mark; Samt's `/assets/brand/samt-wordmark-en.svg`; Morning Club's marketing-site sunrise favicon; RUYA's two-colour wordmark and Gold's existing hexagon identity rendered in code. These are not generated institutional marks.
+
+### NOVA video and audience claim
+
+The embedded source is [Falcons of Majlis official press-launch footage](https://www.youtube.com/watch?v=t8sjQKTm5m4&t=3562s), from the official Falcons Of Majlis - NKN Media channel. The excerpt starts at 59:22 and runs for 90 seconds. Browser inspection showed the host inviting Amir onto the stage and actual video playback. This is labelled as press-launch footage, not a complete broadcast episode.
+
+YouTube metadata reported 799 views for this upload on 16 November 2026. Searches of the official channel and YouTube did not establish one million viewers for NOVA's appearance. No one-million claim is published. The India Today and Aaj Tak appearance context is retained from Amir's existing account; upload views are not a substitute for television audience measurement.
+
+### Artwork status
+
+Requested replacement Gold Hedge and Morning Club artwork remains pending. Image generation through the authorised SIEMENS RUYA Google Cloud project returned HTTP 403, `PERMISSION_DENIED`, with “Request rejected in accordance with our terms of use and policies.” No image was produced. Permission to use the built-in image provider instead was requested and has not yet been received. Existing imagery is retained until that choice is resolved.
