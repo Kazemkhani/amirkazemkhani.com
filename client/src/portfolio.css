@@ -1708,3 +1708,505 @@
     gap: 8px;
   }
 }
+/* Lead with the founder's record and each project's institutional context. */
+.project-credential {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #203239;
+  min-width: 0;
+  text-decoration: none;
+}
+.credential-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #5b6e75;
+}
+.credential-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 37px;
+}
+.credential-identity img {
+  height: 38px;
+  max-width: 190px;
+  object-fit: contain;
+  object-position: left center;
+}
+.credential-identity strong {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+.credential-detail {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #526873;
+}
+.credential-bayyina .credential-identity img {
+  max-width: 235px;
+  height: 42px;
+}
+.credential-enec .credential-identity img {
+  max-width: 115px;
+  height: 37px;
+}
+.credential-enec .credential-identity strong {
+  font-size: 18px;
+  border-left: 1px solid #82938b55;
+  padding-left: 15px;
+}
+.credential-samt .credential-identity img {
+  height: 42px;
+  max-width: 135px;
+}
+.credential-nova .credential-identity img {
+  height: 29px;
+  max-width: 120px;
+}
+.hero-title {
+  margin-top: 35px;
+  max-width: 47%;
+}
+.hero-title h1 {
+  font-size: clamp(66px, 7.4vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.065em;
+  margin: 21px 0;
+}
+.hero-title > p:last-of-type {
+  max-width: 390px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.hero-title > .mono {
+  color: #375d55;
+  font-weight: 500;
+}
+.hero-evidence {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+  max-width: 455px;
+}
+.hero-evidence a {
+  border-left: 1px solid #aabcb7;
+  padding-left: 14px;
+}
+.hero-evidence strong {
+  font-size: 23px;
+  font-weight: 550;
+  letter-spacing: -0.04em;
+  display: block;
+  color: #223c36;
+  white-space: nowrap;
+}
+.hero-evidence span {
+  display: block;
+  font-size: 10px;
+  margin-top: 6px;
+  color: #334d51;
+}
+.hero-evidence small {
+  display: block;
+  font-size: 9px;
+  margin-top: 4px;
+  color: #6a7e80;
+}
+.hero-scroll {
+  margin-top: 23px;
+}
+.universe-view {
+  top: 15%;
+  height: 47%;
+}
+.active-world {
+  top: 61%;
+  bottom: auto;
+  left: 57%;
+  right: 6%;
+  align-items: flex-end;
+}
+.active-world .project-credential {
+  margin-bottom: 15px;
+  align-items: flex-start;
+  gap: 6px;
+}
+.active-world .credential-identity img {
+  height: 30px;
+  max-width: 190px;
+}
+.active-world .credential-label {
+  font-size: 8px;
+}
+.active-world .credential-detail {
+  font-size: 10px;
+}
+.active-world .selected-index {
+  display: none;
+}
+.active-world > a {
+  margin: 0;
+}
+.active-world .selected-role {
+  font-size: 11px;
+  color: #3e5c62;
+}
+.universe-instruction {
+  display: none;
+}
+.gallery-controls {
+  padding-bottom: 16px;
+}
+.credential-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 34px 5%;
+  gap: 28px;
+  background: #fff;
+  border-top: 1px solid #e0e7e2;
+  border-bottom: 1px solid #e0e7e2;
+}
+.credential-strip .project-credential {
+  padding-left: 20px;
+  border-left: 1px solid #e0e7e2;
+}
+.credential-strip .project-credential:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.credential-strip .credential-label {
+  font-size: 8px;
+}
+.credential-strip .credential-identity img {
+  max-width: 150px;
+  height: 32px;
+}
+.credential-strip .credential-detail {
+  font-size: 9px;
+}
+.credential-strip .credential-enec .credential-identity {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.credential-strip .credential-enec .credential-identity strong {
+  font-size: 13px;
+  padding-left: 0;
+  border: 0;
+}
+.chapter-heading {
+  align-items: flex-start;
+}
+.chapter-heading .project-credential {
+  max-width: 62%;
+}
+.chapter-heading .chapter-record {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  text-align: right;
+  max-width: 35%;
+  font-size: 12px;
+}
+.chapter-record strong {
+  display: block;
+  color: var(--world-colour);
+  font-size: 24px;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+.chapter-record span {
+  display: block;
+  font-size: 10px;
+  margin-top: 5px;
+  color: #526777;
+}
+.chapter-giant {
+  top: 20%;
+  font-size: clamp(100px, 14vw, 240px);
+  opacity: 0.08;
+}
+.project-role {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: #4d666e;
+  margin-top: 7px;
+}
+.chapter-copy {
+  top: 34%;
+}
+.chapter-copy h2 {
+  margin: 14px 0;
+  font-size: clamp(31px, 3vw, 52px);
+}
+.chapter-actions {
+  margin-top: 20px;
+}
+.chapter-tags {
+  margin-top: 19px;
+}
+@media (max-width: 1050px) and (min-width: 701px) {
+  .hero-title {
+    max-width: 50%;
+    margin-top: 45px;
+  }
+  .hero-title h1 {
+    font-size: 72px;
+  }
+  .hero-title > p:last-of-type {
+    max-width: 310px;
+    font-size: 12px;
+  }
+  .hero-evidence {
+    gap: 10px;
+    max-width: 350px;
+  }
+  .hero-evidence strong {
+    font-size: 20px;
+  }
+  .hero-evidence a {
+    padding-left: 9px;
+  }
+  .hero-evidence span {
+    font-size: 9px;
+  }
+  .active-world {
+    left: 55%;
+    top: 59%;
+  }
+  .active-world .credential-detail {
+    max-width: 240px;
+  }
+  .active-world .credential-identity img {
+    max-width: 165px;
+  }
+  .credential-strip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  .chapter-heading .credential-identity img {
+    max-width: 185px;
+  }
+  .chapter-copy {
+    top: 34%;
+  }
+  .chapter-copy h2 {
+    font-size: 32px;
+  }
+  .chapter-record strong {
+    font-size: 22px;
+  }
+  .chapter-visual {
+    top: 34%;
+  }
+}
+@media (max-width: 700px) {
+  .universe-hero {
+    height: 1080px;
+    min-height: 1080px;
+  }
+  .hero-title {
+    margin-top: 30px;
+    max-width: none;
+  }
+  .hero-title h1 {
+    font-size: 60px;
+    line-height: 1.02;
+    margin: 18px 0;
+  }
+  .hero-title > p:last-of-type {
+    font-size: 12px;
+    max-width: 340px;
+  }
+  .hero-evidence {
+    gap: 10px;
+    margin-top: 22px;
+    max-width: 360px;
+  }
+  .hero-evidence a {
+    padding-left: 10px;
+  }
+  .hero-evidence strong {
+    font-size: 20px;
+  }
+  .hero-evidence span {
+    font-size: 9px;
+  }
+  .hero-evidence small {
+    font-size: 8px;
+  }
+  .hero-scroll {
+    margin-top: 21px;
+  }
+  .universe-view {
+    top: 43%;
+    height: 25%;
+  }
+  .active-world {
+    top: 68%;
+    left: 7%;
+    right: 7%;
+    bottom: auto;
+  }
+  .active-world .project-credential {
+    margin-bottom: 12px;
+    gap: 6px;
+  }
+  .active-world .credential-identity img {
+    height: 28px;
+    max-width: 175px;
+  }
+  .active-world .credential-identity strong {
+    font-size: 16px;
+  }
+  .active-world .credential-detail {
+    font-size: 9px;
+  }
+  .active-world a {
+    font-size: 23px;
+  }
+  .active-world .selected-role {
+    font-size: 9px;
+  }
+  .gallery-controls {
+    padding-bottom: 10px;
+    gap: 5px;
+  }
+  .world-dock {
+    bottom: 5.5%;
+  }
+  .hero-meta {
+    bottom: 2.1%;
+  }
+  .credential-strip {
+    padding: 28px 22px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+  .credential-strip .project-credential {
+    padding: 0;
+    border: 0;
+  }
+  .credential-strip .credential-identity img {
+    height: 30px;
+    max-width: 140px;
+  }
+  .credential-strip .credential-bayyina {
+    grid-column: 1/-1;
+  }
+  .credential-strip .credential-bayyina .credential-identity img {
+    height: 36px;
+    max-width: 230px;
+  }
+  .chapter-heading {
+    display: block;
+  }
+  .chapter-heading .project-credential {
+    max-width: none;
+    gap: 8px;
+  }
+  .chapter-heading .credential-identity img {
+    height: 36px;
+    max-width: 225px;
+  }
+  .chapter-heading .credential-detail {
+    font-size: 10px;
+  }
+  .chapter-heading .chapter-record {
+    margin-top: 22px;
+    text-align: left;
+    max-width: none;
+    padding-top: 15px;
+    border-top: 1px solid #718b7b30;
+  }
+  .chapter-record strong {
+    font-size: 27px;
+  }
+  .chapter-record span {
+    font-size: 10px;
+  }
+  .chapter-giant {
+    top: 235px;
+  }
+  .chapter-copy {
+    top: auto;
+    margin-top: 48px;
+  }
+  .chapter-copy h2 {
+    font-size: 38px;
+    margin: 14px 0;
+  }
+  .project-role {
+    font-size: 9px;
+    margin-top: 7px;
+  }
+  .chapter-visual {
+    top: auto;
+  }
+  .chapter-description {
+    font-size: 12px;
+  }
+  .chapter-heading .credential-label {
+    font-size: 9px;
+  }
+  .chapter-heading .credential-enec .credential-identity strong {
+    font-size: 19px;
+  }
+  .chapter-record {
+    font-size: 12px;
+  }
+}
+@media (max-width: 360px) {
+  .hero-title h1 {
+    font-size: 51px;
+  }
+  .hero-evidence {
+    gap: 8px;
+  }
+  .hero-evidence strong {
+    font-size: 18px;
+  }
+  .hero-evidence span {
+    font-size: 8px;
+  }
+  .hero-evidence a {
+    padding-left: 7px;
+  }
+  .active-world {
+    top: 67%;
+  }
+  .active-world .credential-identity img {
+    max-width: 155px;
+    height: 25px;
+  }
+  .active-world .credential-detail {
+    max-width: 220px;
+  }
+  .chapter-copy h2 {
+    font-size: 33px;
+  }
+}
+
+.credential-enec .credential-identity img {
+  filter: brightness(0);
+  opacity: 0.82;
+}
+@media (min-width: 1051px) {
+  .universe-view {
+    left: 43%;
+  }
+}
+@media (min-width: 701px) and (max-width: 1050px) {
+  .universe-view {
+    left: 47%;
+  }
+}
+.active-world .credential-samt .credential-identity img {
+  height: 36px;
+}

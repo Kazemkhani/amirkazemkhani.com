@@ -19,6 +19,7 @@ import {
   X,
 } from "lucide-react";
 import { worlds, earlierWork, type World } from "../data/worlds";
+import ProjectCredential from "../components/ProjectCredential";
 import WorldChapter from "../components/WorldChapter";
 import WritingSection from "../components/WritingSection";
 import FalconsEpisode from "../components/FalconsEpisode";
@@ -105,16 +106,34 @@ export default function Home() {
           <span>Dubai, UAE</span>
         </div>
         <div className="hero-title">
-          <p className="mono">AI systems. Products. Worlds.</p>
+          <p className="mono">AI founder & technology leader</p>
           <h1>
-            Ideas,
+            AI founder.
             <br />
-            <em>made real.</em>
+            <em>Hands-on CTO.</em>
           </h1>
           <p>
-            I build products you can use, systems you can test, and worlds you
-            can step inside.
+            I lead the technology behind ventures in voice AI, aviation,
+            forensic research and health. From funding and incubation to
+            products in people’s hands.
           </p>
+          <div className="hero-evidence">
+            <a href="/work/#earlier">
+              <strong>AED 2M</strong>
+              <span>Raised at Kenchi</span>
+              <small>Co-founder</small>
+            </a>
+            <a href="#samt">
+              <strong>AED 25K</strong>
+              <span>Programme grant</span>
+              <small>Samt Health</small>
+            </a>
+            <a href="/articles/dubai-police-hackathon">
+              <strong>1st place</strong>
+              <span>Dubai Police HQ</span>
+              <small>Hackathon</small>
+            </a>
+          </div>
           <a href="#work" className="hero-scroll">
             Scroll into the work <ArrowDown size={16} />
           </a>
@@ -131,14 +150,15 @@ export default function Home() {
         </div>
         <div className="active-world">
           <div>
-            <span className="mono">
+            <ProjectCredential world={selected} />
+            <span className="mono selected-index">
               {String(active + 1).padStart(2, "0")} / SELECTED WORLD
             </span>
-            <a href={`#${selected.id}`}>
+            <a className="selected-project" href={`#${selected.id}`}>
               {selected.name}
               <ArrowDown size={18} />
             </a>
-            <p>{selected.category}</p>
+            <p className="selected-role">{selected.role}</p>
           </div>
           <div className="gallery-controls">
             <button
@@ -192,6 +212,14 @@ export default function Home() {
         </div>
       </section>
       <section
+        className="credential-strip"
+        aria-label="Exhibitions, programmes and presentations"
+      >
+        {[worlds[0], worlds[1], worlds[2], worlds[5], worlds[3]].map((w) => (
+          <ProjectCredential key={w.id} world={w} />
+        ))}
+      </section>
+      <section
         id="work"
         className="world-journey"
         aria-label="Explore the product worlds"
@@ -199,9 +227,9 @@ export default function Home() {
         <div className="journey-opening">
           <span className="mono">ENTER THE WORK / 01–08</span>
           <h2>
-            Don’t just read about it.
+            The ventures. The evidence.
             <br />
-            <em>Spend a moment inside.</em>
+            <em>Step inside the work.</em>
           </h2>
           <p>
             Each project has its own world. Watch it move, take control of a
@@ -209,11 +237,10 @@ export default function Home() {
           </p>
           <div className="journey-line" aria-hidden="true" />
         </div>
-        {worlds.map((world, index) => (
+        {worlds.map((world) => (
           <WorldChapter
             key={world.id}
             world={world}
-            index={index}
             paused={paused}
             onEnter={enter}
             onFilm={showFilm}
@@ -301,14 +328,15 @@ export default function Home() {
           <article>
             <p className="mono">10–13 NOVEMBER 2026 / AL AIN</p>
             <h3>
-              ENEC-track shortlisted.
+              ATRC shortlisted.
               <br />
               NSTI Festival.
             </h3>
             <p>
-              Presented HADHRA at ADNEC Centre Al Ain. Festival attendees
-              included Sarah bint Yousef Al Amiri, Dr Sultan Al Neyadi, Eng
-              Mohammed Al Qasim and Dr Mohamed Alkhemairi.
+              Presented HADHRA through Advanced Technology Pioneers at ADNEC
+              Centre Al Ain. Festival attendees included Sarah bint Yousef Al
+              Amiri, Dr Sultan Al Neyadi, Eng Mohammed Al Qasim and Dr Mohamed
+              Alkhemairi.
             </p>
             <p className="event-note">
               These names describe festival attendance, not individual

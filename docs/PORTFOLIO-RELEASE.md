@@ -47,3 +47,14 @@ The repository's GitHub Actions account is blocked by a billing issue. The previ
 - The temporary external connection outage recovered before the final browser gate. Publication uses the existing GitHub-to-Vercel production integration; production status and asset parity are checked after pushing the release.
 
 The production phone check identified slow startup with the two original MP4 files whose metadata was at the end. Their metadata is now at the front (`faststart`). Encoded video and audio stream SHA-256 hashes match before and after remuxing.
+
+
+## Credibility update, 16 November 2026
+
+Promote the founder/CTO role, AED 2M Kenchi fundraising, AED 25K Samt programme grant and separate Dubai Police HQ hackathon win. All eight product headers now identify roles and project evidence. Five official institutional identities carry visible relationship labels. HADHRA leads with ATRC/NSTI and Samt with Expo City Dubai's Changemakers Academy. The gallery, original films and real demos remain. Social metadata and preview images reflect the new positioning. See `CREDIBILITY-SOURCES.md`.
+
+- Build: TypeScript and Vite pass. No dependencies or lockfile changed.
+- Credibility gate: `ALL CREDIBILITY CHECKS PASS` across six sizes. Screenshots opened at 1280x720 and 390x844.
+- Local regression: all six viewports, gallery, original local films at desktop and phone, reduced motion, cancellation and pause/resume pass. The archive route initially timed out; a focused retry passed all retained routes and archive navigation at both sizes, plus WebGL fallback and larger text. External product journeys were not repeated for this content-only change; their preceding release evidence remains above.
+- Fresh dependency audit requests failed at the npm advisory endpoint twice. The dependency graph is unchanged from the preceding zero-vulnerability audit; no fresh audit success is claimed.
+- Read-only council `20261116-154317`: `qwen SHIP`, with no blocking claim-scoping defect.

@@ -8,6 +8,8 @@ A bright ivory canvas with mint, cornflower, peach, lilac, rose, lime and champa
 
 The home page opens with a draggable spatial gallery, then eight full product chapters, seven additional projects, public presentations, writing and contact. Existing articles, contact, privacy, terms and the separate `/work` collection remain available.
 
+Lead with Amir's founder and CTO role, the Kenchi funding, Samt programme grant and separate Dubai Police HQ hackathon win. Each selected project and chapter foregrounds its actual role, institution or programme and relevant evidence. Official logos identify a clearly labelled exhibition, hackathon, shortlisting or programme relationship. They are not an unlabelled client wall. HADHRA leads with ATRC and NSTI; Samt leads with Expo City Dubai's Changemakers Academy. Sources and the relationship boundaries live in `docs/CREDIBILITY-SOURCES.md`.
+
 ## Real work
 
 Eight product worlds: Bayyina, Marsad, HADHRA, NOVA Labs, RUYA, Samt Health, The Morning Club and Gold Hedge. Additional work: Keel, Kenchi, CyberLife, MIZAN, TANZEEM, ArenaAI and Huscribe. The authoritative content is `client/src/data/worlds.ts`.

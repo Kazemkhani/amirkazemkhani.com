@@ -8,7 +8,7 @@
 
 [![CI](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml/badge.svg)](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml)
 
-The source for my personal engineering home: eight immersive product experiences and seven additional projects, with real demos, original films and a light 3D portfolio.
+The source for my founder and technology portfolio: eight immersive product experiences and seven additional projects, with real demos, original films and a light 3D gallery. Venture funding, programme support, awards and project roles lead the experience. Institutional identities are labelled by the actual relationship, with sources in [the credibility record](docs/CREDIBILITY-SOURCES.md).
 
 [Visit the live site](https://amirkazemkhani.com) · [Explore the writing](https://amirkazemkhani.com/articles) · [Work with me](https://amirkazemkhani.com/work-with-me)
 

@@ -14,6 +14,15 @@ export interface World {
   embeddable?: boolean;
   entryLabel?: string;
   status?: string;
+  role: string;
+  credential: {
+    label: string;
+    name: string;
+    detail: string;
+    logo?: string;
+    href: string;
+  };
+  proof: { value: string; label: string }[];
   headline: string;
   description: string;
   context: string;
@@ -23,6 +32,20 @@ export interface World {
 export const worlds: World[] = [
   {
     id: "bayyina",
+    role: "Builder · AI forensic research",
+    credential: {
+      label: "Exhibiting at",
+      name: "Dubai Police · World Police Summit",
+      detail: "Forensic Science Forum · DWTC, Dubai",
+      logo: "/credentials/world-police-summit.svg",
+      href: "https://worldpolicesummit.com/side-events/forensic-science-forum/",
+    },
+    proof: [
+      {
+        value: "16–18 Nov 2026",
+        label: "Exhibition & presentations to officials",
+      },
+    ],
     background: "#d5f3e5",
     scene: "/worlds/bayyina-scene.mp4",
     embeddable: true,
@@ -34,7 +57,7 @@ export const worlds: World[] = [
     url: "https://bayyina.amirkazemkhani.com",
     preview: "https://bayyina.amirkazemkhani.com/twin/",
     film: "/worlds/bayyina-film.mp4",
-    headline: "What if the evidence\ncould speak for itself?",
+    headline: "AI evidence.\nBuilt for scrutiny.",
     description:
       "Step into a digital laboratory. Follow an AI summary from a synthetic conversation to a sealed record, then try changing the evidence yourself.",
     context:
@@ -49,6 +72,15 @@ export const worlds: World[] = [
   },
   {
     id: "marsad",
+    role: "Builder · Team Visionary",
+    credential: {
+      label: "Built for the hackathon at",
+      name: "Dubai Airports",
+      detail: "Presented to the CEO of Dubai Airports",
+      logo: "/credentials/dubai-airports.svg",
+      href: "https://www.dubaiairports.ae/corporate",
+    },
+    proof: [{ value: "CEO presentation", label: "Dubai Airports hackathon" }],
     background: "#dbe9ff",
     scene: "/worlds/marsad-scene.mp4",
     embeddable: true,
@@ -75,10 +107,19 @@ export const worlds: World[] = [
   },
   {
     id: "enec",
+    role: "Builder · Marine systems & simulation",
+    credential: {
+      label: "Shortlisted & presented",
+      name: "ATRC · NSTI Festival",
+      detail: "Advanced Technology Pioneers · ADNEC Al Ain",
+      logo: "/credentials/atrc.svg",
+      href: "https://challengeon.atrc.ae/en/challenges/atp2026",
+    },
+    proof: [{ value: "NSTI 2026", label: "10–13 November · Al Ain" }],
     background: "#ffe3cf",
     scene: "/worlds/enec-scene.mp4",
     embeddable: true,
-    status: "ENEC-track shortlisted project",
+    status: "ATRC shortlisted · NSTI Festival",
     name: "HADHRA",
     arabic: "حضرة",
     category: "Marine systems & energy resilience",
@@ -90,7 +131,7 @@ export const worlds: World[] = [
     description:
       "Follow a jellyfish swarm through an interactive coastal world. Diversion units, a guiding fence and a return lock form a proposed system for protecting seawater intakes.",
     context:
-      "Shortlisted in the ENEC track of Advanced Technology Pioneers. Presented at the National Science, Technology and Innovation Festival, 10–13 November 2026, ADNEC Centre Al Ain.",
+      "Shortlisted for ATRC’s Advanced Technology Pioneers. Presented at the National Science, Technology and Innovation Festival, 10–13 November 2026, ADNEC Centre Al Ain.",
     limit:
       "Engineering concept and digital model. Not yet tested at sea. Modelled behaviour is not a measured real-world result.",
     chapters: [
@@ -101,6 +142,20 @@ export const worlds: World[] = [
   },
   {
     id: "nova",
+    role: "Founder & CTO",
+    credential: {
+      label: "Selected for",
+      name: "Antler",
+      detail: "Antler × Dubai Founders HQ programme",
+      logo: "/credentials/antler.svg",
+      href: "https://novalabs.ae",
+    },
+    proof: [
+      {
+        value: "National television",
+        label: "Falcons of Majlis · India Today × Aaj Tak",
+      },
+    ],
     name: "NOVA Labs",
     arabic: "",
     category: "Voice AI",
@@ -110,7 +165,7 @@ export const worlds: World[] = [
     preview: "https://novalabs.ae",
     image: "/worlds/nova.webp",
     status: "Founder & CTO",
-    headline: "A conversation.\nA business moving forward.",
+    headline: "Voice AI.\nBuilt for business.",
     description:
       "Voice agents that answer, qualify and book meetings. My work on the timing, reasoning and infrastructure behind a natural conversation.",
     context:
@@ -121,6 +176,16 @@ export const worlds: World[] = [
   },
   {
     id: "ruya",
+    role: "Product & engineering lead",
+    credential: {
+      label: "Built for enterprise teams",
+      name: "Enterprise AI",
+      detail: "Agent discovery, evaluation and reuse",
+      href: "https://ruya.amirkazemkhani.com",
+    },
+    proof: [
+      { value: "Enterprise brief", label: "One shared platform for AI agents" },
+    ],
     name: "RUYA",
     arabic: "رؤيا",
     category: "Enterprise AI",
@@ -142,6 +207,15 @@ export const worlds: World[] = [
   },
   {
     id: "samt",
+    role: "Co-founder & CTO",
+    credential: {
+      label: "Programme-backed by",
+      name: "Expo City Dubai",
+      detail: "Changemakers Academy",
+      logo: "/credentials/expo-city-dubai.png",
+      href: "https://www.expocitydubai.com/en/media-centre/problem-solving-for-the-future-expo-city-dubai-foundation-launches/",
+    },
+    proof: [{ value: "AED 25,000", label: "Changemakers Academy grant" }],
     name: "Samt Health",
     arabic: "سمت",
     category: "Women's health",
@@ -152,11 +226,11 @@ export const worlds: World[] = [
     image: "/worlds/samt.webp",
     film: "/worlds/samt-film.mp4",
     status: "Co-founder & CTO",
-    headline: "A new chapter.\nA clearer direction.",
+    headline: "Women’s health.\nAn Arabic-first approach.",
     description:
       "An Arabic-first companion for women navigating menopause. A product built around language, dignity and clearer conversations about health.",
     context:
-      "Selected for Expo City Dubai’s Changemakers programme. Explore the public site and original launch film.",
+      "Backed through Expo City Dubai’s Changemakers Academy, with an AED 25,000 grant. Explore the public site and original launch film.",
     limit:
       "The public site describes current availability. This portfolio does not provide medical advice or display patient information.",
     chapters: [
@@ -167,6 +241,19 @@ export const worlds: World[] = [
   },
   {
     id: "morning",
+    role: "Co-founder · product & engineering",
+    credential: {
+      label: "Published product",
+      name: "The Morning Club",
+      detail: "Women’s Pilates · Abu Dhabi",
+      href: "https://apps.apple.com/ae/app/the-morning-club/id6761857556",
+    },
+    proof: [
+      {
+        value: "Live on the App Store",
+        label: "Published under Amir Hossein Kazemkhani",
+      },
+    ],
     name: "The Morning Club",
     arabic: "",
     category: "Consumer product & movement",
@@ -188,6 +275,19 @@ export const worlds: World[] = [
   },
   {
     id: "gold",
+    role: "Co-founder & CTO",
+    credential: {
+      label: "Private platform build",
+      name: "Gold Hedge",
+      detail: "Physical gold & silver trading infrastructure",
+      href: "mailto:amir@amirkazemkhani.com?subject=Gold%20Hedge%20walkthrough",
+    },
+    proof: [
+      {
+        value: "Technology leadership",
+        label: "Pricing, order workflows and ledger",
+      },
+    ],
     name: "Gold Hedge",
     arabic: "",
     category: "Financial infrastructure",
@@ -221,14 +321,14 @@ export const earlierWork = [
     name: "Kenchi",
     category: "Construction AI",
     description:
-      "Computer vision and language models for construction sites. Co-founder.",
+      "Co-founder. AED 2M raised for computer vision and language models for construction sites.",
     href: "/work/#earlier",
   },
   {
     name: "CyberLife",
     category: "Healthcare AI",
     description:
-      "Early disease detection from routine lab data. FutureHack winner on a Mediclinic challenge.",
+      "1st place at FutureHack by in5, on a Mediclinic challenge. Six-month in5 residency.",
     href: "/articles/futurehack-cyberlife",
   },
   {
@@ -242,7 +342,7 @@ export const earlierWork = [
     name: "TANZEEM",
     category: "Smart cities",
     description:
-      "School pickup management and QR-verified handover. RTA × GDG Dubai.",
+      "3rd place at the RTA × GDG Dubai hackathon. School pickup management and QR-verified handover.",
     href: "/articles/rta-gdg-tanzeem",
   },
   {

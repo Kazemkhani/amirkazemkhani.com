@@ -15,13 +15,13 @@ with sync_playwright() as p:
   page.goto(BASE,wait_until='domcontentloaded',timeout=60000);page.locator('h1').wait_for()
   page.wait_for_function('document.fonts.status === "loaded"');page.locator('.universe-canvas.loaded canvas').wait_for(timeout=30000);page.wait_for_timeout(900)
   label=f'{width}x{height}'+('-reduced' if reduced else '')
-  assert 'Ideas,' in page.locator('h1').inner_text()
+  assert 'AI founder.' in page.locator('h1').inner_text()
   assert page.locator('.world-dock button').count()==8
   assert page.locator('.archive-list>a').count()==7
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'overflow {label}'
   page.screenshot(path=str(OUT/f'hero-{label}.png'))
   page.get_by_role('button',name='Next project',exact=True).click()
-  assert page.locator('.active-world a').inner_text()=='Marsad'
+  assert page.locator('.active-world .selected-project').inner_text()=='Marsad'
   page.get_by_role('button',name='Previous project',exact=True).click()
   for name in IDS:
    section=page.locator('#'+name);section.evaluate('(e)=>window.scrollTo(0,e.offsetTop+(innerWidth>700?80:0))');page.wait_for_timeout(350)

@@ -8,17 +8,16 @@ import {
   type CSSProperties,
 } from "react";
 import { ArrowUpRight, Play, X, Expand } from "lucide-react";
+import ProjectCredential from "./ProjectCredential";
 import type { World } from "../data/worlds";
 const WorldMotion = lazy(() => import("./WorldMotion"));
 export default function WorldChapter({
   world,
-  index,
   paused,
   onEnter,
   onFilm,
 }: {
   world: World;
-  index: number;
   paused: boolean;
   onEnter: (e: MouseEvent<HTMLAnchorElement>, w: World) => void;
   onFilm: (e: MouseEvent<HTMLButtonElement>, w: World) => void;
@@ -95,10 +94,15 @@ export default function WorldChapter({
       <div className="chapter-stage">
         <div className="chapter-grid" aria-hidden="true" />
         <div className="chapter-heading">
-          <span className="mono">
-            {String(index + 1).padStart(2, "0")} / {world.category}
-          </span>
-          <span>{world.status}</span>
+          <ProjectCredential world={world} />
+          <div className="chapter-record">
+            {world.proof.map((p) => (
+              <div key={p.label}>
+                <strong>{p.value}</strong>
+                <span>{p.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="chapter-giant" aria-hidden="true">
           {world.name}
@@ -107,6 +111,7 @@ export default function WorldChapter({
           <p className="chapter-name">
             {world.name} <span lang="ar">{world.arabic}</span>
           </p>
+          <p className="project-role">{world.role}</p>
           <h2>
             {world.headline.split("\n").map((line, i) => (
               <span key={line}>

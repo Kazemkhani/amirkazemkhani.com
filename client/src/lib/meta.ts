@@ -24,7 +24,7 @@ export function usePageMeta(title: string, description?: string) {
   }, [title, description]);
 }
 
-export const SITE_TITLE = "Amir Kazemkhani | AI systems & interactive worlds";
+export const SITE_TITLE = "Amir Kazemkhani | AI founder & hands-on CTO";
 
 export const SITE_DESCRIPTION =
-  "Step inside the work of Amir Hossein Kazemkhani. AI, aviation, energy, health and consumer products, with interactive demos and original films. Based in Dubai.";
+  "AI founder and hands-on CTO based in Dubai. Explore ventures in voice AI, aviation, forensic research and health, with real products, original films and programme-backed work.";
