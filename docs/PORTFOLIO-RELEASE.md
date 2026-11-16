@@ -15,8 +15,8 @@ Rebuild the homepage as a bright spatial gallery and eight immersive product cha
 
 ## Assets
 
-- Bayyina: original `Bayyina-60-EN.mp4` from `~/dev/bayyina-film/film/out/`, copied to the portfolio. It plays for 66.3 seconds including the end card.
-- Marsad: original `Marsad-Final-2min.mp4` from `~/dev/marsad-film/remotion/out/`, 119.9 seconds.
+- Bayyina: original `Bayyina-60-EN.mp4` from `~/dev/bayyina-film/film/out/`, remuxed for progressive web playback without changing the encoded audio or video. It plays for 66.3 seconds including the end card.
+- Marsad: original `Marsad-Final-2min.mp4` from `~/dev/marsad-film/remotion/out/`, 119.9 seconds. Remuxed for progressive web playback without re-encoding.
 - HADHRA: existing public `/film/HADHRA-comic-film-105s-v3.mp4` on enec.amirkazemkhani.com, 105 seconds. Hosted by its authoritative project.
 - Product captures are of the public demos. HADHRA embeds its `/sims` interactive illustration. Marsad uses `/replay/` because its live organiser feed is unavailable. No new technical results are invented.
 - NOVA Labs, RUYA and Samt Health imagery comes from their actual public sites. NOVA and Samt block iframe embedding; use normal external navigation.
@@ -45,3 +45,5 @@ The repository's GitHub Actions account is blocked by a billing issue. The previ
 - Actual portal destination navigation, browser Back reset, cancellation, global pause/resume, WebGL fallback, larger text, retained routes and archive document links pass.
 - Read-only council run `20261116-144134`: `qwen SHIP`. Its earlier pause and keyboard-exit findings were addressed. Cross-origin Escape is not promised; the portfolio provides a visible exit toolbar and external full-screen link.
 - The temporary external connection outage recovered before the final browser gate. Publication uses the existing GitHub-to-Vercel production integration; production status and asset parity are checked after pushing the release.
+
+The production phone check identified slow startup with the two original MP4 files whose metadata was at the end. Their metadata is now at the front (`faststart`). Encoded video and audio stream SHA-256 hashes match before and after remuxing.
