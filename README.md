@@ -8,7 +8,7 @@
 
 [![CI](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml/badge.svg)](https://github.com/Kazemkhani/amirkazemkhani.com/actions/workflows/ci.yml)
 
-The source for my personal engineering home: Bayyina, Marsad and HADHRA, with interactive product previews, original films and a light 3D portfolio.
+The source for my personal engineering home: eight immersive product experiences and seven additional projects, with real demos, original films and a light 3D portfolio.
 
 [Visit the live site](https://amirkazemkhani.com) · [Explore the writing](https://amirkazemkhani.com/articles) · [Work with me](https://amirkazemkhani.com/work-with-me)
 
@@ -36,7 +36,7 @@ This is a static, client-rendered React application built for a small operationa
 - Vite 8 for development and production builds
 - Wouter for lightweight routing
 - Tailwind CSS and Radix primitives for the interface system
-- Blender-authored GLB sculpture rendered with Three.js, plus a static fallback
+- Three.js spatial product gallery, with a static fallback, and original Blender artwork
 - Remotion motion graphics and short portal transitions
 - Framer Motion with reduced-motion support
 - Self-hosted fonts and optimized AVIF/WebP image variants

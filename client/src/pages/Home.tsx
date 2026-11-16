@@ -6,51 +6,51 @@ import {
   useState,
   type MouseEvent,
   type CSSProperties,
-  type PointerEvent,
 } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
   Play,
-  X,
   Pause,
-  MoveUpRight,
+  X,
 } from "lucide-react";
-import { worlds, type World } from "../data/worlds";
+import { worlds, earlierWork, type World } from "../data/worlds";
+import WorldChapter from "../components/WorldChapter";
 import WritingSection from "../components/WritingSection";
 import FalconsEpisode from "../components/FalconsEpisode";
 import { usePageMeta, SITE_TITLE, SITE_DESCRIPTION } from "../lib/meta";
 import "../portfolio.css";
-
-const PortalScene = lazy(() => import("../components/PortalScene"));
-const WorldMotion = lazy(() => import("../components/WorldMotion"));
-type Experience = { world: World; mode: "demo" | "film" };
-
+const Universe = lazy(() => import("../components/Universe"));
 export default function Home() {
   usePageMeta(SITE_TITLE, SITE_DESCRIPTION);
   const reduced = useReducedMotion();
-  const [pause, setPause] = useState(false);
-  const [experience, setExperience] = useState<Experience | null>(null);
-  const [portal, setPortal] = useState<{
-    world: World;
-    x: number;
-    y: number;
-  } | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-  const trigger = useRef<HTMLElement | null>(null);
+  const [pause, setPause] = useState(false),
+    [active, setActive] = useState(0),
+    [film, setFilm] = useState<World | null>(null),
+    [portal, setPortal] = useState<{
+      world: World;
+      x: number;
+      y: number;
+    } | null>(null);
+  const trigger = useRef<HTMLElement | null>(null),
+    timer = useRef<ReturnType<typeof setTimeout>>();
   const paused = !!reduced || pause;
-  useEffect(() => () => clearTimeout(timer.current), []);
   useEffect(() => {
-    function reset() {
+    const reset = () => {
       setPortal(null);
       clearTimeout(timer.current);
-    }
+    };
     window.addEventListener("pageshow", reset);
-    return () => window.removeEventListener("pageshow", reset);
+    return () => {
+      clearTimeout(timer.current);
+      window.removeEventListener("pageshow", reset);
+    };
   }, []);
-  function cancelPortal() {
+  function cancel() {
     clearTimeout(timer.current);
     window.stop();
     setPortal(null);
@@ -59,120 +59,128 @@ export default function Home() {
   useEffect(() => {
     if (!portal) return;
     const escape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") cancelPortal();
+      if (e.key === "Escape") cancel();
     };
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
   }, [portal]);
   function enter(e: MouseEvent<HTMLAnchorElement>, world: World) {
     if (
+      !world.url.startsWith("https://") ||
+      paused ||
+      e.detail === 0 ||
       e.button !== 0 ||
       e.metaKey ||
       e.ctrlKey ||
-      e.shiftKey ||
       e.altKey ||
-      paused ||
-      e.detail === 0
+      e.shiftKey
     )
       return;
     e.preventDefault();
     if (portal) return;
     trigger.current = e.currentTarget;
     setPortal({ world, x: e.clientX, y: e.clientY });
-    timer.current = setTimeout(() => {
-      window.location.assign(world.url);
-    }, 900);
+    timer.current = setTimeout(() => location.assign(world.url), 1400);
   }
-  function attract(e: PointerEvent<HTMLButtonElement>) {
-    if (paused || e.pointerType !== "mouse") return;
-    const box = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty(
-      "--pointer-x",
-      `${e.clientX - box.left}px`,
-    );
-    e.currentTarget.style.setProperty(
-      "--pointer-y",
-      `${e.clientY - box.top}px`,
-    );
-  }
-  function open(
-    e: MouseEvent<HTMLButtonElement>,
-    world: World,
-    mode: "demo" | "film",
-  ) {
+  function showFilm(e: MouseEvent<HTMLButtonElement>, world: World) {
     trigger.current = e.currentTarget;
-    setExperience({ world, mode });
+    setFilm(world);
   }
+  const selected = worlds[active];
   return (
     <main id="main" className={`portfolio ${paused ? "motion-paused" : ""}`}>
-      <section className="portfolio-hero" id="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="live-dot" /> Independent builder. Based in Dubai.
-          </p>
-          <h1>
-            I build things
-            <br />
-            you can <em>step into.</em>
-          </h1>
-          <p className="hero-intro">
-            I’m Amir Hossein Kazemkhani. I turn complex problems into working AI
-            systems and interactive worlds. Come inside a few of them.
-          </p>
-          <a href="#work" className="pill-button dark">
-            Explore the worlds <ArrowDown size={16} />
-          </a>
-          <div className="hero-signature">
-            <img
-              src="/assets/images/amir-profile-640.webp"
-              alt="Amir Hossein Kazemkhani"
-              width="44"
-              height="44"
-            />
-            <div>
-              <span>Engineer. Founder. Always building.</span>
-              <a href="https://novalabs.ae">
-                Currently building NOVA Labs <ArrowUpRight size={12} />
-              </a>
-            </div>
-          </div>
+      <section
+        className="universe-hero"
+        id="hero"
+        style={
+          {
+            "--active-colour": selected.colour,
+            "--active-bg": selected.background,
+          } as CSSProperties
+        }
+      >
+        <div className="hero-orbit" aria-hidden="true" />
+        <div className="hero-identity mono">
+          <span className="status-dot" /> AMIR HOSSEIN KAZEMKHANI{" "}
+          <span>Dubai, UAE</span>
         </div>
-        <div className="hero-art">
-          <div className="orbit-line orbit-one" />
-          <div className="orbit-line orbit-two" />
+        <div className="hero-title">
+          <p className="mono">AI systems. Products. Worlds.</p>
+          <h1>
+            Ideas,
+            <br />
+            <em>made real.</em>
+          </h1>
+          <p>
+            I build products you can use, systems you can test, and worlds you
+            can step inside.
+          </p>
+          <a href="#work" className="hero-scroll">
+            Scroll into the work <ArrowDown size={16} />
+          </a>
+        </div>
+        <div className="universe-view">
           <img
-            className="sculpture-fallback"
-            src="/worlds/portals.webp"
+            className="universe-fallback"
+            src={selected.image || `/worlds/${selected.id}.webp`}
             alt=""
-            width="1200"
-            height="1050"
           />
           <Suspense fallback={null}>
-            <PortalScene paused={paused} />
+            <Universe active={active} paused={paused} onSelect={setActive} />
           </Suspense>
-          <a className="world-label label-bayyina" href="#bayyina">
-            <span className="label-dot teal" /> Bayyina{" "}
-            <ArrowUpRight size={13} />
-          </a>
-          <a className="world-label label-marsad" href="#marsad">
-            <span className="label-dot blue" /> Marsad{" "}
-            <ArrowUpRight size={13} />
-          </a>
-          <a className="world-label label-enec" href="#enec">
-            <span className="label-dot coral" /> HADHRA{" "}
-            <ArrowUpRight size={13} />
-          </a>
-          <span className="art-caption">
-            A small universe of things I’ve built.
-          </span>
         </div>
-        <div className="hero-bottom">
-          <span>Selected work / 2026</span>
-          <span>Three worlds. Real demos. Your curiosity.</span>
+        <div className="active-world">
+          <div>
+            <span className="mono">
+              {String(active + 1).padStart(2, "0")} / SELECTED WORLD
+            </span>
+            <a href={`#${selected.id}`}>
+              {selected.name}
+              <ArrowDown size={18} />
+            </a>
+            <p>{selected.category}</p>
+          </div>
+          <div className="gallery-controls">
+            <button
+              aria-label="Previous project"
+              onClick={() =>
+                setActive((active - 1 + worlds.length) % worlds.length)
+              }
+            >
+              <ArrowLeft size={17} />
+            </button>
+            <button
+              aria-label="Next project"
+              onClick={() => setActive((active + 1) % worlds.length)}
+            >
+              <ArrowRight size={17} />
+            </button>
+          </div>
+        </div>
+        <div className="universe-instruction mono">
+          Drag the gallery. Choose a world. Go inside.
+        </div>
+        <div className="world-dock" aria-label="Choose a project">
+          {worlds.map((w, i) => (
+            <button
+              key={w.id}
+              onClick={() => setActive(i)}
+              aria-pressed={i === active}
+            >
+              <span className="dock-dot" style={{ background: w.colour }} />
+              {w.name}
+              <span className="dock-number">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="hero-meta mono">
+          <span>Eight product worlds. More in the archive.</span>
           <button
             onClick={() => setPause(!pause)}
-            aria-pressed={paused}
             disabled={!!reduced}
+            aria-pressed={paused}
           >
             {paused ? <Play size={12} /> : <Pause size={12} />}{" "}
             {reduced
@@ -183,248 +191,166 @@ export default function Home() {
           </button>
         </div>
       </section>
-
-      <section id="work" className="worlds-section">
-        <div className="section-heading">
-          <p className="eyebrow">01 / Enter the work</p>
+      <section
+        id="work"
+        className="world-journey"
+        aria-label="Explore the product worlds"
+      >
+        <div className="journey-opening">
+          <span className="mono">ENTER THE WORK / 01–08</span>
           <h2>
-            Ideas are interesting.
+            Don’t just read about it.
             <br />
-            <em>Working worlds are better.</em>
+            <em>Spend a moment inside.</em>
           </h2>
           <p>
-            Explore a live demo here, watch the film, or follow a portal into
-            the full experience.
+            Each project has its own world. Watch it move, take control of a
+            real demo, or follow it through to the full product.
           </p>
+          <div className="journey-line" aria-hidden="true" />
         </div>
         {worlds.map((world, index) => (
-          <article
+          <WorldChapter
             key={world.id}
-            id={world.id}
-            className={`project-world ${world.id}`}
-            style={{ "--world-colour": world.colour } as CSSProperties}
-          >
-            <div className="world-heading">
-              <span className="world-index">0{index + 1}</span>
-              <p>{world.category}</p>
-              <span lang="ar" dir="rtl">
-                {world.arabic}
-              </span>
-            </div>
-            <div className="world-layout">
-              <div className="world-copy">
-                <p className="world-name">{world.name}</p>
-                <h3>
-                  {world.headline.split("\n").map((line, i) => (
-                    <span key={line}>
-                      {i === 1 ? <em>{line}</em> : line}
-                      <br />
-                    </span>
-                  ))}
-                </h3>
-                <p className="world-description">{world.description}</p>
-                <div className="world-actions">
-                  <a
-                    className="pill-button world-enter"
-                    href={world.url}
-                    onClick={(e) => enter(e, world)}
-                  >
-                    Enter {world.name}
-                    <ArrowUpRight size={17} />
-                  </a>
-                  <button
-                    className="text-button"
-                    onClick={(e) => open(e, world, "film")}
-                  >
-                    <Play size={13} fill="currentColor" /> Watch the film
-                  </button>
-                </div>
-                <ol className="world-chapters">
-                  {world.chapters.map((chapter, i) => (
-                    <li key={chapter}>
-                      <span>0{i + 1}</span>
-                      {chapter}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <div className="world-preview">
-                <Suspense fallback={null}>
-                  <WorldMotion world={world.id} paused={paused} />
-                </Suspense>
-                <button
-                  className="product-window"
-                  onPointerMove={attract}
-                  onClick={(e) => open(e, world, "demo")}
-                  aria-label={`Explore ${world.name} live preview`}
-                >
-                  <span className="window-bar">
-                    <span className="window-dots">
-                      <i />
-                      <i />
-                      <i />
-                    </span>
-                    <span>{world.url.replace("https://", "")}</span>
-                    <ArrowUpRight size={12} />
-                  </span>
-                  <img
-                    src={`/worlds/${world.id}.webp`}
-                    alt={`${world.name} actual product interface`}
-                    width="1440"
-                    height="900"
-                    loading="lazy"
-                  />
-                  <span className="local-cursor" aria-hidden="true">
-                    Explore
-                    <ArrowUpRight size={15} />
-                  </span>
-                  <span className="preview-cta">
-                    Explore the real demo <MoveUpRight size={15} />
-                  </span>
-                </button>
-                <span className="preview-caption">
-                  Actual product capture. Click to interact.
-                </span>
-              </div>
-            </div>
-            <div className="world-footnote">
-              <p>{world.context}</p>
-              <p>{world.limit}</p>
-            </div>
-            {world.id === "enec" && (
-              <details className="festival-context">
-                <summary>
-                  At NSTI Festival: the people and the programme <span>+</span>
-                </summary>
-                <p>
-                  The festival welcomed Sarah bint Yousef Al Amiri, Minister of
-                  Education; Dr Sultan Al Neyadi, Minister of State for Youth
-                  Affairs; Eng Mohammed Al Qasim, Undersecretary of the Ministry
-                  of Education; and Dr Mohamed Alkhemairi, Chief Business
-                  Development Officer at ASPIRE and Acting Executive Director of
-                  ATRC.
-                </p>
-                <p>
-                  Our team presented HADHRA as an ENEC-track shortlisted
-                  project. The names above describe festival attendance.
-                </p>
-                <a
-                  href="https://www.wam.ae/en/article/c38h498-8th-national-science-technology-and-innovation"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Read the official festival report <ArrowUpRight size={13} />
-                </a>
-                <a
-                  href="https://moe.gov.ae/en/mediacenter/news/Pages/Under-the-patronage-of-HH-Sheikh-Hazza-bin-Zayed-Al-Nahyan-the-8th-NSTI-Festival-launches-with-the-participation-of-615-stu.aspx"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Opening ceremony report <ArrowUpRight size={13} />
-                </a>
-              </details>
-            )}
-          </article>
+            world={world}
+            index={index}
+            paused={paused}
+            onEnter={enter}
+            onFilm={showFilm}
+          />
         ))}
-        <a className="more-work" href="/work">
-          More of what I’m building <ArrowUpRight size={17} />
-        </a>
       </section>
-
-      <section id="proof" className="field-section">
-        <div className="section-heading">
-          <p className="eyebrow">02 / Beyond the screen</p>
+      <section id="archive" className="archive-section">
+        <div className="archive-heading">
+          <p className="mono">THE REST OF THE STORY</p>
           <h2>
-            Built at a desk.
+            More questions.
             <br />
-            <em>Put in front of people.</em>
+            <em>More things built.</em>
           </h2>
           <p>
-            From a festival stand to the airfield operations brief, the
-            interesting part is what happens when someone tries it.
+            Construction, healthcare, government, mobility and developer tools.
+            The rest of the work belongs here too.
           </p>
         </div>
-        <div className="field-grid">
-          <figure className="field-photo">
+        <div className="archive-list">
+          {earlierWork.map((p, i) => (
+            <a href={p.href} key={p.name}>
+              <span className="mono">{String(i + 9).padStart(2, "0")}</span>
+              <div>
+                <span className="archive-category">{p.category}</span>
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+              </div>
+              <ArrowUpRight size={25} />
+            </a>
+          ))}
+        </div>
+      </section>
+      <section id="proof" className="proof-section">
+        <div className="proof-heading">
+          <p className="mono">BEYOND THE SCREEN</p>
+          <h2>
+            Built. Shown.
+            <br />
+            <em>Put to the test.</em>
+          </h2>
+        </div>
+        <div className="proof-images">
+          <figure>
             <img
-              src="/credibility/amir-falcons-stage-pitch-solo-1120.webp"
-              alt="Amir presenting NOVA Labs on Falcons of Majlis"
+              src="/credibility/amir-falcons-stage-shetty-group-1120.webp"
+              alt="Amir on Falcons of Majlis with the investor panel"
               width="1120"
-              height="746"
+              height="829"
               loading="lazy"
             />
-            <figcaption>
-              <span>On stage, with NOVA Labs.</span>
-              <span>Falcons of Majlis</span>
-            </figcaption>
+            <figcaption>Falcons of Majlis / India Today × Aaj Tak</figcaption>
           </figure>
-          <div className="field-notes">
-            <p className="eyebrow">A few places the work has taken me</p>
+          <figure>
+            <img
+              src="/credibility/amir-jensen-huang-nvidia-640.webp"
+              alt="Amir in conversation with Jensen Huang"
+              width="640"
+              height="1124"
+              loading="lazy"
+            />
+            <figcaption>In conversation with Jensen Huang / NVIDIA</figcaption>
+          </figure>
+        </div>
+        <div className="event-record">
+          <article>
+            <p className="mono">16–18 NOVEMBER 2026 / DUBAI</p>
+            <h3>
+              Forensic Science Forum.
+              <br />
+              World Police Summit.
+            </h3>
+            <p>
+              Exhibiting Bayyina at Dubai World Trade Centre and presenting the
+              research prototype to officials at the booth.
+            </p>
             <a
               href="https://worldpolicesummit.com/side-events/forensic-science-forum/"
               target="_blank"
               rel="noreferrer"
             >
-              <span>16–18 NOV 2026</span>
-              <h3>
-                Forensic Science Forum
-                <ArrowUpRight size={18} />
-              </h3>
-              <p>
-                Exhibiting Bayyina at World Police Summit, Dubai World Trade
-                Centre.
-              </p>
+              The forum <ArrowUpRight size={14} />
             </a>
+          </article>
+          <article>
+            <p className="mono">10–13 NOVEMBER 2026 / AL AIN</p>
+            <h3>
+              ENEC-track shortlisted.
+              <br />
+              NSTI Festival.
+            </h3>
+            <p>
+              Presented HADHRA at ADNEC Centre Al Ain. Festival attendees
+              included Sarah bint Yousef Al Amiri, Dr Sultan Al Neyadi, Eng
+              Mohammed Al Qasim and Dr Mohamed Alkhemairi.
+            </p>
+            <p className="event-note">
+              These names describe festival attendance, not individual
+              endorsement.
+            </p>
             <a
-              href="https://challengeon.atrc.ae/en/challenges/atp2026"
+              href="https://www.wam.ae/en/article/c38h498-8th-national-science-technology-and-innovation"
               target="_blank"
               rel="noreferrer"
             >
-              <span>10–13 NOV 2026</span>
-              <h3>
-                NSTI Festival
-                <ArrowUpRight size={18} />
-              </h3>
-              <p>HADHRA, shortlisted in the ENEC track. ADNEC Centre Al Ain.</p>
+              Festival report <ArrowUpRight size={14} />
             </a>
-            <a href="https://marsad.amirkazemkhani.com">
-              <span>NOVEMBER 2026</span>
-              <h3>
-                Dubai Airports
-                <ArrowUpRight size={18} />
-              </h3>
-              <p>Marsad, built with Team Visionary and presented to the CEO.</p>
-            </a>
-          </div>
+          </article>
         </div>
         <details className="episode-details">
           <summary>
-            Watch my NOVA Labs pitch on Falcons of Majlis <Play size={15} />
+            Watch my NOVA Labs pitch on Falcons of Majlis <Play size={16} />
           </summary>
           <FalconsEpisode />
         </details>
       </section>
       <WritingSection />
       <section id="contact" className="contact-section">
-        <p className="eyebrow">04 / The next thing</p>
+        <div className="contact-mesh" aria-hidden="true" />
+        <p className="mono">THE NEXT WORLD STARTS WITH A CONVERSATION.</p>
         <h2>
-          Have a problem
+          What should
           <br />
-          worth <em>building for?</em>
+          we <em>build next?</em>
         </h2>
-        <a href="/work-with-me" className="pill-button dark">
-          Let’s make something real <ArrowUpRight size={18} />
+        <a href="/work-with-me" className="enter-button">
+          Let’s make it happen
+          <ArrowUpRight size={20} />
         </a>
-        <p>
-          AI systems, ambitious prototypes and products people can actually use.
-        </p>
-        <div className="contact-orbit" aria-hidden="true" />
+        <a className="email-link" href="mailto:amir@amirkazemkhani.com">
+          amir@amirkazemkhani.com
+        </a>
       </section>
-
       <Dialog.Root
-        open={!!experience}
-        onOpenChange={(value) => {
-          if (!value) setExperience(null);
+        open={!!film}
+        onOpenChange={(v) => {
+          if (!v) setFilm(null);
         }}
       >
         <Dialog.Portal>
@@ -438,85 +364,77 @@ export default function Home() {
           >
             <div className="experience-header">
               <div>
-                <Dialog.Title>
-                  {experience?.world.name}{" "}
-                  <span>
-                    /{" "}
-                    {experience?.mode === "film"
-                      ? "The film"
-                      : "Interactive preview"}
-                  </span>
-                </Dialog.Title>
-                <Dialog.Description>
-                  {experience?.world.limit}
-                </Dialog.Description>
+                <Dialog.Title>{film?.name} / The film</Dialog.Title>
+                <Dialog.Description>{film?.limit}</Dialog.Description>
               </div>
-              <Dialog.Close
-                className="icon-button"
-                aria-label="Close experience"
-              >
+              <Dialog.Close className="icon-button" aria-label="Close film">
                 <X size={22} />
               </Dialog.Close>
             </div>
-            {experience?.mode === "film" ? (
+            {film && (
               <video
-                key={experience.world.id}
-                src={experience.world.film}
+                src={film.film}
                 controls
-                playsInline
                 autoPlay
+                playsInline
                 preload="metadata"
               />
-            ) : experience ? (
-              <iframe
-                title={`${experience.world.name} interactive demo`}
-                src={experience.world.preview}
-                allow="fullscreen"
-                referrerPolicy="no-referrer"
-              />
-            ) : null}
-            <div className="experience-footer">
-              <span>
-                {experience?.mode === "demo"
-                  ? "You are exploring the actual product."
-                  : "Original project film."}
-              </span>
-              <a href={experience?.world.url} target="_blank" rel="noreferrer">
-                Open the full experience <ArrowUpRight size={14} />
-              </a>
-            </div>
+            )}
+            <a
+              className="film-external"
+              href={film?.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open the full project
+              <ArrowUpRight size={16} />
+            </a>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
       {portal && (
         <div
           className="portal-transition"
-          role="status"
-          aria-live="polite"
           style={
             {
-              "--portal-x": `${portal.x}px`,
-              "--portal-y": `${portal.y}px`,
-              "--portal-colour": portal.world.colour,
+              "--jump-colour": portal.world.colour,
+              "--jump-bg": portal.world.background,
+              "--origin-x": `${portal.x}px`,
+              "--origin-y": `${portal.y}px`,
             } as CSSProperties
           }
         >
-          <div className="portal-fractures" aria-hidden="true">
-            {Array.from({ length: 8 }, (_, i) => (
+          <div className="event-horizon">
+            {Array.from({ length: 16 }, (_, i) => (
               <i key={i} style={{ "--i": i } as CSSProperties} />
             ))}
           </div>
-          <div className="portal-tunnel">
-            {Array.from({ length: 9 }, (_, i) => (
-              <i key={i} style={{ "--i": i } as CSSProperties} />
-            ))}
+          <div className="fractured-world" aria-hidden="true">
+            {Array.from({ length: 12 }, (_, i) => {
+              const x = (i % 4) * 25,
+                y = Math.floor(i / 4) * 34;
+              return (
+                <div
+                  key={i}
+                  style={
+                    {
+                      backgroundImage: `url(${portal.world.image || `/worlds/${portal.world.id}.webp`})`,
+                      clipPath: `polygon(${x}% ${y}%,${x + 25}% ${y + 3}%,${x + 27}% ${y + 34}%,${x - 2}% ${y + 32}%)`,
+                      "--i": i,
+                    } as CSSProperties
+                  }
+                />
+              );
+            })}
           </div>
-          <p>
-            Entering {portal.world.name}
-            <span>A different world awaits.</span>
-          </p>
-          <button className="portal-cancel" onClick={cancelPortal}>
-            Stay here <X size={14} />
+          <div className="arrival-copy" role="status">
+            <span className="mono">YOU’RE ENTERING</span>
+            <p>{portal.world.name}</p>
+            <span>Continue your journey inside the product.</span>
+          </div>
+          <button className="portal-cancel" onClick={cancel}>
+            Stay here
+            <X size={15} />
           </button>
         </div>
       )}

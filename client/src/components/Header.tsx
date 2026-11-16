@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLocation } from "wouter";
 const navLinks = [
-  { href: "/#work", label: "The work" },
-  { href: "/#proof", label: "In the world" },
-  { href: "/#writing", label: "Field notes" },
+  { href: "/#work", label: "Explore worlds" },
+  { href: "/#archive", label: "All the work" },
+  { href: "/#proof", label: "About Amir" },
 ];
 export default function Header() {
   const [open, setOpen] = useState(false);

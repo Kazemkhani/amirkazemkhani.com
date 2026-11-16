@@ -1,15 +1,66 @@
-PASS 1280x720: bayyina film plays (66.3s), real embedded demo loads, closes cleanly
-PASS 1280x720: marsad film plays (119.9s), real embedded demo loads, closes cleanly
-PASS 1280x720: enec film plays (105.0s), real embedded demo loads, closes cleanly
-PASS 1280x720: 3D, loaded imagery, no overflow, no page errors
-PASS 390x844: bayyina film plays (66.3s), real embedded demo loads, closes cleanly
-PASS 390x844: marsad film plays (119.9s), real embedded demo loads, closes cleanly
-PASS 390x844: enec film plays (105.0s), real embedded demo loads, closes cleanly
-PASS 390x844: 3D, loaded imagery, no overflow, no page errors
-PASS 768x1024: 3D, loaded imagery, no overflow, no page errors
-PASS 1024x768: 3D, loaded imagery, no overflow, no page errors
-PASS 320x568: 3D, loaded imagery, no overflow, no page errors
-PASS 390x844-reduced: 3D, loaded imagery, no overflow, no page errors
-PASS portal: animation, destination navigation and browser-back reset
-PASS retained routes: writing, article, contact, privacy, terms
+
+> amirkazemkhani.com@1.0.0 build
+> tsc && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 2007 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               6.76 kB │ gzip:   1.93 kB
+dist/assets/Home-CWtWqH7r.css                25.16 kB │ gzip:   6.23 kB
+dist/assets/index-DatTV86r.css               55.39 kB │ gzip:  10.05 kB
+dist/assets/arrow-left-Ds-JENDs.js            0.15 kB │ gzip:   0.15 kB
+dist/assets/arrow-right-DCORJNkn.js           0.15 kB │ gzip:   0.15 kB
+dist/assets/Reveal-CL9H-lDr.js                0.46 kB │ gzip:   0.32 kB
+dist/assets/meta--gB90til.js                  0.59 kB │ gzip:   0.38 kB
+dist/assets/not-found-TU51xpbN.js             0.78 kB │ gzip:   0.43 kB
+dist/assets/Terms-k4AmyZrY.js                 1.53 kB │ gzip:   0.69 kB
+dist/assets/Privacy-C-osZ_Pz.js               1.86 kB │ gzip:   0.77 kB
+dist/assets/Articles-CWyCCkxr.js              4.90 kB │ gzip:   1.85 kB
+dist/assets/WorkWithMe-HiOYSIf0.js            5.53 kB │ gzip:   2.23 kB
+dist/assets/jsx-runtime-Dn_YclF2.js           7.96 kB │ gzip:   3.07 kB
+dist/assets/Article-Ar9oAchl.js              20.44 kB │ gzip:   6.93 kB
+dist/assets/WordReveal-B13hcRJZ.js           20.46 kB │ gzip:   7.74 kB
+dist/assets/Home-_mqUh1Kz.js                 63.07 kB │ gzip:  21.61 kB
+dist/assets/use-reduced-motion-1RsPZcqx.js  109.65 kB │ gzip:  36.19 kB
+dist/assets/index-DGRGnGWT.js               150.77 kB │ gzip:  50.12 kB
+dist/assets/WorldMotion-Dhj6WDet.js         358.75 kB │ gzip: 111.02 kB
+dist/assets/Universe-DYZIZJfX.js            558.93 kB │ gzip: 138.62 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.00s
+
+found 0 vulnerabilities
+
+PASS 1280x720: bayyina original film plays (66.3s), close restores focus
+PASS 1280x720: marsad original film plays (119.9s), close restores focus
+PASS 1280x720: enec original film plays (105.0s), close restores focus
+PASS 1280x720: samt original film plays (68.5s), close restores focus
+PASS 1280x720: bayyina real embedded product loads and closes
+PASS 1280x720: marsad real embedded product loads and closes
+PASS 1280x720: enec real embedded product loads and closes
+PASS 1280x720: ruya real embedded product loads and closes
+PASS 1280x720: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS 390x844: bayyina original film plays (66.3s), close restores focus
+PASS 390x844: marsad original film plays (119.9s), close restores focus
+PASS 390x844: enec original film plays (105.0s), close restores focus
+PASS 390x844: samt original film plays (68.5s), close restores focus
+PASS 390x844: bayyina real embedded product loads and closes
+PASS 390x844: marsad real embedded product loads and closes
+PASS 390x844: enec real embedded product loads and closes
+PASS 390x844: ruya real embedded product loads and closes
+PASS 390x844: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS 768x1024: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS 1024x768: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS 320x568: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS 390x844-reduced: all 15 projects, 3D gallery, loaded media, no overflow or page errors
+PASS portal: cancellable fracture/wormhole, actual destination and browser-back reset
+PASS motion: global pause freezes the 3D render and resume restarts it
+PASS retained routes and archive document navigation at desktop and phone sizes
+PASS fallback: product image survives unavailable WebGL; larger text fits phone
 ALL PORTFOLIO CHECKS PASS

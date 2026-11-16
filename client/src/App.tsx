@@ -68,6 +68,7 @@ function useSPALinks() {
       // Skip external links, mailto, tel, download, target=_blank
       if (
         href.startsWith("http") ||
+        /^\/(work|keel)(\/|$|#)/.test(href) ||
         href.startsWith("mailto:") ||
         href.startsWith("tel:") ||
         anchor.hasAttribute("download") ||

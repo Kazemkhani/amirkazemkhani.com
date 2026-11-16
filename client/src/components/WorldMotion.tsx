@@ -1,16 +1,11 @@
 import { useEffect, useRef } from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { Player, type PlayerRef } from "@remotion/player";
-import type { WorldId } from "../data/worlds";
+import { worlds, type WorldId } from "../data/worlds";
 
 function WorldSequence({ world }: { world: WorldId }) {
   const f = useCurrentFrame();
-  const colour =
-    world === "bayyina"
-      ? "#4c927b"
-      : world === "marsad"
-        ? "#6287d5"
-        : "#df8168";
+  const colour = worlds.find((item) => item.id === world)?.colour ?? "#397e6c";
   return (
     <div
       style={{

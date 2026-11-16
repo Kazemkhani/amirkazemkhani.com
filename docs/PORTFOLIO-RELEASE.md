@@ -2,7 +2,7 @@
 
 ## Scope
 
-Replace the dark homepage with a light interactive portfolio for Bayyina, Marsad and HADHRA. Preserve existing routes and the newer `/work` collection from upstream `9b2eb22`. Deploy to the existing Vercel project for amirkazemkhani.com, explicitly authorised by Amir in this session.
+Rebuild the homepage as a bright spatial gallery and eight immersive product chapters, with all seven additional projects restored directly on the homepage. The portfolio includes Bayyina, Marsad, HADHRA, NOVA Labs, RUYA, Samt Health, The Morning Club, Gold Hedge, Keel, Kenchi, CyberLife, MIZAN, TANZEEM, ArenaAI and Huscribe. Preserve articles, contact, policy pages and the separate `/work` and `/keel` collections. Deployment to the existing Vercel project was explicitly authorised by Amir.
 
 ## Claims and sources
 
@@ -18,19 +18,30 @@ Replace the dark homepage with a light interactive portfolio for Bayyina, Marsad
 - Bayyina: original `Bayyina-60-EN.mp4` from `~/dev/bayyina-film/film/out/`, copied to the portfolio. It plays for 66.3 seconds including the end card.
 - Marsad: original `Marsad-Final-2min.mp4` from `~/dev/marsad-film/remotion/out/`, 119.9 seconds.
 - HADHRA: existing public `/film/HADHRA-comic-film-105s-v3.mp4` on enec.amirkazemkhani.com, 105 seconds. Hosted by its authoritative project.
-- Product captures are of the public demos. Marsad uses `/replay/` because its live organiser feed is unavailable. No new technical results are invented.
-- Blender sculpture is original decorative artwork, exported as GLB; WebP fallback. No generated likenesses or institutional marks.
+- Product captures are of the public demos. HADHRA embeds its `/sims` interactive illustration. Marsad uses `/replay/` because its live organiser feed is unavailable. No new technical results are invented.
+- NOVA Labs, RUYA and Samt Health imagery comes from their actual public sites. NOVA and Samt block iframe embedding; use normal external navigation.
+- Samt Health: original `~/samt-film/out/review/samt_en_v3_phone.mp4`, re-encoded as a 1280px web film.
+- Morning Club: three official screenshots from [its App Store listing](https://apps.apple.com/ae/app/the-morning-club/id6761857556), published under Amir Hossein Kazemkhani.
+- Gold Hedge: original Blender still life, with editable source and generator. Decorative, not a private product screen or a price chart.
+- Existing descriptions for the wider portfolio come from the existing `/work` collection. No new performance or financial metrics have been added.
 
 ## Verification
 
-Run `npm run build`, `npm audit`, and `python3 scripts/portfolio-qa.py [base-url]`. Test records and opened screenshots are stored outside the source tree under `/tmp/portfolio-qa` during this session. Final deployment status and output are recorded below once verified.
+Run `npm run build`, `npm audit`, and `python3 scripts/portfolio-qa.py [base-url]`. Test records and opened screenshots are stored outside the source tree under `/tmp/portfolio-v2-final-qa` during this session. Final deployment status and output are recorded below once verified.
 
-## Verified before publication
+## Release checks
 
-- Production TypeScript/Vite build passes. Three.js remains in its own dynamically imported chunk; Vite reports its size warning, not a build failure.
-- `npm audit`: `found 0 vulnerabilities`. Updated compatible packages and scoped the typography plugin's pinned selector parser to a patched version.
-- `python3 scripts/portfolio-qa.py`: `ALL PORTFOLIO CHECKS PASS`. 1280x720, 390x844, 768x1024, 1024x768, 320x568 and 390x844 reduced motion. Every project film played and each actual embedded product loaded at desktop and phone sizes. Portal navigation and Back reset pass. No page errors or horizontal overflow.
-- Additional checks: `ALL ADDITIONAL CHECKS PASS`. Pausing holds the rendered canvas frame; resuming changes it. Escape closes the demo and restores focus. Cancelling the portal prevents navigation. Larger text fits the phone. Disabling WebGL retains the rendered sculpture.
-- Existing writing, article, contact, privacy, terms and `/work/` routes checked at desktop and phone sizes. Article light-theme contrast corrected.
-- Read-only council review: `qwen SHIP`, run `20261116-133726`. Its portal escape and pause-reload suggestions were addressed. Its external-asset uncertainty was resolved through actual browser playback/loading.
-- Opened screenshots: `docs/qa/portfolio-desktop.png` and `docs/qa/portfolio-phone.png`. Full command output is stored beside them.
+Final command output is saved in `docs/qa/portfolio-checks.txt`. The browser gate checks all 15 projects, six viewport/motion combinations, real film playback, real embedded products, the cancellable portal and destination navigation, paused rendering, WebGL fallback and retained routes. Desktop and phone screenshots are opened for visual inspection.
+
+The repository's GitHub Actions account is blocked by a billing issue. The previous run reported: “The job was not started because your account is locked due to a billing issue.” No billing settings were changed. Local build/browser gates and Vercel's separate production build provide the release evidence.
+
+## Verified release checks
+
+- Production TypeScript/Vite build passes. The separate Three.js chunk retains Vite's size advisory.
+- Dependency audit: `found 0 vulnerabilities`.
+- Full browser gate: `ALL PORTFOLIO CHECKS PASS`. All 15 projects at 1280x720, 390x844, 768x1024, 1024x768, 320x568 and 390x844 with reduced motion. No overlapping chapter footers, horizontal overflow, missing local assets or page errors.
+- All four original films played at desktop and phone sizes: Bayyina 66.3s, Marsad 119.9s, HADHRA 105.0s and Samt Health 68.5s. Closing restores focus.
+- All four real embedded products loaded and closed at both sizes. HADHRA uses its `/sims` marine illustration. The dedicated demo toolbar was also checked independently for placement and initial/return focus.
+- Actual portal destination navigation, browser Back reset, cancellation, global pause/resume, WebGL fallback, larger text, retained routes and archive document links pass.
+- Read-only council run `20261116-144134`: `qwen SHIP`. Its earlier pause and keyboard-exit findings were addressed. Cross-origin Escape is not promised; the portfolio provides a visible exit toolbar and external full-screen link.
+- The temporary external connection outage recovered before the final browser gate. Publication uses the existing GitHub-to-Vercel production integration; production status and asset parity are checked after pushing the release.

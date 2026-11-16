@@ -24,8 +24,7 @@ export function usePageMeta(title: string, description?: string) {
   }, [title, description]);
 }
 
-export const SITE_TITLE =
-  "Amir Kazemkhani | AI systems & interactive worlds";
+export const SITE_TITLE = "Amir Kazemkhani | AI systems & interactive worlds";
 
 export const SITE_DESCRIPTION =
-  "Explore Bayyina, Marsad and HADHRA. AI systems, immersive demos and engineering projects by Amir Hossein Kazemkhani, based in Dubai.";
+  "Step inside the work of Amir Hossein Kazemkhani. AI, aviation, energy, health and consumer products, with interactive demos and original films. Based in Dubai.";

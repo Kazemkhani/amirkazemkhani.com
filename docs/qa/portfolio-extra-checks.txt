@@ -1,6 +1,0 @@
-PASS motion: pause holds the rendered frame; play resumes animation
-PASS focus: Escape closes and restores trigger; portal cancellation prevents navigation
-PASS larger text: no horizontal overflow at 390x844
-Console errors: []
-PASS no-WebGL: rendered sculpture fallback remains visible
-ALL ADDITIONAL CHECKS PASS
