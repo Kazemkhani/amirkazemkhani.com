@@ -130,6 +130,15 @@ export default function Home() {
               <span>Raised at Kenchi</span>
               <small>Co-founder</small>
             </a>
+            <a
+              href="/articles/dubai-police-hackathon"
+              className="hero-award hero-award-police"
+            >
+              <img src="/credentials/dubai-police.svg" alt="Dubai Police" />
+              <strong>1st place</strong>
+              <span>HQ Hackathon</span>
+              <small>Security & innovation</small>
+            </a>
             <a href="#recognition" className="hero-award hero-award-ifza">
               <img src="/credentials/ifza.png" alt="IFZA" />
               <strong>1st place</strong>
@@ -314,19 +323,28 @@ export default function Home() {
             </a>
           </article>
           <article id="cyberlife" className="award-card award-cyberlife">
-            <img
-              className="award-logo"
-              src="/credentials/mediclinic.svg"
-              alt="Mediclinic"
-              loading="lazy"
-            />
+            <div className="award-partners">
+              <img
+                className="award-logo"
+                src="/credentials/mediclinic.svg"
+                alt="Mediclinic"
+                loading="lazy"
+              />
+              <img
+                className="award-logo in5-logo"
+                src="/credentials/in5.png"
+                alt="in5"
+                loading="lazy"
+              />
+            </div>
             <h3>
               <WordReveal text="CyberLife" variant="sculpted" paused={paused} />
             </h3>
             <p className="award-title">1st place · FutureHack by in5</p>
             <p>
               Mediclinic’s Digital Innovation Director offered a
-              proof-of-concept contract.
+              proof-of-concept contract. The VP at in5 directly awarded us a
+              six-month residency.
             </p>
             <p className="award-detail">
               UEP award, University of Birmingham Dubai. Part of the Mohammed

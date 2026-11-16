@@ -1,3 +1,4 @@
+import ProductLogo from "./ProductLogo";
 import type { World } from "../data/worlds";
 export default function ProjectCredential({
   world,
@@ -20,6 +21,8 @@ export default function ProjectCredential({
             <img src={c.logo} alt={c.name} />
             {world.id === "enec" && <strong>NSTI Festival</strong>}
           </>
+        ) : world.id === "morning" || world.id === "gold" ? (
+          <ProductLogo id={world.id} />
         ) : (
           <strong>{c.name}</strong>
         )}

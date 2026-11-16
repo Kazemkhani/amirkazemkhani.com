@@ -12,11 +12,15 @@ with sync_playwright() as p:
   assert 'AI founder.' in page.locator('h1').inner_text()
   assert page.locator('.hero-identity').count()==0
   assert page.locator('.world-dock .product-logo').count()==8
-  assert page.locator('.hero-award img').count()==2
+  assert page.locator('.hero-award img').count()==3
   for img in page.locator('.hero-award img').all():img.evaluate('(e)=>e.decode()')
   assert page.locator('.dock-number').count()==0
+  assert page.locator('.chapter-name .product-logo').count()==8
+  assert page.locator('.hero-award-police img').get_attribute('alt')=='Dubai Police'
+  assert 'HQ Hackathon' in page.locator('.hero-evidence').inner_text()
+  assert page.locator('.award-partners img[alt="in5"]').count()==1
   assert page.locator('.nova-broadcast').count()==1
-  assert page.locator('.credential-strip .project-credential').count()==11
+  assert page.locator('.credential-strip .project-credential').count()==12
   assert 'The ventures. The evidence.' not in page.locator('body').inner_text()
   assert 'ENEC' not in page.locator('body').inner_text()
   assert page.locator('.hero-evidence').bounding_box()['y']+page.locator('.hero-evidence').bounding_box()['height']<=h, 'Key figures below initial viewport'

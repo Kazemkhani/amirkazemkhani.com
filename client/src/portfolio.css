@@ -307,14 +307,9 @@
   align-items: center;
   gap: 15px;
   color: var(--world-colour);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-.chapter-name > span {
-  font-family: serif;
-  font-size: 19px;
+  font-family: var(--font-sans);
+  margin: 0;
+  min-height: 42px;
 }
 .chapter-copy h2 {
   font-size: clamp(32px, 3.35vw, 60px);
@@ -1211,9 +1206,6 @@
   }
   .chapter-name {
     font-size: 10px;
-  }
-  .chapter-name > span {
-    font-size: 16px;
   }
   .chapter-copy h2 {
     font-size: 39px;
@@ -2951,4 +2943,61 @@
   .hero-evidence strong {
     font-size: 16px;
   }
+}
+
+.chapter-name .product-logo {
+  justify-content: flex-start;
+  transform-origin: left center;
+}
+.chapter-name .product-logo-marsad img { width: 175px; height: 44px; }
+.chapter-name .product-logo-bayyina b { font-size: 23px; }
+.chapter-name .product-logo-enec b { font-size: 25px; }
+.chapter-name .product-logo-nova b { font-size: 30px; }
+.chapter-name .product-logo-ruya b { font-size: 38px; }
+.chapter-name .product-logo-samt img { width: 115px; height: 50px; }
+.chapter-name .product-logo-morning { flex-direction: row; gap: 12px; }
+.chapter-name .product-logo-morning img { width: 40px; height: 40px; }
+.chapter-name .product-logo-morning b { font-size: 17px; text-align: left; }
+.chapter-name .product-logo-morning b > span { font-size: 11px; }
+.chapter-name .product-logo-gold b { font-size: 24px; }
+.credential-morning .product-logo { flex-direction: row; gap: 12px; }
+.credential-morning .product-logo b { font-size: 16px; }
+.credential-morning .product-logo img { width: 36px; height: 36px; }
+.hero-evidence { grid-template-columns: repeat(4,minmax(0,1fr)); max-width: 530px; gap: 12px; }
+.hero-evidence strong { font-size: 20px; }
+.hero-evidence a { padding-left: 10px; }
+@media (max-width: 1050px) and (min-width: 701px) {
+  .hero-evidence { gap: 6px; }
+  .hero-evidence a { padding-left: 6px; }
+  .hero-evidence strong { font-size: 16px; }
+  .hero-award img { max-width: 70px; }
+  .hero-evidence span { font-size: 8px; }
+  .hero-evidence small { font-size: 7px; }
+}
+@media (max-width: 700px) {
+  .hero-title h1 em { font-size: clamp(40px,12.8vw,60px); white-space: nowrap; }
+  .hero-evidence { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .hero-evidence strong { font-size: 23px; }
+  .hero-evidence > a:first-child { padding-top: 0; }
+  .hero-award img { height: 24px; }
+  .hero-evidence span { font-size: 10px; }
+  .hero-evidence small { font-size: 9px; }
+  .universe-hero { height: 1270px; }
+  .universe-view { top: 48%; height: 22%; }
+  .active-world { top: 71%; }
+  .universe-instruction { display: none; }
+}
+
+.award-partners { display: flex; align-items: center; gap: 28px; margin-bottom: 30px; }
+.award-partners .award-logo { margin-bottom: 0; }
+.award-partners .in5-logo { width: 62px; height: 62px; mix-blend-mode: multiply; }
+.credential-in5 img { width: 65px !important; height: 55px !important; mix-blend-mode: multiply; }
+@media (max-width:700px) { .award-partners { gap: 16px; } .award-partners .award-logo { max-width: 140px; } }
+
+@media (max-width: 360px) {
+  .universe-hero { padding-top: 88px; }
+  .hero-title { margin-top: 10px; }
+  .hero-title > p:last-of-type { font-size: 11px; line-height: 1.6; }
+  .hero-evidence { margin-top: 16px; gap: 12px; }
+  .hero-evidence strong { font-size: 20px; }
 }

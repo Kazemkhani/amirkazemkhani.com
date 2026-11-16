@@ -125,9 +125,9 @@ export default function WorldChapter({
           </div>
         )}
         <div className="chapter-copy">
-          <p className="chapter-name">
-            {world.name} <span lang="ar">{world.arabic}</span>
-          </p>
+          <div className="chapter-name" role="img" aria-label={world.name}>
+            <ProductLogo id={world.id} />
+          </div>
           <p className="project-role">{world.role}</p>
           <h2>
             {world.headline.split("\n").map((line, i) => (

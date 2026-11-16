@@ -235,7 +235,7 @@ export const worlds: World[] = [
     headline: "Women’s health.\nAn Arabic-first approach.",
     description:
       "An Arabic-first companion for women navigating menopause. A product built around language, dignity and clearer conversations about health.",
-    context: `Officially registered at Expo City Dubai. Supported through Changemakers Academy with a ${formatAED(25000)} grant and a ${formatAED(18000)} sponsored business licence.`,
+    context: `Officially registered at Expo City Dubai. Supported through Changemakers Academy with an ${formatAED(25000)} grant and an ${formatAED(18000)} sponsored business licence.`,
     limit:
       "The public site describes current availability. This portfolio does not provide medical advice or display patient information.",
     chapters: [
@@ -332,7 +332,7 @@ export const earlierWork = [
     name: "CyberLife",
     category: "Healthcare AI",
     description:
-      "FutureHack winner. Mediclinic proof-of-concept contract offered, UEP award and MBRIF incubator programme.",
+      "FutureHack winner. Mediclinic proof-of-concept contract offered, six-month in5 residency awarded by its VP, UEP award and MBRIF incubator programme.",
     href: "/articles/futurehack-cyberlife",
   },
   {

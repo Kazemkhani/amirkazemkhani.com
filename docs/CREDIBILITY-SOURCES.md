@@ -75,3 +75,14 @@ Amir requested the original AED figures again. This supersedes the USD-conversio
 The opening now directly shows the IFZA logo, first place and internship award, plus the U.S. Mission event artwork and RUYA prize package. The full supporting awards section remains below. All eight selected-project links now render their actual product identity, with accessible project names, matching the logo navigation.
 
 Read-only GCP investigation confirmed the SIEMENS RUYA project is ACTIVE and billingEnabled is true. The scoped Vertex error-log query returned no entries. This does not resolve the earlier HTTP 403 terms/policies rejection or establish its cause. No image request was routed through a different project, model or provider. Replacement images remain blocked.
+
+
+## Brand consistency and residency update, 16 November 2026
+
+Restored the separate Dubai Police HQ hackathon first-place result in the opening alongside IFZA and the RUYA event award. `dubai-police.svg` is a viewport crop of the official summit SVG, retaining only its Dubai Police artwork; the summit identity is not attached to the hackathon claim.
+
+Amir explicitly states that the VP at in5 directly awarded CyberLife a six-month residency. This is a first-person claim. The in5 identity accompanies Mediclinic in the award card and the earlier-projects collection, and has its own clearly labelled residency entry. The original logo is from https://infive.ae/wp-content/uploads/2021/06/in5-logo-small.png, linked by https://infive.ae/.
+
+All eight project chapter labels now use the shared ProductLogo component. The Morning Club and Gold Hedge credential headings also use their product identities. The separate `/work/` collection now uses the homepage's light palette and individual pastel project cards. An inherited unsupported speaker label was corrected to exhibitor.
+
+The GCP console confirmed a Gemini service-terms restriction independently of active billing. An authorised appeal was submitted and the console displayed: "Submitted request. Check your email for confirmation." Access restoration and replacement image generation remain unconfirmed. The requested GCP artwork has not been substituted with another provider.

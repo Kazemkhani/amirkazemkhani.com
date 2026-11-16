@@ -43,6 +43,16 @@ export const additionalCredentials = [
     },
   },
   {
+    id: "in5",
+    credential: {
+      label: "Six-month residency awarded",
+      name: "in5",
+      logo: "/credentials/in5.png",
+      detail: "CyberLife · Awarded directly by the VP",
+      href: "https://infive.ae/",
+    },
+  },
+  {
     id: "mbrif",
     credential: {
       label: "Incubator programme",

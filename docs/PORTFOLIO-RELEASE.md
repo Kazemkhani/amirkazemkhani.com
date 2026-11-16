@@ -79,3 +79,18 @@ Release gates for this revision:
 The selected product now shows its actual identity rather than generic text. IFZA first place and internship, and the U.S. Mission-linked RUYA prize package, are directly visible in the opening with their logos. Original AED amounts replace approximate USD conversions; RUYA retains its native USD award amount. Removed the redundant opening scroll link to give the award identities room without overlapping the gallery navigation.
 
 Validation: TypeScript/Vite build passes. The credibility gate passes at all six screen sizes. All eight selected identities decode and gallery arrows remain usable at 1280, 390, 1024 and 320 pixels. Desktop and phone screenshots were opened and inspected. Films and embed implementation are unchanged from the preceding verified revision.
+
+
+## Complete project identities and light archive
+
+Restores Dubai Police HQ first place with its official mark alongside IFZA and the U.S. Mission event identity in the opening. Applies the shared product identities to all eight chapters and the Morning Club/Gold Hedge credential headings. Adds CyberLife's six-month in5 residency, directly awarded by its VP as supplied by Amir, with official in5 artwork alongside Mediclinic. The relationship strip now has twelve entries.
+
+The separate `/work/` document now shares the light palette, quieter borders and spacious coloured cards. Earlier projects show their concrete outcomes and links. Native AED figures remain. No generated image replacement is claimed; Google confirmed appeal submission but has not restored access.
+
+Validation:
+
+- `npm run build`: TypeScript and Vite pass; existing large-chunk advisory remains.
+- `scripts/credibility-qa.py`: all six sizes pass, including the three award identities, all eight chapter logos and twelve institution entries. All opening figures fit even 320x568.
+- `PORTFOLIO_LOCAL_ONLY=1 python3 scripts/portfolio-qa.py`: all local checks pass, including original local films, gallery navigation, pause/resume, reduced motion, WebGL fallback, larger text and retained routes. External embeds are unchanged and were not revalidated in this revision.
+- Archive checks pass at 1280x720, 390x844, 768x1024, 1024x768 and 320x568, including larger text and logo decoding. Desktop and phone screenshots opened for inspection.
+- GitHub Actions remains blocked by its existing account billing issue. Publication uses the separately functioning Vercel integration; production verification follows deployment.
