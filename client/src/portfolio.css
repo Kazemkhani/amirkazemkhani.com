@@ -76,16 +76,7 @@
   max-width: 300px;
   color: #67747f;
 }
-.hero-scroll {
-  pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 25px;
-  font-size: 12px;
-  margin-top: 30px;
-  border-bottom: 1px solid #a3b2b2;
-  padding-bottom: 10px;
-}
+
 .universe-view {
   position: absolute;
   left: 39%;
@@ -1121,11 +1112,7 @@
     max-width: 260px;
     line-height: 1.8;
   }
-  .hero-scroll {
-    font-size: 11px;
-    margin-top: 17px;
-    gap: 20px;
-  }
+
   .universe-view {
     left: -17%;
     right: -17%;
@@ -1733,9 +1720,7 @@
   margin-top: 4px;
   color: #6a7e80;
 }
-.hero-scroll {
-  margin-top: 23px;
-}
+
 .universe-view {
   top: 15%;
   height: 47%;
@@ -1951,9 +1936,7 @@
   .hero-evidence small {
     font-size: 8px;
   }
-  .hero-scroll {
-    margin-top: 21px;
-  }
+
   .universe-view {
     top: 43%;
     height: 25%;
@@ -2886,5 +2869,86 @@
   }
   .hero-title > .mono {
     margin-bottom: 20px;
+  }
+}
+
+/* The opening gives awards their own identities and keeps native currencies. */
+.hero-evidence > a:first-child {
+  padding-top: 34px;
+}
+.hero-award img {
+  display: block;
+  width: 86px;
+  height: 26px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 8px;
+}
+.hero-award-ifza img {
+  filter: brightness(0.35);
+}
+.hero-evidence small {
+  line-height: 1.45;
+}
+.selected-project {
+  min-height: 44px;
+}
+.selected-project .product-logo {
+  justify-content: flex-start;
+}
+.selected-project .product-logo-marsad img {
+  width: 175px;
+  height: 42px;
+}
+.selected-project .product-logo-samt img {
+  width: 110px;
+  height: 46px;
+}
+.selected-project .product-logo-bayyina b {
+  font-size: 20px;
+}
+.selected-project .product-logo-enec b {
+  font-size: 20px;
+}
+.selected-project .product-logo-nova b,
+.selected-project .product-logo-ruya b {
+  font-size: 30px;
+}
+.selected-project .product-logo-morning b {
+  font-size: 15px;
+}
+.selected-project .product-logo-gold b {
+  font-size: 23px;
+}
+@media (max-width: 1050px) and (min-width: 701px) {
+  .hero-evidence {
+    gap: 10px;
+  }
+  .hero-evidence strong {
+    font-size: 19px;
+  }
+  .hero-evidence small {
+    font-size: 8px;
+  }
+}
+@media (max-width: 700px) {
+  .hero-award img {
+    width: 75px;
+    height: 24px;
+  }
+  .hero-evidence > a:first-child {
+    padding-top: 32px;
+  }
+  .hero-evidence strong {
+    font-size: 19px;
+  }
+  .selected-project .product-logo-marsad img {
+    width: 155px;
+    height: 38px;
+  }
+}
+@media (max-width: 360px) {
+  .hero-evidence strong {
+    font-size: 16px;
   }
 }

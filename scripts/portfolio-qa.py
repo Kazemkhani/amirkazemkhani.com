@@ -21,7 +21,7 @@ with sync_playwright() as p:
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'overflow {label}'
   page.screenshot(path=str(OUT/f'hero-{label}.png'))
   page.get_by_role('button',name='Next project',exact=True).click()
-  assert page.locator('.active-world .selected-project').inner_text()=='Marsad'
+  assert page.locator('.active-world .selected-project').get_attribute('aria-label')=='Explore Marsad'
   page.get_by_role('button',name='Previous project',exact=True).click()
   for name in IDS:
    section=page.locator('#'+name);section.evaluate('(e)=>window.scrollTo(0,e.offsetTop+(innerWidth>700?80:0))');page.wait_for_timeout(350)

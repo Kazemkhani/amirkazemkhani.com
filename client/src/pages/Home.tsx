@@ -23,7 +23,7 @@ import { worlds, earlierWork, type World } from "../data/worlds";
 import ProjectCredential from "../components/ProjectCredential";
 import ProductLogo from "../components/ProductLogo";
 import WordReveal from "../components/WordReveal";
-import { additionalCredentials, usdEquivalent } from "../data/recognition";
+import { additionalCredentials, formatAED } from "../data/recognition";
 import WorldChapter from "../components/WorldChapter";
 import WritingSection from "../components/WritingSection";
 import FalconsEpisode from "../components/FalconsEpisode";
@@ -126,24 +126,26 @@ export default function Home() {
           </p>
           <div className="hero-evidence">
             <a href="/work/#earlier">
-              <strong>≈ US$545K</strong>
+              <strong>AED 2M</strong>
               <span>Raised at Kenchi</span>
               <small>Co-founder</small>
             </a>
-            <a href="#samt">
-              <strong>≈ US$6.8K</strong>
-              <span>Programme grant</span>
-              <small>Samt Health</small>
-            </a>
-            <a href="/articles/dubai-police-hackathon">
+            <a href="#recognition" className="hero-award hero-award-ifza">
+              <img src="/credentials/ifza.png" alt="IFZA" />
               <strong>1st place</strong>
-              <span>Dubai Police HQ</span>
-              <small>Hackathon</small>
+              <span>Scale360 Hackathon</span>
+              <small>Internship awarded</small>
+            </a>
+            <a href="#recognition" className="hero-award hero-award-mission">
+              <img
+                src="/credentials/us-mission.png"
+                alt="U.S. Mission to the UAE, hackathon partner"
+              />
+              <strong>US$12,800</strong>
+              <span>RUYA AI Hackathon</span>
+              <small>Prize package · U.S. Mission partner event</small>
             </a>
           </div>
-          <a href="#work" className="hero-scroll">
-            Scroll into the work <ArrowDown size={16} />
-          </a>
         </div>
         <div className="universe-view">
           <img
@@ -158,8 +160,12 @@ export default function Home() {
         <div className="active-world">
           <div>
             <ProjectCredential world={selected} />
-            <a className="selected-project" href={`#${selected.id}`}>
-              {selected.name}
+            <a
+              className="selected-project"
+              href={`#${selected.id}`}
+              aria-label={`Explore ${selected.name}`}
+            >
+              <ProductLogo id={selected.id} />
               <ArrowDown size={18} />
             </a>
             <p className="selected-role">{selected.role}</p>
@@ -294,7 +300,7 @@ export default function Home() {
             />
             <h3>
               <WordReveal
-                text={usdEquivalent(30000)}
+                text={formatAED(30000)}
                 variant="sculpted"
                 paused={paused}
               />
@@ -332,8 +338,8 @@ export default function Home() {
           </article>
         </div>
         <p className="currency-note">
-          All amounts in US dollars. Dirham awards and funding converted at AED
-          3.6725 per US$1; rounded equivalents are marked ≈.
+          Awards and funding are shown in their original currency. The RUYA
+          prize package includes cash, credits and subscriptions.
         </p>
       </section>
       <section

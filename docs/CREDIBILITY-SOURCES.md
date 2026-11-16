@@ -67,3 +67,11 @@ YouTube metadata reported 799 views for this upload on 16 November 2026. Searche
 ### Artwork status
 
 Requested replacement Gold Hedge and Morning Club artwork remains pending. Image generation through the authorised SIEMENS RUYA Google Cloud project returned HTTP 403, `PERMISSION_DENIED`, with “Request rejected in accordance with our terms of use and policies.” No image was produced. Permission to use the built-in image provider instead was requested and has not yet been received. Existing imagery is retained until that choice is resolved.
+
+## Opening correction, 16 November 2026
+
+Amir requested the original AED figures again. This supersedes the USD-conversion decision above: Kenchi shows AED 2M, Marsad AED 30,000, Samt AED 25,000 grant and AED 18,000 licence. The RUYA award remains in its original US$12,800 currency and is still labelled a prize package, not cash. Removed the approximate-dollar helper and conversion footnote.
+
+The opening now directly shows the IFZA logo, first place and internship award, plus the U.S. Mission event artwork and RUYA prize package. The full supporting awards section remains below. All eight selected-project links now render their actual product identity, with accessible project names, matching the logo navigation.
+
+Read-only GCP investigation confirmed the SIEMENS RUYA project is ACTIVE and billingEnabled is true. The scoped Vertex error-log query returned no entries. This does not resolve the earlier HTTP 403 terms/policies rejection or establish its cause. No image request was routed through a different project, model or provider. Replacement images remain blocked.

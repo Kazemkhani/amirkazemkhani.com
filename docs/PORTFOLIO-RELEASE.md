@@ -73,3 +73,9 @@ Release gates for this revision:
 - `python3 scripts/portfolio-motion-qa.py`: accessible headings, no duplicate hero name, animated brand mark and actual global pause pass. Actual YouTube playback advanced beyond 3562 seconds with `paused: false, muted: true`; explicit unmute and reduced-motion/player cleanup pass.
 - Screenshots opened at 1280x720 and 390x844, with tablet layout also inspected at 1024x768.
 - No dependency changes. GitHub Actions billing limitation from the preceding release remains; a successful local gate is not reported as GitHub CI success.
+
+## Opening follow-up
+
+The selected product now shows its actual identity rather than generic text. IFZA first place and internship, and the U.S. Mission-linked RUYA prize package, are directly visible in the opening with their logos. Original AED amounts replace approximate USD conversions; RUYA retains its native USD award amount. Removed the redundant opening scroll link to give the award identities room without overlapping the gallery navigation.
+
+Validation: TypeScript/Vite build passes. The credibility gate passes at all six screen sizes. All eight selected identities decode and gallery arrows remain usable at 1280, 390, 1024 and 320 pixels. Desktop and phone screenshots were opened and inspected. Films and embed implementation are unchanged from the preceding verified revision.

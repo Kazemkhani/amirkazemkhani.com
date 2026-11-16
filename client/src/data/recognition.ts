@@ -1,8 +1,5 @@
-// USD equivalents use the CBUAE's AED 3.6725 per USD reference rate.
-// Original AED values and source links are retained in docs/CREDIBILITY-SOURCES.md.
-export const AED_PER_USD = 3.6725;
-export const usdEquivalent = (aed: number) =>
-  `≈ US$${Math.round(aed / AED_PER_USD).toLocaleString("en-US")}`;
+export const formatAED = (amount: number) =>
+  `AED ${amount.toLocaleString("en-US")}`;
 
 export const additionalCredentials = [
   {

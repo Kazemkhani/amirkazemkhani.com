@@ -1,5 +1,5 @@
 export type WorldId = string;
-import { usdEquivalent } from "./recognition";
+import { formatAED } from "./recognition";
 export interface World {
   id: WorldId;
   name: string;
@@ -82,7 +82,7 @@ export const worlds: World[] = [
       href: "https://www.dubaiairports.ae/corporate",
     },
     proof: [
-      { value: usdEquivalent(30000), label: "Dubai Airports hackathon prize" },
+      { value: formatAED(30000), label: "Dubai Airports hackathon prize" },
     ],
     background: "#dbe9ff",
     scene: "/worlds/marsad-scene.mp4",
@@ -219,8 +219,8 @@ export const worlds: World[] = [
       href: "https://www.expocitydubai.com/en/media-centre/problem-solving-for-the-future-expo-city-dubai-foundation-launches/",
     },
     proof: [
-      { value: usdEquivalent(25000), label: "Changemakers Academy grant" },
-      { value: usdEquivalent(18000), label: "Expo-sponsored business licence" },
+      { value: formatAED(25000), label: "Changemakers Academy grant" },
+      { value: formatAED(18000), label: "Expo-sponsored business licence" },
     ],
     name: "Samt Health",
     arabic: "سمت",
@@ -235,7 +235,7 @@ export const worlds: World[] = [
     headline: "Women’s health.\nAn Arabic-first approach.",
     description:
       "An Arabic-first companion for women navigating menopause. A product built around language, dignity and clearer conversations about health.",
-    context: `Officially registered at Expo City Dubai. Supported through Changemakers Academy with a ${usdEquivalent(25000)} grant and a ${usdEquivalent(18000)} sponsored business licence.`,
+    context: `Officially registered at Expo City Dubai. Supported through Changemakers Academy with a ${formatAED(25000)} grant and a ${formatAED(18000)} sponsored business licence.`,
     limit:
       "The public site describes current availability. This portfolio does not provide medical advice or display patient information.",
     chapters: [
@@ -325,7 +325,7 @@ export const earlierWork = [
   {
     name: "Kenchi",
     category: "Construction AI",
-    description: `Co-founder. ${usdEquivalent(2000000)} raised for computer vision and language models for construction sites.`,
+    description: `Co-founder. ${formatAED(2000000)} raised for computer vision and language models for construction sites.`,
     href: "/work/#earlier",
   },
   {
