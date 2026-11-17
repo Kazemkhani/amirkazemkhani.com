@@ -2250,6 +2250,8 @@
   line-height: 1.05;
   margin: 0;
 }
+/* Keep text paint on the word elements: clipping a gradient to their
+   transformed parent causes duplicate glyphs in Chromium's compositor. */
 .project-formats {
   display: flex;
   flex-direction: column;
@@ -2264,25 +2266,6 @@
 .project-formats > span:last-child {
   color: #6073b2;
   margin-left: 12vw;
-}
-.project-formats .kinetic-line {
-  background: linear-gradient(
-    110deg,
-    currentColor 20%,
-    #8e6990 48%,
-    currentColor 75%
-  );
-  background-size: 240% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: inherit;
-  animation: type-light 12s ease-in-out infinite;
-}
-@keyframes type-light {
-  50% {
-    background-position: 100% 0;
-    filter: drop-shadow(0 12px 18px #7482a825);
-  }
 }
 .credential-strip {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2534,8 +2517,7 @@
 .active-world .credential-morning .credential-identity {
   display: none;
 }
-.motion-paused .brand-relief,
-.motion-paused .project-formats .kinetic-line {
+.motion-paused .brand-relief {
   animation-play-state: paused;
 }
 @media (min-width: 1500px) {
@@ -2704,8 +2686,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-relief,
-  .project-formats .kinetic-line {
+  .brand-relief {
     animation: none !important;
   }
   .kinetic-line {

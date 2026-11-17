@@ -94,3 +94,12 @@ Validation:
 - `PORTFOLIO_LOCAL_ONLY=1 python3 scripts/portfolio-qa.py`: all local checks pass, including original local films, gallery navigation, pause/resume, reduced motion, WebGL fallback, larger text and retained routes. External embeds are unchanged and were not revalidated in this revision.
 - Archive checks pass at 1280x720, 390x844, 768x1024, 1024x768 and 320x568, including larger text and logo decoding. Desktop and phone screenshots opened for inspection.
 - GitHub Actions remains blocked by its existing account billing issue. Publication uses the separately functioning Vercel integration; production verification follows deployment.
+
+
+## Typography compositor fix, 17 November 2026
+
+Reproduced the doubled words in the project introduction in Chromium. DOM word positions were correct; background-clip:text on a gradient-painted parent containing transformed words painted duplicate glyphs at the start of each line. Removed that gradient paint and its continuous keyframe animation, including obsolete pause/reduced-motion selectors. The shared perspective word entrance, colours and text sizing remain.
+
+Added `scripts/typography-qa.py`. Its image comparison against plain text rendering fails on the original implementation (`Duplicate/incorrect glyph painting: chromium-1280`) and passes after the fix. It also checks settled word collisions, heading layouts, pause/resume, reduced motion, larger text and retained article/contact/archive routes. Chromium and WebKit pass at 1280x720, 390x844, 768x1024 and 320x568. Desktop and phone screenshots were opened for visual review.
+
+`PORTFOLIO_LOCAL_ONLY=1 python3 scripts/portfolio-qa.py` passes all existing local checks, including films, gallery, global pause, fallback, navigation and six viewport/motion combinations. External embedded products are unchanged and were not rerun for this CSS paint correction. Production build passes. No dependency or lockfile changes.
