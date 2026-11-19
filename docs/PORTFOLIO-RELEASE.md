@@ -123,4 +123,24 @@ PASS archive: British Embassy, Mediclinic offer and MBRIF are present; no phone 
 
 Build retains the existing Three.js chunk-size warning. The full local gate covers six layouts, actual local film playback, gallery navigation, reduced motion, pause/resume, retained routes, WebGL fallback and larger text. External embedded products were excluded because none changed. An earlier gate attempt timed out after its served build was replaced during the run; the gate was repeated against a fixed build and passed.
 
-Current state: built and locally verified. Publication awaits explicit approval under Amir’s supplied AGENTS.md deployment rule. Preview: http://127.0.0.1:4183/. QA screenshots: /tmp/cyberlife-final/. Full local gate log: /tmp/cyberlife-portfolio-final.log.
+Amir approved publication with the direct-contact update on 19 November 2026. Preview: http://127.0.0.1:4183/. QA screenshots: /tmp/cyberlife-final/. Full local gate log: /tmp/cyberlife-portfolio-final.log.
+
+
+## Direct contact, 19 November 2026
+
+Adds a persistent, ivory-and-green contact bar across the React portfolio routes, with the supplied WhatsApp contact link and an email link to amir@amirkazemkhani.com. The same shared component appears in the homepage contact section and Work with me page. A short entrance and hover motion respects reduced motion. Film dialogs and destination transitions hide the bar. The standalone /work/ collection and /keel/ demo keep their existing navigation.
+
+The first local regression caught chapter copy overlapping its evidence footer after reserving space for the bar. Moving the copy up within the desktop chapter resolved it. The contact test initially assumed every retained route used a main element; it now waits for the page heading.
+
+Actual final output:
+
+```text
+npm run build: ✓ built in 1.16s
+ALL CONTACT CHECKS PASS
+ALL CYBERLIFE CHECKS PASS
+ALL CREDIBILITY CHECKS PASS
+ALL LOCAL PORTFOLIO CHECKS PASS (external journeys excluded)
+found 0 vulnerabilities
+```
+
+Contact checks cover five viewport sizes, native link destinations, keyboard focus, 44px touch targets, persistence across routes, reduced motion, film isolation, larger text and no overlap with Back to top. The existing portfolio gate covers six layouts, original local films, gallery controls, pause/resume, retained pages and WebGL fallback. Opened desktop and phone screenshots under /tmp/contact-qa/. No WhatsApp messages or emails were sent. External embedded product journeys were not repeated. The existing large Three.js bundle advisory remains.

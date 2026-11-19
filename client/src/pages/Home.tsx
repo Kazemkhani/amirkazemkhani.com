@@ -22,6 +22,7 @@ import {
 import { worlds, earlierWork, type World } from "../data/worlds";
 import ProjectCredential from "../components/ProjectCredential";
 import ProductLogo from "../components/ProductLogo";
+import ContactActions from "../components/ContactActions";
 import WordReveal from "../components/WordReveal";
 import { additionalCredentials, formatAED } from "../data/recognition";
 import WorldChapter from "../components/WorldChapter";
@@ -551,13 +552,9 @@ export default function Home() {
           <br />
           we <em>build next?</em>
         </h2>
-        <a href="/work-with-me" className="enter-button">
-          Let’s make it happen
-          <ArrowUpRight size={20} />
-        </a>
-        <a className="email-link" href="mailto:amir@amirkazemkhani.com">
-          amir@amirkazemkhani.com
-        </a>
+        <p className="contact-invitation">Tell me what you have in mind. Let’s start a conversation.</p>
+        <ContactActions />
+        <a className="email-link" href="/work-with-me">Explore working together <span aria-hidden="true">↗</span></a>
       </section>
       <Dialog.Root
         open={!!film}

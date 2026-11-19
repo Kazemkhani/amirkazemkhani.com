@@ -4,6 +4,7 @@ import AnchorScroll from "@/components/AnchorScroll";
 import BackToTop from "@/components/BackToTop";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactActions from "@/components/ContactActions";
 
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -138,11 +139,12 @@ function App() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="site-shell min-h-screen bg-background text-foreground">
         <Header />
         <Routes />
         <Footer />
         <BackToTop />
+        <ContactActions floating />
       </div>
     </AnchorScroll>
   );

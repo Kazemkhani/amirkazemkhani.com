@@ -1,4 +1,5 @@
-import { Mail, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import ContactActions from "@/components/ContactActions";
 import Reveal from "@/components/Reveal";
 import { usePageMeta } from "@/lib/meta";
 import { withUtm } from "@/lib/utm";
@@ -46,7 +47,7 @@ const steps = [
   {
     n: "01",
     title: "Write to me",
-    body: "One email: what you're building, where it hurts, timeline. I reply personally.",
+    body: "Send a WhatsApp message or email: what you're building, where it hurts, timeline. I reply personally.",
   },
   {
     n: "02",
@@ -170,19 +171,12 @@ export default function WorkWithMe() {
         <Reveal>
           <div className="border-t border-border/60 pt-10">
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-xl">
-              The fastest way to start is a plain email, what you&rsquo;re
+              Send me a WhatsApp message or email about what you&rsquo;re
               building and where voice or AI fits. I&rsquo;ll tell you honestly
               if I&rsquo;m not the right person.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="mailto:amir@amirkazemkhani.com?subject=Working%20together"
-                className="inline-flex items-center gap-3 px-7 py-3.5 bg-gold-500 text-background font-semibold rounded-full hover:bg-gold-400 transition-colors duration-150"
-                data-track="wwm_email"
-              >
-                <Mail className="w-4 h-4" />
-                amir@amirkazemkhani.com
-              </a>
+              <ContactActions />
               {calUrl && (
                 <a
                   href={calUrl}

@@ -3006,3 +3006,10 @@
   .hero-evidence { margin-top: 16px; gap: 12px; }
   .hero-evidence strong { font-size: 20px; }
 }
+
+.contact-invitation { color: #4d6857; font-size: 15px; line-height: 1.7; margin-bottom: 25px; max-width: 360px; }
+/* Leave the persistent contact bar below the sticky chapter's content. */
+@media (min-width: 701px) {
+  .chapter-stage { height: calc(100svh - 90px); }
+  .chapter-copy { top: 27%; }
+}
