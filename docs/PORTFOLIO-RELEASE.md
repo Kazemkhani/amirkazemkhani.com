@@ -103,3 +103,24 @@ Reproduced the doubled words in the project introduction in Chromium. DOM word p
 Added `scripts/typography-qa.py`. Its image comparison against plain text rendering fails on the original implementation (`Duplicate/incorrect glyph painting: chromium-1280`) and passes after the fix. It also checks settled word collisions, heading layouts, pause/resume, reduced motion, larger text and retained article/contact/archive routes. Chromium and WebKit pass at 1280x720, 390x844, 768x1024 and 320x568. Desktop and phone screenshots were opened for visual review.
 
 `PORTFOLIO_LOCAL_ONLY=1 python3 scripts/portfolio-qa.py` passes all existing local checks, including films, gallery, global pause, fallback, navigation and six viewport/motion combinations. External embedded products are unchanged and were not rerun for this CSS paint correction. Production build passes. No dependency or lockfile changes.
+
+## CyberLife exhibition addition, 19 November 2026
+
+CyberLife now uses the shared opening gallery and chapter design, with the original GOV.UK Embassy crest, an “Exhibiting at” relationship label, university selection and allocated exhibition stall. Its existing Mediclinic proof-of-concept contract offer, MBRIF programme, in5 residency and UEP award remain explicit. The article, award card and archive also include the exhibition. No city or exhibition date is invented. Nine gallery projects and six additional projects preserve all 15 projects.
+
+The new `scripts/cyberlife-qa.py` first failed with `AssertionError: CyberLife is missing from the opening gallery`. It now passes at 1280, 390, 320, 768 and 1024 pixels, including gallery selection, logo decoding, chapter links, article copy and horizontal overflow. Desktop and phone screenshots were opened for visual review.
+
+Final local output:
+
+```text
+npm run build: ✓ built in 1.08s
+npm audit --omit=dev: found 0 vulnerabilities
+ALL CYBERLIFE CHECKS PASS
+ALL CREDIBILITY CHECKS PASS
+ALL LOCAL PORTFOLIO CHECKS PASS (external journeys excluded)
+PASS archive: British Embassy, Mediclinic offer and MBRIF are present; no phone overflow
+```
+
+Build retains the existing Three.js chunk-size warning. The full local gate covers six layouts, actual local film playback, gallery navigation, reduced motion, pause/resume, retained routes, WebGL fallback and larger text. External embedded products were excluded because none changed. An earlier gate attempt timed out after its served build was replaced during the run; the gate was repeated against a fixed build and passed.
+
+Current state: built and locally verified. Publication awaits explicit approval under Amir’s supplied AGENTS.md deployment rule. Preview: http://127.0.0.1:4183/. QA screenshots: /tmp/cyberlife-final/. Full local gate log: /tmp/cyberlife-portfolio-final.log.

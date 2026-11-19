@@ -10,6 +10,7 @@ export interface World {
   preview: string;
   film?: string;
   image?: string;
+  imageAlt?: string;
   scene?: string;
   background?: string;
   embeddable?: boolean;
@@ -312,6 +313,40 @@ export const worlds: World[] = [
       "The gold sculpture is an illustration. No customer information, live prices or private trading screens are published here.",
     chapters: ["Institutional pricing", "Order workflows", "Exact accounting"],
   },
+  {
+    id: "cyberlife",
+    name: "CyberLife",
+    arabic: "",
+    role: "AI Lead · Healthcare intelligence",
+    category: "Healthcare AI",
+    colour: "#486e95",
+    background: "#e4edf5",
+    credential: {
+      label: "Exhibiting at",
+      name: "British Embassy",
+      detail: "University-selected · Exhibition stall allocated",
+      logo: "/credentials/british-embassy-crest.png",
+      href: "https://www.gov.uk/world/british-embassy-or-high-commission-united-arab-emirates",
+    },
+    proof: [
+      { value: "1st place", label: "FutureHack by in5" },
+      { value: "MBRIF", label: "Incubator programme" },
+    ],
+    url: "/articles/futurehack-cyberlife",
+    preview: "",
+    image: "/worlds/cyberlife.webp",
+    imageAlt: "CyberLife exhibition card: university-selected to present at the British Embassy",
+    entryLabel: "Read the CyberLife story",
+    status: "Selected to exhibit at the British Embassy",
+    headline: "Patient data.\nA clearer picture.",
+    description:
+      "Clinical intelligence that brings lab reports, imaging and wearable data into one patient view. University-selected to present CyberLife at an allocated British Embassy exhibition stall.",
+    context:
+      "Mediclinic’s Digital Innovation Director offered a proof-of-concept contract. The VP at in5 awarded a six-month residency. Part of the MBRIF incubator programme, with a University of Birmingham Dubai UEP award.",
+    limit:
+      "Healthcare AI prototype. The proof-of-concept contract has been offered; clinical deployment is not claimed.",
+    chapters: ["Clinical intelligence", "University selection", "British Embassy exhibition"],
+  },
 ];
 
 export const earlierWork = [
@@ -327,13 +362,6 @@ export const earlierWork = [
     category: "Construction AI",
     description: `Co-founder. ${formatAED(2000000)} raised for computer vision and language models for construction sites.`,
     href: "/work/#earlier",
-  },
-  {
-    name: "CyberLife",
-    category: "Healthcare AI",
-    description:
-      "FutureHack winner. Mediclinic proof-of-concept contract offered, six-month in5 residency awarded by its VP, UEP award and MBRIF incubator programme.",
-    href: "/articles/futurehack-cyberlife",
   },
   {
     name: "MIZAN",

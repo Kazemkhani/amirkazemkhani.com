@@ -6,13 +6,13 @@ Updated 16 November 2026 for Amir's explicit immersive, light-mode redesign requ
 
 A bright ivory canvas with mint, cornflower, peach, lilac, rose, lime and champagne product environments. Instrument Serif provides the editorial display voice; Inter and JetBrains Mono carry UI and supporting copy. Fonts remain self-hosted.
 
-The home page opens with a draggable spatial gallery, then eight full product chapters, seven additional projects, public presentations, writing and contact. Existing articles, contact, privacy, terms and the separate `/work` collection remain available.
+The home page opens with a draggable spatial gallery, then nine full product chapters, six additional projects, public presentations, writing and contact. Existing articles, contact, privacy, terms and the separate `/work` collection remain available.
 
 Lead with Amir's founder and CTO role, the Kenchi funding, Samt programme grant and separate Dubai Police HQ hackathon win. Each selected project and chapter foregrounds its actual role, institution or programme and relevant evidence. Official logos identify a clearly labelled exhibition, hackathon, shortlisting or programme relationship. They are not an unlabelled client wall. HADHRA leads with ATRC and NSTI; Samt leads with Expo City Dubai's Changemakers Academy. Sources and the relationship boundaries live in `docs/CREDIBILITY-SOURCES.md`.
 
 ## Real work
 
-Eight product worlds: Bayyina, Marsad, HADHRA, NOVA Labs, RUYA, Samt Health, The Morning Club and Gold Hedge. Additional work: Keel, Kenchi, CyberLife, MIZAN, TANZEEM, ArenaAI and Huscribe. The authoritative content is `client/src/data/worlds.ts`.
+Nine product worlds: Bayyina, Marsad, HADHRA, NOVA Labs, RUYA, Samt Health, The Morning Club, Gold Hedge and CyberLife. Additional work: Keel, Kenchi, MIZAN, TANZEEM, ArenaAI and Huscribe. The authoritative content is `client/src/data/worlds.ts`.
 
 Real product footage plays inside the first three scenes. Take control loads the actual Bayyina, Marsad, HADHRA or RUYA website into its scene. NOVA Labs and Samt Health disallow framing, so they use genuine public captures and external links. Films are original project films, loaded on request. Morning Club uses its official App Store images. Gold Hedge is private and offers a walkthrough without exposing private screens or customer data.
 

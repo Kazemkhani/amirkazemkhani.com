@@ -302,7 +302,11 @@ export const articles: Article[] = [
       },
       {
         type: 'text',
-        content: "We're exploring the path from prototype to pilot. The in5 residency gives us 6 months of infrastructure, mentorship, and ecosystem access to validate CyberLife Technologies with real clinical partners.",
+        content: "We were selected through the university to exhibit CyberLife at the British Embassy and allocated a stall to present the project. CyberLife is also part of the Mohammed Bin Rashid Innovation Fund (MBRIF) incubator programme and received a University of Birmingham Dubai UEP award.",
+      },
+      {
+        type: 'text',
+        content: "Mediclinic’s Digital Innovation Director offered a proof-of-concept contract. The VP at in5 awarded us a six-month residency. We are exploring the path from prototype to pilot; the offer is not a claim of clinical deployment.",
       },
       {
         type: 'quote',

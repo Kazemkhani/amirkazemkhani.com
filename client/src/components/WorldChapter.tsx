@@ -252,9 +252,10 @@ export default function WorldChapter({
                 <img
                   src={world.image || `/worlds/${world.id}.webp`}
                   alt={
-                    world.id === "gold"
+                    world.imageAlt ||
+                    (world.id === "gold"
                       ? "Decorative gold sculpture, private product walkthrough available"
-                      : `${world.name} actual product`
+                      : `${world.name} actual product`)
                   }
                   width="1440"
                   height="900"
@@ -269,7 +270,9 @@ export default function WorldChapter({
                   aria-label={world.entryLabel || `Enter ${world.name}`}
                 >
                   <span className="scene-pointer" aria-hidden="true">
-                    {world.id === "gold" ? "Explore" : "Enter"}
+                    {world.id === "cyberlife"
+                      ? "Read"
+                      : world.id === "gold" ? "Explore" : "Enter"}
                     <ArrowUpRight size={22} />
                   </span>
                 </a>
@@ -297,13 +300,15 @@ export default function WorldChapter({
             </div>
           )}
           <p className="scene-caption">
-            {world.id === "gold"
-              ? "Illustration / private build"
-              : world.id === "morning"
-                ? "Actual App Store screenshots"
-                : world.scene
-                  ? "Actual product footage / click to explore"
-                  : "Actual product interface"}
+            {world.id === "cyberlife"
+              ? "Exhibition card / read the project story"
+              : world.id === "gold"
+                ? "Illustration / private build"
+                : world.id === "morning"
+                  ? "Actual App Store screenshots"
+                  : world.scene
+                    ? "Actual product footage / click to explore"
+                    : "Actual product interface"}
           </p>
         </div>
         <div className="chapter-bottom">

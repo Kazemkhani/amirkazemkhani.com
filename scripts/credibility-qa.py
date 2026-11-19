@@ -11,22 +11,22 @@ with sync_playwright() as p:
   page.goto(BASE,wait_until='domcontentloaded');page.locator('h1').wait_for();page.wait_for_function('document.fonts.status==="loaded"')
   assert 'AI founder.' in page.locator('h1').inner_text()
   assert page.locator('.hero-identity').count()==0
-  assert page.locator('.world-dock .product-logo').count()==8
+  assert page.locator('.world-dock .product-logo').count()==9
   assert page.locator('.hero-award img').count()==3
   for img in page.locator('.hero-award img').all():img.evaluate('(e)=>e.decode()')
   assert page.locator('.dock-number').count()==0
-  assert page.locator('.chapter-name .product-logo').count()==8
+  assert page.locator('.chapter-name .product-logo').count()==9
   assert page.locator('.hero-award-police img').get_attribute('alt')=='Dubai Police'
   assert 'HQ Hackathon' in page.locator('.hero-evidence').inner_text()
   assert page.locator('.award-partners img[alt="in5"]').count()==1
   assert page.locator('.nova-broadcast').count()==1
-  assert page.locator('.credential-strip .project-credential').count()==12
+  assert page.locator('.credential-strip .project-credential').count()==13
   assert 'The ventures. The evidence.' not in page.locator('body').inner_text()
   assert 'ENEC' not in page.locator('body').inner_text()
   assert page.locator('.hero-evidence').bounding_box()['y']+page.locator('.hero-evidence').bounding_box()['height']<=h, 'Key figures below initial viewport'
   assert all(t in page.locator('.hero-evidence').inner_text() for t in ['AED 2M','US$12,800','1st place'])
-  assert page.locator('.world-dock button').count()==8 and page.locator('.archive-list>a').count()==7
-  for i,id in enumerate(['bayyina','marsad','enec','nova','ruya','samt','morning','gold']):
+  assert page.locator('.world-dock button').count()==9 and page.locator('.archive-list>a').count()==6
+  for i,id in enumerate(['bayyina','marsad','enec','nova','ruya','samt','morning','gold','cyberlife']):
    page.locator('.world-dock button').nth(i).click()
    assert page.locator('.active-world .selected-project .product-logo').count()==1
    cred=page.locator('.active-world .project-credential');assert cred.is_visible()
@@ -38,7 +38,7 @@ with sync_playwright() as p:
   if w in [1280,390]:page.screenshot(path=str(OUT/f'credentials-{w}.png'))
   page.locator('#recognition').scroll_into_view_if_needed()
   if w in [1280,390]:page.screenshot(path=str(OUT/f'awards-{w}.png'))
-  for id in ['bayyina','marsad','enec','nova','ruya','samt','morning','gold']:
+  for id in ['bayyina','marsad','enec','nova','ruya','samt','morning','gold','cyberlife']:
    sec=page.locator('#'+id);sec.evaluate('(e)=>scrollTo(0,e.offsetTop)');page.wait_for_timeout(100)
    assert sec.locator('.project-credential').is_visible();assert sec.locator('.project-role').is_visible()
    for img in sec.locator('.project-credential img').all():img.evaluate('(e)=>e.decode()')

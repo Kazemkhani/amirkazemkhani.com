@@ -5,6 +5,7 @@ import type { WorldId } from "../data/worlds";
 export default function ProductLogo({ id }: { id: WorldId }) {
   return (
     <span className={`product-logo product-logo-${id}`} aria-hidden="true">
+      {id === "cyberlife" && <b>CyberLife</b>}
       {id === "bayyina" && (
         <>
           <img src="/brands/bayyina.svg" alt="" />

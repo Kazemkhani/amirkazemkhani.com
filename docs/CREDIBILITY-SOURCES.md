@@ -86,3 +86,11 @@ Amir explicitly states that the VP at in5 directly awarded CyberLife a six-month
 All eight project chapter labels now use the shared ProductLogo component. The Morning Club and Gold Hedge credential headings also use their product identities. The separate `/work/` collection now uses the homepage's light palette and individual pastel project cards. An inherited unsupported speaker label was corrected to exhibitor.
 
 The GCP console confirmed a Gemini service-terms restriction independently of active billing. An authorised appeal was submitted and the console displayed: "Submitted request. Check your email for confirmation." Access restoration and replacement image generation remain unconfirmed. The requested GCP artwork has not been substituted with another provider.
+
+## CyberLife exhibition, 19 November 2026
+
+Amir states that the university selected CyberLife to exhibit at the British Embassy and allocated an exhibition stall. No city, date or event title was supplied, so none is invented. This is an exhibition relationship, not an Embassy endorsement or a client claim. The existing Mediclinic proof-of-concept offer, MBRIF incubator participation, in5 residency and UEP award remain separately labelled.
+
+The Embassy crest is the original asset used by the [official British Embassy Dubai page](https://www.gov.uk/world/organisations/british-embassy-dubai), downloaded from its GOV.UK stylesheet: `https://www.gov.uk/assets/frontend/govuk_publishing_components/crests/org_crest_18px_x2-d7e9ca2aac7d1a9dacc57634cb4acf442e21f2744086a105cc8ec3618f13aeee.png`. The visible text says British Embassy, without inferring which UAE post hosts the exhibition. The crest remains unchanged.
+
+The CyberLife gallery image is an authored exhibition card, not a product screenshot, clinical result or invented patient record. Its editable source is `scripts/artwork/cyberlife.svg`; the gallery uses an optimised WebP. CyberLife is promoted from the additional-project list into the shared project-world data, preserving 15 unique projects.

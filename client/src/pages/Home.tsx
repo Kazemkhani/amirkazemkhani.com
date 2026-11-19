@@ -232,9 +232,11 @@ export default function Home() {
         className="credential-strip"
         aria-label="Exhibitions, programmes and presentations"
       >
-        {[worlds[0], worlds[1], worlds[2], worlds[5], worlds[3]].map((w) => (
-          <ProjectCredential key={w.id} world={w} />
-        ))}
+        {worlds
+          .filter((w) =>
+            ["bayyina", "marsad", "enec", "samt", "nova", "cyberlife"].includes(w.id),
+          )
+          .map((w) => <ProjectCredential key={w.id} world={w} />)}
         {additionalCredentials.map((item) => (
           <ProjectCredential key={item.id} world={item} />
         ))}
@@ -322,7 +324,7 @@ export default function Home() {
               Explore Marsad <ArrowDown size={16} />
             </a>
           </article>
-          <article id="cyberlife" className="award-card award-cyberlife">
+          <article className="award-card award-cyberlife">
             <div className="award-partners">
               <img
                 className="award-logo"
@@ -341,6 +343,10 @@ export default function Home() {
               <WordReveal text="CyberLife" variant="sculpted" paused={paused} />
             </h3>
             <p className="award-title">1st place · FutureHack by in5</p>
+            <p>
+              Selected through the university to exhibit CyberLife at the
+              British Embassy, with an allocated stall to present the project.
+            </p>
             <p>
               Mediclinic’s Digital Innovation Director offered a
               proof-of-concept contract. The VP at in5 directly awarded us a

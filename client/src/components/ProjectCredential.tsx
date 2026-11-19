@@ -19,6 +19,7 @@ export default function ProjectCredential({
         {c.logo ? (
           <>
             <img src={c.logo} alt={c.name} />
+            {world.id === "cyberlife" && <strong>{c.name}</strong>}
             {world.id === "enec" && <strong>NSTI Festival</strong>}
           </>
         ) : world.id === "morning" || world.id === "gold" ? (

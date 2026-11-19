@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs>
+    <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#f8fafb"/><stop offset="1" stop-color="#dce8f3"/></linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="url(#paper)"/>
+  <g fill="none" stroke="#91adc8" opacity=".24">
+    <circle cx="1200" cy="365" r="290"/><circle cx="1200" cy="365" r="225"/><circle cx="1200" cy="365" r="160"/>
+    <path d="M820 365h160l45-70 65 155 55-85h295" stroke-width="3"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#263f55">
+    <text x="90" y="115" font-size="20" letter-spacing="5">HEALTHCARE AI · UNIVERSITY-SELECTED</text>
+    <text x="80" y="300" font-size="138" font-weight="600" letter-spacing="-8">CyberLife</text>
+    <text x="90" y="395" font-size="38">A clearer picture of patient data.</text>
+    <path d="M90 465h1260" stroke="#abbfce"/>
+    <text x="90" y="535" font-size="19" letter-spacing="4">EXHIBITING AT</text>
+    <text x="85" y="615" font-size="62" letter-spacing="-2">British Embassy</text>
+    <text x="90" y="665" font-size="26" fill="#586e81">Selected through the university. Exhibition stall allocated.</text>
+    <path d="M90 740h1260" stroke="#abbfce"/>
+    <text x="90" y="805" font-size="26">FutureHack winner</text>
+    <text x="565" y="805" font-size="26">MBRIF incubator</text>
+    <text x="1000" y="805" font-size="26">in5 residency</text>
+  </g>
+</svg>

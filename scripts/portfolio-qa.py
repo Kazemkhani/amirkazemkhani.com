@@ -5,7 +5,7 @@ import sys,json,os
 BASE=sys.argv[1] if len(sys.argv)>1 else 'http://127.0.0.1:4173'
 LOCAL=bool(os.environ.get('PORTFOLIO_LOCAL_ONLY'))
 OUT=Path(sys.argv[2] if len(sys.argv)>2 else '/tmp/portfolio-v2-qa');OUT.mkdir(parents=True,exist_ok=True)
-IDS=['bayyina','marsad','enec','nova','ruya','samt','morning','gold']
+IDS=['bayyina','marsad','enec','nova','ruya','samt','morning','gold','cyberlife']
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True,args=(["--host-resolver-rules="+os.environ["PORTFOLIO_RESOLVER_RULES"]] if os.environ.get("PORTFOLIO_RESOLVER_RULES") else []))
  for width,height,reduced in [(1280,720,False),(390,844,False),(768,1024,False),(1024,768,False),(320,568,False),(390,844,True)]:
@@ -16,8 +16,8 @@ with sync_playwright() as p:
   page.wait_for_function('document.fonts.status === "loaded"');page.locator('.universe-canvas.loaded canvas').wait_for(timeout=30000);page.wait_for_timeout(900)
   label=f'{width}x{height}'+('-reduced' if reduced else '')
   assert 'AI founder.' in page.locator('h1').inner_text().replace('\u00a0',' ')
-  assert page.locator('.world-dock button').count()==8
-  assert page.locator('.archive-list>a').count()==7
+  assert page.locator('.world-dock button').count()==9
+  assert page.locator('.archive-list>a').count()==6
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'overflow {label}'
   page.screenshot(path=str(OUT/f'hero-{label}.png'))
   page.get_by_role('button',name='Next project',exact=True).click()
